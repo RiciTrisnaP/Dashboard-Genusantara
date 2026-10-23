@@ -1,0 +1,648 @@
+{
+ "_note": "Semua pasien adalah SIMULASI untuk demo. Bukan data pasien nyata.",
+ "patients": [
+  {
+   "id": "A",
+   "displayName": "Ibu A (simulasi)",
+   "age": 52,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "HR+/HER2-",
+    "er": "positif",
+    "pr": "positif",
+    "her2": "IHK 1+",
+    "stage": "IV",
+    "setting": "metastatik",
+    "priorTherapies": [
+     "letrozol + ribociclib (lini 1)"
+    ],
+    "progressedOnEndocrine": true,
+    "familyHistory": "tidak ada"
+   },
+   "molecularTest": {
+    "done": true,
+    "date": "2026-10-20",
+    "method": "NGS_amplikon",
+    "specimen": {
+     "type": "jaringan_FFPE",
+     "site": "payudara",
+     "tumorContentPct": 60,
+     "decalcified": false,
+     "dnaIntegrity": "baik"
+    },
+    "targets": [
+     {
+      "target": "PIK3CA H1047",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E545",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E542",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "AKT1 E17",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N345",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 D538",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 Y537",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA C420",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA Q546",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA M1043",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N1044",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E103",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA K111",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA G118",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 E380",
+      "depth": 850,
+      "internalControlPass": true
+     }
+    ],
+    "variants": [
+     {
+      "gene": "PIK3CA",
+      "protein": "H1047R",
+      "vaf": 22.0,
+      "altReads": 187
+     }
+    ]
+   },
+   "expected": {
+    "sentinel": "LANJUT",
+    "therapyGroupA": [
+     "capivasertib"
+    ],
+    "note": "Truqap tersedia, tidak dijamin JKN"
+   }
+  },
+  {
+   "id": "B",
+   "displayName": "Ibu B (simulasi)",
+   "age": 58,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "HR+/HER2-",
+    "er": "positif",
+    "pr": "negatif",
+    "her2": "IHK 0",
+    "stage": "IV",
+    "setting": "metastatik",
+    "priorTherapies": [
+     "anastrozol + palbociclib (lini 1)"
+    ],
+    "progressedOnEndocrine": true,
+    "familyHistory": "tidak ada"
+   },
+   "molecularTest": {
+    "done": true,
+    "date": "2026-10-21",
+    "method": "NGS_amplikon",
+    "specimen": {
+     "type": "plasma_ctDNA",
+     "site": "darah",
+     "tumorContentPct": null,
+     "plasmaProcessingHours": 3,
+     "dnaIntegrity": "baik"
+    },
+    "targets": [
+     {
+      "target": "PIK3CA H1047",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E545",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E542",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "AKT1 E17",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N345",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 D538",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 Y537",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA C420",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA Q546",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA M1043",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N1044",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E103",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA K111",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA G118",
+      "depth": 3000,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 E380",
+      "depth": 3000,
+      "internalControlPass": true
+     }
+    ],
+    "variants": [
+     {
+      "gene": "ESR1",
+      "protein": "Y537S",
+      "vaf": 1.8,
+      "altReads": 42
+     }
+    ]
+   },
+   "expected": {
+    "sentinel": "LANJUT",
+    "therapyGroupB": [
+     "elacestrant",
+     "imlunestrant",
+     "camizestrant"
+    ],
+    "available": [
+     "fulvestrant"
+    ]
+   }
+  },
+  {
+   "id": "C",
+   "displayName": "Ibu C (simulasi)",
+   "age": 44,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "triple-negatif",
+    "er": "negatif",
+    "pr": "negatif",
+    "her2": "IHK 0",
+    "stage": "IV",
+    "setting": "metastatik",
+    "priorTherapies": [
+     "kemoterapi paklitaksel"
+    ],
+    "progressedOnEndocrine": false,
+    "familyHistory": "tidak ada"
+   },
+   "molecularTest": {
+    "done": true,
+    "date": "2026-10-19",
+    "method": "NGS_amplikon",
+    "specimen": {
+     "type": "jaringan_FFPE",
+     "site": "kelenjar getah bening",
+     "tumorContentPct": 45,
+     "decalcified": false,
+     "dnaIntegrity": "baik"
+    },
+    "targets": [
+     {
+      "target": "PIK3CA H1047",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E545",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E542",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "AKT1 E17",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N345",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 D538",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 Y537",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA C420",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA Q546",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA M1043",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N1044",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E103",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA K111",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA G118",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 E380",
+      "depth": 850,
+      "internalControlPass": true
+     }
+    ],
+    "variants": [
+     {
+      "gene": "PIK3CA",
+      "protein": "E545K",
+      "vaf": 30.5,
+      "altReads": 260
+     }
+    ]
+   },
+   "expected": {
+    "sentinel": "LANJUT (S1 beri catatan subtipe di luar indikasi)",
+    "therapyGroupC": [
+     "capivasertib",
+     "alpelisib",
+     "inavolisib"
+    ],
+    "reason": "indikasi hanya HR+/HER2-"
+   }
+  },
+  {
+   "id": "D",
+   "displayName": "Ibu D (simulasi)",
+   "age": 38,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "HR+/HER2-",
+    "er": "positif",
+    "pr": "positif",
+    "her2": "IHK 0",
+    "stage": "IV",
+    "setting": "kambuh",
+    "priorTherapies": [
+     "tamoksifen adjuvan",
+     "letrozol + ribociclib"
+    ],
+    "progressedOnEndocrine": true,
+    "familyHistory": "ibu dan kakak perempuan kanker payudara sebelum usia 50"
+   },
+   "molecularTest": {
+    "done": true,
+    "date": "2026-10-18",
+    "method": "NGS_amplikon",
+    "specimen": {
+     "type": "jaringan_FFPE",
+     "site": "hati",
+     "tumorContentPct": 50,
+     "decalcified": false,
+     "dnaIntegrity": "baik"
+    },
+    "targets": [
+     {
+      "target": "PIK3CA H1047",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E545",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E542",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "AKT1 E17",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N345",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 D538",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 Y537",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA C420",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA Q546",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA M1043",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N1044",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E103",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA K111",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA G118",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 E380",
+      "depth": 850,
+      "internalControlPass": true
+     }
+    ],
+    "variants": []
+   },
+   "expected": {
+    "sentinel": "LANJUT",
+    "reportWording": "Tidak terdeteksi pada 15 target yang diperiksa",
+    "reflex": [
+     "NGS lebih luas",
+     "tes germline BRCA1/2 dari darah + konseling"
+    ]
+   }
+  },
+  {
+   "id": "E",
+   "displayName": "Ibu E (simulasi)",
+   "age": 61,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "HR+/HER2-",
+    "er": "positif",
+    "pr": "positif",
+    "her2": "IHK 1+",
+    "stage": "IV",
+    "setting": "metastatik",
+    "priorTherapies": [
+     "letrozol (lini 1)"
+    ],
+    "progressedOnEndocrine": true,
+    "familyHistory": "tidak ada"
+   },
+   "molecularTest": {
+    "done": false
+   },
+   "expected": {
+    "trigger": "Perlu tes",
+    "suggestedSpecimen": "jaringan FFPE untuk PIK3CA/AKT1; plasma ctDNA untuk ESR1"
+   }
+  },
+  {
+   "id": "F",
+   "displayName": "Ibu F (simulasi)",
+   "age": 55,
+   "clinical": {
+    "diagnosisConfirmed": true,
+    "histology": "Karsinoma invasif payudara",
+    "subtype": "HR+/HER2-",
+    "er": "positif",
+    "pr": "positif",
+    "her2": "IHK 0",
+    "stage": "IV",
+    "setting": "metastatik",
+    "priorTherapies": [
+     "anastrozol + ribociclib"
+    ],
+    "progressedOnEndocrine": true,
+    "familyHistory": "tidak ada"
+   },
+   "molecularTest": {
+    "done": true,
+    "date": "2026-10-22",
+    "method": "NGS_amplikon",
+    "specimen": {
+     "type": "jaringan_FFPE",
+     "site": "tulang (didekalsifikasi)",
+     "tumorContentPct": 10,
+     "decalcified": true,
+     "dnaIntegrity": "rusak"
+    },
+    "targets": [
+     {
+      "target": "PIK3CA H1047",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E545",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA E542",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "AKT1 E17",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "PIK3CA N345",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 D538",
+      "depth": 850,
+      "internalControlPass": true
+     },
+     {
+      "target": "ESR1 Y537",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA C420",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA Q546",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA M1043",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA N1044",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA E103",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA K111",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "PIK3CA G118",
+      "depth": 40,
+      "internalControlPass": false
+     },
+     {
+      "target": "ESR1 E380",
+      "depth": 40,
+      "internalControlPass": false
+     }
+    ],
+    "variants": []
+   },
+   "expected": {
+    "sentinel": "TAHAN",
+    "readableTargets": 6,
+    "report": "tidak diterbitkan",
+    "reflex": [
+     "tes plasma ctDNA",
+     "blok jaringan lain yang bukan tulang"
+    ]
+   }
+  }
+ ]
+}

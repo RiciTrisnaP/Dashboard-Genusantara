@@ -1,0 +1,154 @@
+{
+ "_note": "Cek tim 23 Okt 2026 lewat BPOM (registrasiobat.pom.go.id), e-Fornas, MIMS. Sumber: proposal OnkoTepat x NUSA-15. Verifikasi ulang sebelum pitch.",
+ "checkedDate": "2026-10-23",
+ "drugs": [
+  {
+   "drug": "capivasertib",
+   "brand": "Truqap",
+   "company": "AstraZeneca",
+   "regimen": "capivasertib + fulvestrant",
+   "bpom": {
+    "status": "terdaftar",
+    "validFrom": "2025-09-29",
+    "validUntil": "2030-09-29"
+   },
+   "jkn": {
+    "status": "tidak ditemukan di e-Fornas"
+   },
+   "market": {
+    "found": true,
+    "price": 87025221,
+    "unit": "per boks 64 tablet 200 mg, sekitar 4 minggu dosis penuh",
+    "source": "MIMS"
+   },
+   "accessGroup": "tersedia"
+  },
+  {
+   "drug": "alpelisib",
+   "brand": "Trezilent",
+   "company": "Novartis",
+   "regimen": "alpelisib + fulvestrant",
+   "bpom": {
+    "status": "terdaftar",
+    "validFrom": "2022-12-31",
+    "validUntil": "2027-12-31"
+   },
+   "jkn": {
+    "status": "tidak ditemukan di e-Fornas"
+   },
+   "market": {
+    "found": false,
+    "note": "tidak ditemukan di MIMS"
+   },
+   "accessGroup": "terdaftar_tidak_di_pasar"
+  },
+  {
+   "drug": "inavolisib",
+   "brand": "Itovebi",
+   "regimen": "inavolisib + palbociclib + fulvestrant",
+   "bpom": {
+    "status": "tidak ditemukan"
+   },
+   "jkn": {
+    "status": "-"
+   },
+   "market": {
+    "found": false
+   },
+   "accessGroup": "belum_terdaftar"
+  },
+  {
+   "drug": "elacestrant",
+   "brand": "Orserdu",
+   "regimen": "elacestrant (tunggal)",
+   "bpom": {
+    "status": "tidak ditemukan"
+   },
+   "jkn": {
+    "status": "-"
+   },
+   "market": {
+    "found": false
+   },
+   "accessGroup": "belum_terdaftar"
+  },
+  {
+   "drug": "imlunestrant",
+   "brand": "Inluriyo",
+   "regimen": "imlunestrant",
+   "bpom": {
+    "status": "tidak ditemukan"
+   },
+   "jkn": {
+    "status": "-"
+   },
+   "market": {
+    "found": false
+   },
+   "accessGroup": "belum_terdaftar"
+  },
+  {
+   "drug": "camizestrant",
+   "brand": "(merek per proposal tim, cek ulang)",
+   "regimen": "camizestrant + inhibitor CDK4/6",
+   "bpom": {
+    "status": "tidak ditemukan"
+   },
+   "jkn": {
+    "status": "-"
+   },
+   "market": {
+    "found": false
+   },
+   "accessGroup": "belum_terdaftar"
+  },
+  {
+   "drug": "fulvestrant",
+   "brand": "-",
+   "regimen": "fulvestrant (terapi endokrin standar)",
+   "bpom": {
+    "status": "terdaftar"
+   },
+   "jkn": {
+    "status": "masuk Fornas, maksimal 6 bulan",
+    "source": "CNA Indonesia, Mar 2025"
+   },
+   "market": {
+    "found": true
+   },
+   "accessGroup": "tersedia"
+  },
+  {
+   "drug": "ribociclib",
+   "brand": "Kryxana",
+   "company": "Novartis",
+   "regimen": "ribociclib + inhibitor aromatase (lini 1, bukan biomarker panel)",
+   "bpom": {
+    "status": "terdaftar",
+    "validUntil": "2029-12-09"
+   },
+   "jkn": {
+    "status": "belum dicek"
+   },
+   "market": {
+    "found": null
+   },
+   "accessGroup": "tersedia"
+  },
+  {
+   "drug": "neratinib",
+   "brand": "-",
+   "regimen": "neratinib + trastuzumab + fulvestrant",
+   "bpom": {
+    "status": "belum dinilai"
+   },
+   "jkn": {
+    "status": "-"
+   },
+   "market": {
+    "found": null
+   },
+   "accessGroup": "belum_dinilai"
+  }
+ ]
+}

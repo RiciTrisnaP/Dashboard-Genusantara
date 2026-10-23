@@ -1,0 +1,993 @@
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+OnkoTepat × NUSA-15 — Proposal Gabungan
+(GenoHack 2026)
+  ​Oct 23, 2026      · @Nalarasa
+
+Versi gabungan dari model bisnis OnkoTepat dan proposal NUSA-15, untuk dibandingkan
+dengan dokumen OnkoTepat yang asli (tidak diubah).
+
+
+
+Ringkasan untuk juri
+OnkoTepat dengan panel NUSA-15 memilih maksimal 15 target mutasi kanker payudara
+berdasarkan data pasien Asia, memastikan hasil tesnya layak dibaca, lalu mengubahnya
+menjadi pilihan terapi yang benar-benar bisa diakses di Indonesia. Kalimat kuncinya: tepat
+obatnya, tuntas terapinya.
+
+     Masalah: hanya 5% data acuan berasal dari pasien Asia; tes mutasi sering terlewat (di
+     AS hanya 2,1% pasien HR+/HER2− metastatik dites PIK3CA pada 2012–2018); dan dari 6
+     obat target yang disetujui FDA, hanya 2 terdaftar di BPOM, yang ada di pasar hanya
+     Truqap (sekitar Rp87 juta per 4 minggu), tidak satu pun dijamin JKN.
+     Produk gabungan: empat modul NUSA-15 (BRIDGE, SENTINEL, REFLEX, TRIASE)
+     disatukan dengan lapisan OnkoTepat (akses Indonesia, pemicu tes, ringkasan pasien,
+     registri, pendampingan).
+     Bukti sains yang ditunjukkan: benchmark jujur NUSA-15 vs WEST-15 pada data Asia
+     yang tidak dipakai melatih, dengan rentang ketidakpastian. Bila hasilnya tidak berbeda,
+     itu dilaporkan apa adanya.
+     USP: konteks Indonesia (status BPOM, JKN, harga, nama merek lokal) ditambah
+     gerbang mutu yang mencegah “tidak terdeteksi” dibaca sebagai “tidak ada”. USP ini
+     tetap berlaku apa pun hasil benchmark.
+     Siapa yang membayar: program identifikasi pasien farmasi (dimulai AstraZeneca
+     Indonesia), kanal premium lewat RS swasta sebagai pembiaya awal, lisensi alur kerja
+     untuk lab, kontrak desain panel dengan PathGen, dan hibah.
+     Status: riset dan prototipe, TRL 2 menuju 3. Belum ada panel final tervalidasi, data
+     pasien asli, atau izin edar.
+     Permintaan: konfirmasi singkat bahwa target = varian hotspot somatik dan asumsi PCR
+     multipleks dari PathGen, akses data dan bimbingan, serta kasus arsip RS untuk validasi
+     retrospektif.
+
+
+
+
+                                                                                        Page 1 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Cek terhadap 7 ekspektasi PathGen
+Versi gabungan yang terkoreksi menjawab ketujuh ekspektasi dan dua syarat desain di
+dokumen tantangan PathGen. Kolom kanan menunjukkan bagian mana yang ditunjukkan
+saat pitching.
+
+
+  Ekspektasi atau syarat PathGen                          Cara dipenuhi                          Ditunjukkan di
+
+  1. Panel berperingkat + bukti                           Panel NUSA-15 final dengan             Colab + slide
+  klinis (CIViC, ClinVar)                                 tingkat bukti per target               panel
+
+  2. Kurva cakupan: % pasien vs                           Kurva 1–15 target untuk NUSA-15        Colab
+  jumlah target                                           dan WEST-15
+
+  3a. Panel yang sama diuji pada                          Kedua panel diuji di data uji Asia     Colab
+  pasien Asia vs Barat                                    dan 30% data Barat yang
+                                                          disisihkan
+
+  3b. Panel data Asia vs panel data                       NUSA-15 vs WEST-15 dengan              Colab
+  Barat                                                   algoritma dan anggaran sama
+
+  4. Desain di satu kohort, uji di                        Latih SMC Korea, uji TCGA Asia (+      Colab + diagram
+  kohort lain                                             China bila akses didapat)              desain
+
+  5. Cek realitas Indonesia                               Dibandingkan dengan 207 pasien         Colab + slide
+                                                          Indonesia (PMC12052133) dan
+                                                          disebut apa yang terlewat
+
+  6. Batasan dan langkah lanjut                           Daftar klaim yang dilarang; validasi   Dokumen + slide
+                                                          analitik dan klinis di rencana
+
+  7. Kasus pemakaian klinis di                            Laporan dengan status BPOM,            JPEG prototipe
+  Indonesia                                               JKN, dan harga; pemicu tes;
+                                                          ringkasan pasien
+
+  Syarat: nyatakan asumsi format                          PCR multipleks hotspot; alternatif     Dokumen + slide
+  tes                                                     NGS amplikon kecil
+
+  Syarat: biaya = jumlah target (+                        Jumlah target dan perkiraan 4–5        Slide panel
+  reaksi multipleks)                                      reaksi multipleks (asumsi)
+
+
+
+
+Masalah
+Pasien kanker payudara HR+/HER2− stadium lanjut di Indonesia menghadapi tiga celah
+sekaligus: panel dirancang dari data Barat, tes sering tidak dipesan, dan obat yang
+disarankan laporan global belum tentu bisa didapat.
+
+
+
+
+                                                                                                                 Page 2 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+     Data acuan bias: hanya 57 dari 1.084 sampel TCGA-BRCA (sekitar 5%) berasal dari
+     pasien Asia (dokumen tantangan PathGen). Pada 207 pasien Indonesia, PIK3CA
+     bermutasi pada 32,9% dan H1047L menjadi varian tersering (PLOS ONE 2025); di data
+     mayoritas Barat, H1047L hanya 4% dari mutasi PIK3CA (Breast Cancer Research 2020).
+     Tes terlewat: hanya 2,1% dari 8.499 pasien HR+/HER2− metastatik di AS yang dites
+     PIK3CA (SABCS 2019), dan kurang dari 40% pasien kanker payudara metastatik
+     menjalani NGS pada 2017–2023 (Flatiron).
+     Hasil tes bisa salah dibaca: sampel jaringan arsip (FFPE) sering rusak; cakupan baca
+     rendah membuat mutasi tidak terdeteksi padahal ada. Panel hotspot juga tidak bisa
+     menggantikan pemeriksaan BRCA1/2 dan PTEN yang variannya tersebar (proposal
+     NUSA-15).
+     Akses obat sempit dan mahal: hasil cek tim 23 Okt 2026 ada di bagian Laporan. Biaya
+     Truqap untuk 4 minggu sudah melebihi PDB per kapita setahun, Rp83,7 juta (BPS via
+     Bisnis.com).
+
+Yang sudah ada dan yang belum: diagnosis primer (biopsi, histologi, IHK) sudah ada di RS
+dan tepat untuk menentukan subtipe. Yang belum ada adalah profil mutasi yang andal
+saat penyakit memburuk, padahal di situ pilihan obat target dan tanda resistensi
+(misalnya ESR1) ditentukan.
+
+
+Arsitektur gabungan
+Empat modul NUSA-15 dan lapisan OnkoTepat menjadi satu alur: BRIDGE menentukan
+target, pemicu tes memastikan tes dipesan, SENTINEL memeriksa mutu sebelum dan
+sesudah tes, REFLEX mengarahkan tes lanjutan, dan TRIASE menghasilkan laporan
+dengan akses Indonesia.
+
+
+
+
+                                                                                     Page 3 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Arsitektur gabungan, versi terkoreksi · 2 gerbang mutu, jalur jaringan dan darah, 2 putaran balik
+
+
+
+
+                                                                                                    Page 4 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Kotak berwarna adalah koreksi dari gambar awal tim: gerbang mutu sebelum tes, darah
+sebagai jalur utama ESR1, asumsi PCR multipleks, panah balik REFLEX, dan status akses
+Indonesia. Registri dan pendampingan terapi masuk pilot; data registri kembali
+memperbarui urutan target di BRIDGE.
+
+
+  Modul                    Padanan di OnkoTepat                   Peran dalam gabungan
+  NUSA-15
+
+  BRIDGE                   Lapis 1, mesin desain panel            Metodologi BRIDGE dipakai;
+                                                                  hasilnya diberi nama panel NUSA-15
+
+  SENTINEL                 Belum ada                              Ditambahkan sebagai gerbang mutu
+                                                                  sebelum laporan
+
+  REFLEX                   Pemicu tes (lapis 4a)                  Digabung: pemicu sebelum tes dan
+                                                                  tes lanjutan sesudah tes
+
+  TRIASE                   Lapis 2, Laporan Pilih Terapi          Laporan OnkoTepat menjadi inti,
+                                                                  ditambah persetujuan dokter dan
+                                                                  versi basis bukti dari TRIASE
+
+  Belum ada                Akses Indonesia, ringkasan pasien,     Dibawa dari OnkoTepat
+                           registri, pendampingan, model bisnis
+
+
+
+
+Panel NUSA-15 (modul BRIDGE)
+BRIDGE memilih maksimal 15 target yang mencakup sebanyak mungkin pasien dengan
+temuan yang bisa ditindaklanjuti, lalu membandingkannya secara adil dengan panel yang
+dipilih hanya dari data Barat (WEST-15).
+
+Definisi target dan format tes (sesuai syarat PathGen): target = varian hotspot somatik,
+karena dokumen PathGen berjudul “Affordable Hotspot Panels” dan menulis “targets are
+primarily somatic variants”. Asumsi format tes yang kami nyatakan: PCR multipleks
+hotspot, sesuai kekuatan PathGen dan mesin qPCR yang sudah ada di RS, dengan
+alternatif NGS amplikon kecil. Biaya dilaporkan sebagai jumlah target dan perkiraan jumlah
+reaksi multipleks (sekitar 4–5 reaksi untuk 15 target; asumsi yang divalidasi bersama
+PathGen).
+
+Cara kerja (versi terkoreksi):
+
+ 1. Data dipisah per studi sebelum optimasi. WEST-15 dilatih dengan 70% data TCGA kulit
+     putih; NUSA-15 dilatih dengan data SMC Korea (187 pasien). Data penguji adalah TCGA
+     Asia (57 pasien, ditambah kohort China bila akses didapat) dan 30% data Barat yang
+     disisihkan.
+
+
+
+
+                                                                                               Page 5 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+ 2. Tujuan optimasi: maksimalkan cakupan pasien unik dengan temuan yang bisa
+     ditindaklanjuti, maksimal 15 target; mutasi ganda tidak dihitung dua kali. Algoritma
+     greedy atau integer linear programming, dengan anggaran dan aturan yang sama untuk
+     kedua panel.
+ 3. Kedua panel diuji di kedua data uji (Asia dan Barat), sesuai ekspektasi 3a dan 3b,
+     dengan bootstrap 95% CI dan analisis per subtipe.
+ 4. Keluaran: kurva cakupan 1–15 target, cek terhadap data Indonesia, dan panel
+     berperingkat dengan bukti CIViC dan ClinVar.
+ 5. Skenario sensitivitas: bobot akses Indonesia, yaitu capivasertib untuk PIK3CA, AKT1,
+    dan PTEN, serta keputusan pindah ke fulvestrant untuk ESR1.
+
+
+
+
+                                                                                       Page 6 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Alur desain panel NUSA-15, versi terkoreksi · data dipisah per studi sebelum optimasi
+
+Kotak berwarna adalah perbaikan dari gambar awal tim: pemisahan data latih dan uji, uji di
+dua data, kurva cakupan, dan cek data Indonesia.
+
+Cek realitas Indonesia (ekspektasi 5): studi Indonesia (207 pasien, PMC12052133)
+menemukan PIK3CA bermutasi pada 68 pasien (32,9%): ekson 9 pada 30 pasien (E542K 9,
+lainnya 21) dan ekson 20 pada 38 pasien (H1047L 24, lainnya 14). Panel tanpa H1047L akan
+melewatkan 24 dari 68 pasien bermutasi (35%). Yang tidak bisa dinilai dari studi ini: varian
+di luar 11 hotspot yang diperiksa (misalnya N345K), ESR1, dan AKT1; ada juga 7 sampel
+
+
+
+
+                                                                                        Page 7 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+dengan hasil berbeda antara dua metode tes. Catatan: dokumen PathGen mengutip data
+ini sebagai Indonesian Journal of Cancer 2023, sedangkan PMC12052133 adalah artikel
+PLOS ONE 2025.
+
+
+  Kelompok                         Contoh                 Obat terkait              Akses di Indonesia
+  kandidat (bukan                                                                   (cek 23 Okt 2026)
+  panel final)
+
+  PIK3CA hotspot                   E542K, E545K,          Capivasertib, alpelisib   Truqap di pasar;
+                                   H1047R, H1047L                                   Trezilent terdaftar
+                                                                                    tetapi tidak ditemukan
+                                                                                    di MIMS
+
+  AKT1                             E17K                   Capivasertib              Truqap di pasar
+
+  ESR1 hotspot                     Y537S/N/C,             Elacestrant,              Obat khusus ESR1
+                                   D538G                  imlunestrant; keputusan   belum terdaftar;
+                                                          pindah ke fulvestrant     fulvestrant di Fornas
+                                                                                    (maks. 6 bulan)
+
+  ERBB2 activating                 L755S, V777L           Riset (neratinib)         Tidak dinilai
+
+  BRCA1/2, PTEN                    Varian tersebar        PARP inhibitor (BRCA      Tidak bisa dicakup
+                                                          bawaan), capivasertib     penuh oleh hotspot;
+                                                          (PTEN)                    dialihkan lewat
+                                                                                    REFLEX
+
+
+Bukti awal dari data agregat: dengan 3 target, urutan berbasis data Indonesia menangkap
+sekitar 87% pasien bermutasi PIK3CA di data Indonesia, sedangkan urutan berbasis data
+Barat 65%. Angka ini dari ringkasan studi, bukan data per pasien, jadi merupakan batas
+atas. Benchmark per pasien dikerjakan di hackathon.
+
+Status prototipe: notebook Colab sudah ada dan baru diuji dengan data sintetis.
+Notebook itu perlu ditambah: pemisahan 70/30 data Barat, uji kedua panel di kedua data
+uji, dan pelaporan jumlah reaksi multipleks.
+
+
+Gerbang mutu SENTINEL dan tes lanjutan REFLEX
+SENTINEL memastikan hasil tes layak dibaca sebelum laporan terapi keluar; REFLEX
+menyarankan langkah berikutnya bila hasil belum cukup. Prinsipnya: sampel yang tidak
+terbaca bukan hasil negatif.
+
+
+
+
+                                                                                                      Page 8 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Lapisan                      Yang diperiksa                           Kemungkinan hasil
+  SENTINEL
+
+  S1 Klinis                    Diagnosis terkonfirmasi, stadium,        Layak diinterpretasi / konteks
+                               subtipe, terapi sebelumnya               kurang
+
+  S2 Spesimen                  Jenis sampel, kadar sel tumor, jumlah    Lanjut / tahan / ambil ulang
+                               dan kerusakan DNA, pengolahan plasma
+
+  S3 Analitik                  Cakupan baca per target, molekul unik,   Terbaca / tidak terbaca per
+                               kualitas baca, kontaminasi               target
+
+  S4 Varian                    VAF, jumlah baca varian, artefak FFPE    Lulus / tinjau / artefak
+
+  S5 Pelaporan                 Lingkup tes, versi basis bukti, tanda    Terbitkan / ulang / tes lebih
+                               tangan dokter                            luas
+
+
+Kapan dijalankan: S1–S2 dijalankan sebelum tes, supaya biaya tidak terbuang untuk
+sampel yang rusak; S3–S5 dijalankan sesudah tes. Jenis sampel: jaringan FFPE menjadi
+jalur utama untuk PIK3CA, AKT1, dan PTEN; darah (ctDNA) menjadi jalur utama untuk
+ESR1 saat penyakit memburuk, karena mutasi ini biasanya muncul setelah terapi hormon
+dan tes pendamping FDA untuk elacestrant dan imlunestrant memakai darah.
+
+Penyesuaian untuk tes PCR (kekuatan PathGen): ukuran S3 dan S4 diganti nilai Ct,
+kontrol internal, dan kontrol positif/negatif per reaksi. Ambang seperti 300× cakupan atau
+180 molekul unik di prototipe adalah nilai demo, bukan batas klinis.
+
+Urutan keputusan REFLEX (selalu butuh persetujuan dokter):
+
+ 1. Mutu gagal: tahan laporan; ulang dari pustaka, sekuensing, atau spesimen sesuai
+    penyebab.
+ 2. Target tertentu tidak terbaca: laporkan area yang tidak dinilai; ulang bila targetnya
+     penting.
+ 3. Panel negatif tetapi kebutuhan klinis besar: pertimbangkan profil yang lebih luas
+     (NGS).
+ 4. Ada petunjuk BRCA bawaan: rujuk tes germline dari darah dengan konseling (PNPK
+     2026 menyebut BRCA1/2 diperiksa dari darah).
+ 5. Plasma negatif: belum tentu informatif; pertimbangkan tes jaringan.
+
+Gabungan dengan OnkoTepat: pemicu tes bekerja sebelum tes (menandai pasien yang
+sudah waktunya dites di rapat tim tumor), REFLEX bekerja sesudah tes. Keduanya
+menjadi satu modul “pemicu tes sebelum dan sesudah”.
+
+
+
+
+                                                                                                   Page 9 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Contoh demo (simulasi): Pasien F, sampel biopsi tulang yang sudah didekalsifikasi
+sehingga DNA rusak. SENTINEL: 6 dari 15 target terbaca, kadar sel tumor 10%, status
+TAHAN. REFLEX: tes darah (ctDNA) atau blok jaringan lain yang bukan tulang. Laporan
+terapi tidak dikeluarkan, dan hasil tidak boleh dibaca sebagai “tidak ada mutasi”.
+
+
+Laporan dan pendampingan (TRIASE + lapisan OnkoTepat)
+TRIASE menyusun draf laporan molekuler berbasis aturan dan bukti; OnkoTepat
+menambahkan status akses Indonesia, ringkasan untuk pasien, dan desain perilaku.
+Laporan selalu menunggu tanda tangan dokter atau patolog sebelum terbit.
+
+Isi Laporan Pilih Terapi (dokter):
+
+     Status mutu SENTINEL dan target yang tidak terbaca.
+     Mutasi, tingkat bukti, dan kecocokan dengan subtipe, stadium, serta lini terapi.
+     Pilihan terapi diurutkan menurut yang bisa dilakukan di Indonesia: sesuai dan tersedia,
+     sesuai tetapi belum terdaftar, atau tidak sesuai (dengan alasannya).
+     Saran tes lanjutan REFLEX, biaya, dan versi basis bukti beserta tanggal cek akses.
+
+Uji asumsi akses obat (cek tim 23 Okt 2026, lewat BPOM, e-Fornas, MIMS):
+
+
+
+
+                                                                                        Page 10 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Obat                            Merek di                BPOM            JKN (e-       Harga dan pasar
+                                  Indonesia                               Fornas)
+
+  Capivasertib                    Truqap                  Terdaftar 29    Tidak         Rp87.025.221 per
+                                  (AstraZeneca)           Sep 2025 s/d    ditemukan     boks 64 tablet
+                                                          29 Sep 2030                   200 mg, sekitar 4
+                                                                                        minggu dosis
+                                                                                        penuh (MIMS)
+
+  Alpelisib                       Trezilent               Terdaftar 31    Tidak         Tidak ditemukan
+                                  (Novartis)              Des 2022 s/d    ditemukan     di MIMS
+                                                          31 Des 2027
+
+  Ribociclib (lini 1)             Kryxana                 Terdaftar s/d   Belum dicek   Belum dicek
+                                  (Novartis)              9 Des 2029
+
+  Fulvestrant                     —                       Terdaftar       Fornas,       —
+                                                                          maks. 6
+                                                                          bulan (CNA)
+
+  Elacestrant,                    Orserdu,                Tidak           —             —
+  imlunestrant,                   Inluriyo, Itovebi,      ditemukan
+  inavolisib,                     Etcamah
+  camizestrant
+
+
+Lapisan pendampingan berbasis desain perilaku:
+
+     Pemicu tes: menandai pasien HR+/HER2− stadium lanjut yang memburuk setelah
+     terapi hormon tetapi belum dites, tepat sebelum rapat tim tumor.
+     Desain laporan: diurutkan menurut akses, ada alasan untuk tiap “tidak sesuai”, angka
+     absolut, biaya nyata, satu halaman.
+     Ringkasan pasien: bahasa awam, penjelasan bahwa mutasi tumor tidak diturunkan ke
+     anak, biaya terbuka, daftar pertanyaan untuk dokter, dan peran keluarga.
+     Pendampingan terapi (pilot): pengingat jadwal Truqap 4 hari minum–3 hari libur,
+     laporan gejala, pengingat cek gula darah, dan eskalasi ke perawat. Dasarnya: pelaporan
+     gejala online memperpanjang median kelangsungan hidup dari 26,0 menjadi 31,2 bulan
+     pada pasien kanker lanjut (Basch, JAMA 2017). Studi itu pada kemoterapi, jadi efeknya
+     untuk capivasertib masih asumsi.
+
+
+
+
+                                                                                                   Page 11 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+MVP pitching vs pilot 12 bulan vs sesudahnya
+Yang dibangun selama hackathon hanya bagian yang bisa dibuktikan dengan data publik
+dan contoh simulasi. Alur NGS lengkap, validasi analitik, dan validasi klinis cukup
+diceritakan sebagai rencana.
+
+
+  Modul                                 MVP pitching          Pilot 12 bulan         Sesudah 12 bulan
+                                        (GenoHack)
+
+  BRIDGE / panel                        Benchmark NUSA-15     Diuji ulang dengan     Kit 15 target
+  NUSA-15                               vs WEST-15 di Colab   data Indonesia         bersama PathGen
+                                        dengan data publik,   dari lab mitra;        dan Bio Farma
+                                        plus rentang          desain primer–
+                                        ketidakpastian        probe
+
+  SENTINEL (gerbang                     Aturan S1–S5 + 1      Ambang mutu            Bagian dari sistem
+  mutu)                                 contoh kasus TAHAN    divalidasi per jenis   mutu izin edar
+                                        (simulasi)            mutasi (batas
+                                                              deteksi, artefak
+                                                              FFPE)
+
+  REFLEX + pemicu tes                   Aturan pemicu         Dipasang di rapat      Terhubung ke sistem
+                                        sebelum dan sesudah   tim tumor RS pilot     informasi lab dan RS
+                                        tes + contoh daftar
+                                        pasien
+
+  TRIASE + Laporan                      Laporan pasien        Validasi 100–150       Izin edar software
+  Pilih Terapi                          simulasi dengan       kasus arsip vs         (Kepmenkes
+                                        status akses yang     keputusan MDT;         951/2026)
+                                        sudah dicek           regulatory
+                                                              sandbox
+
+  Ringkasan pasien                      Contoh ringkasan      Dipakai di pilot       Versi multibahasa
+                                                              dan kanal              daerah
+                                                              premium
+
+  Registri                              Rancangan data dan    Berjalan di 1–2 RS     Data untuk HTA dan
+                                        persetujuan                                  farmasi
+
+  Pendampingan terapi                   —                     Bersama program        Program
+                                                              farmasi, dengan        pendampingan
+                                                              perawat dan SOP        berbayar
+                                                              efek samping
+
+
+
+
+                                                                                                   Page 12 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Modul                                 MVP pitching              Pilot 12 bulan        Sesudah 12 bulan
+                                        (GenoHack)
+
+  Alur NGS (FASTQ →                     Diagram saja              Studi kelayakan       Validasi klinis
+  laporan) dan cabang                                             dan validasi          multisenter (9–24
+  plasma                                                          analitik (3–9 bulan   bulan)
+                                                                  menurut NUSA-15)
+
+
+Prioritas bila waktu sempit (urutan dari proposal NUSA-15): benchmark BRIDGE yang
+jujur, lalu aturan SENTINEL, lalu REFLEX dan TRIASE sebagai demo terintegrasi. Validasi
+analitik tidak boleh diganti grafik tiruan.
+
+
+
+Model bisnis
+Pembayar utama adalah farmasi; kanal premium membiayai di awal; lab membayar lisensi
+alur kerja (SENTINEL + TRIASE). NUSA-15 sengaja tidak menjual layanan langsung ke
+konsumen untuk skrining. Semua harga di bawah adalah asumsi yang harus diganti
+penawaran nyata.
+
+
+  Sumber                                  Siapa membayar            Harga (asumsi)                Mulai
+
+  1. Program identifikasi                 AstraZeneca               Rp200–400 juta per            Pilot G4,
+  pasien                                  Indonesia (Truqap),       program per tahun; biaya      penuh
+                                          lalu Novartis             tes dibayar langsung ke       tahun 2
+                                                                    lab
+
+  2. Kanal premium                        Pasien mampu,             Sekitar Rp1–3 juta per        Pilot G3–
+  (B2B2C lewat RS                         dibundel RS bersama       pasien untuk laporan,         G4
+  swasta)                                 tes                       ringkasan, dan
+                                                                    pendampingan akses
+
+  3. Lisensi alur kerja lab               Lab molekuler RS atau     Rp150–300 ribu per            Pilot G3
+                                          swasta                    sampel, atau langganan
+                                                                    bulanan
+
+  4. Kontrak desain panel                 PathGen dan Bio           Rp150–300 juta, lalu          Tahun 1–2
+  NUSA-15                                 Farma                     royalti sekitar 5% harga
+                                                                    kit
+
+  5. Riset dan data                       BGSi, hibah riset         Rp0,3–0,8 miliar per hibah    Tahun 1
+                                          nasional
+
+  6. Program                              Farmasi                   Per pasien per bulan, diuji   Tahun 2
+  pendampingan pasien                                               saat pilot
+
+
+
+
+                                                                                                       Page 13 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Hitungan ROI untuk farmasi (ilustrasi): median waktu tanpa perburukan di uji CAPItello-
+291 adalah 7,3 bulan (FDA). Itu sekitar 7,9 boks Truqap × Rp87 juta, atau sekitar Rp690 juta
+penjualan obat per pasien. Program Rp200–400 juta balik modal dengan satu pasien
+tambahan yang memulai terapi. Ini nilai penjualan, bukan laba.
+
+Unit economics per lab (perkiraan): 150–300 sampel per tahun × laba kotor sekitar Rp175
+ribu = Rp26–53 juta per tahun. Biaya akuisisi Rp10–20 juta (integrasi file, uji 30 kasus,
+pelatihan), jadi balik modal 2–9 bulan. Biaya langsung per laporan kecil; biaya terbesar
+adalah kurasi basis bukti dan sistem mutu (sekitar Rp13–22 juta per bulan). Lab saja baru
+menutup biaya itu pada sekitar 900–1.500 sampel per tahun, sehingga program farmasi
+wajib ada.
+
+Kenapa kanal premium disebut pembiaya awal: sekitar Rp180 triliun devisa hilang tiap
+tahun karena warga berobat ke luar negeri (detik, Sep 2024). Pasien mampu membayar
+lebih cepat daripada siklus kontrak farmasi (6–9 bulan). Segmennya kecil, jadi tidak boleh
+menjadi inti.
+
+
+Ukuran pasar
+Dihitung dari bawah, sesuai saran NUSA-15: kasus terkonfirmasi × proporsi yang sesuai
+indikasi × tingkat pemakaian × harga. Hasilnya, pasar laporan kecil dan pasar sebenarnya
+ada pada program farmasi.
+
+
+  Lapisan                         Pasien atau sampel      Nilai per tahun         Dasar
+                                  per tahun
+
+  Pasien yang perlu               10.000–20.000           Rp2–4 miliar (Rp200     66.271 kasus baru
+  tes                                                     ribu per sampel)        (GLOBOCAN 2022 via
+                                                                                  WCRF) × 55–65%
+                                                                                  HR+/HER2− × 30–50%
+                                                                                  stadium lanjut atau
+                                                                                  kambuh (dua angka
+                                                                                  terakhir asumsi)
+
+  Bermutasi                       3.600–7.100             —                       × 32,9% (PLOS ONE
+  PIK3CA                                                                          2025); calon pengguna
+                                                                                  capivasertib
+
+  Terjangkau di                   3.000–6.000             Rp0,6–1,2 miliar dari   Asumsi 30%; volume
+  awal (kota besar                                        lisensi lab, ditambah   tes nyata belum
+  Jawa)                                                   program farmasi         diketahui
+
+
+
+
+                                                                                                  Page 14 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Lapisan                         Pasien atau sampel       Nilai per tahun          Dasar
+                                  per tahun
+
+  Target tahun ke-3               Sekitar 1.500 sampel     Rp0,6–1,4 miliar         5 lab × 300 sampel
+                                  + 1–2 program            berulang                 (Rp300 juta) + program
+                                  farmasi + kanal                                   Rp200–400 juta +
+                                  premium                                           premium 100 pasien ×
+                                                                                    Rp1–3 juta
+
+
+Di luar angka berulang, kontrak desain PathGen dan hibah menambah sekitar Rp0,45–1,1
+miliar yang tidak berulang. Peluang jangka panjang: royalti kit NUSA-15, kanker kedua
+(paru, kolorektal), dan Asia Tenggara.
+
+Catatan devil's advocate: pasien yang mampu membayar Truqap sekitar Rp1,1 miliar per
+tahun sangat sedikit, dan volume tes mutasi payudara di Indonesia belum diketahui.
+Pertanyaan pertama ke PathGen: berapa tes PIK3CA atau ESR1 per bulan, dan di lab mana.
+
+
+Kompetitor dan posisi
+Data Asia, pemeriksaan mutu, dan tes lanjutan bukan konsep baru jika berdiri sendiri
+(catatan jujur dari NUSA-15). Pembedanya ada pada gabungan keempatnya dalam batas 15
+target, ditambah konteks akses Indonesia yang belum dimuat pemain global.
+
+
+  Alternatif                           Yang dijual                Kelemahan untuk      Posisi gabungan
+                                                                  Indonesia
+
+  MDT manual, tanpa                    Tanpa biaya tambahan       Syarat obat dan      Pemicu tes +
+  tes atau dengan tes                                             akses berubah;       laporan yang sudah
+  satu gen                                                        hasil tidak          mencocokkan
+                                                                  seragam              akses
+
+  KALGen Innolab +                     Tes 300+ gen di            Berbasis label       NUSA-15 sebagai
+  FoundationOne CDx                    Indonesia sejak Des        FDA; harga rupiah    panel ringkas;
+                                       2022 (Tempo); tes          tidak ditemukan      laporan bisa
+                                       pendamping resmi FDA                            membaca hasil
+                                       untuk capivasertib                              F1CDx
+
+  SOPHiA GENETICS                      Tes PIK3CA/AKT1/PTEN       Kehadiran di         Lapisan konten
+  + AstraZeneca                        dari jaringan dan darah,   Indonesia tidak      lokal; bisa bermitra
+                                       Sep 2025 (SOPHiA)          ditemukan
+
+
+
+
+                                                                                                     Page 15 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Alternatif                           Yang dijual                Kelemahan untuk       Posisi gabungan
+                                                                  Indonesia
+
+  Platform interpretasi                Software lintas merek      Tidak memuat          Konteks Indonesia
+  global (QCI                          tes                        BPOM, JKN,            + gerbang mutu
+  Interpret, Illumina                                             harga lokal           untuk tes PCR dan
+  Connected Insights,                                                                   NGS
+  Velsera, NAVIFY)
+
+  Pemain Asia (ACT                     Tes yang divalidasi pada   Terikat tes sendiri   Netral terhadap lab
+  Genomics, Lucence,                   sampel Asia; Gene                                Indonesia
+  Gene Solutions)                      Solutions berkantor di
+                                       Jakarta
+
+  Panel hotspot PCR                    Murah dan cepat            Melewatkan            REFLEX
+  (termasuk kit lokal)                                            varian tersebar       mengarahkan ke
+                                                                  (BRCA1/2, PTEN)       tes lebih luas bila
+                                                                                        perlu
+
+
+Parit yang realistis (gabungan): dataset berizin dan protokol perbandingan yang terbuka
+(NUSA-15), validasi mutu per target, konteks akses Indonesia yang terus diperbarui,
+registri hasil terapi pasien Indonesia, desain perilaku yang teruji, serta jejaring klinis. Ini
+bukan klaim bahwa idenya mustahil ditiru.
+
+Ancaman tercepat (dugaan): KALGen/Kalbe dalam 3–6 bulan, PathGen membangun
+sendiri dalam 6–12 bulan, dan SOPHiA bersama AstraZeneca dalam 6–18 bulan.
+
+
+
+Regulasi, data, dan etika
+Ada dua jalur izin terpisah: kit di masa depan sebagai alat diagnostik in vitro, dan software
+laporan sebagai alat kesehatan berbasis perangkat lunak. Sebelum keduanya ada, semua
+pemakaian berstatus riset.
+
+     Software: Kepmenkes HK.01.07/MENKES/951/2026 (7 Sep 2026) mewajibkan validasi
+     klinis untuk alat kesehatan berbasis perangkat lunak dan membuka pengujian terbatas
+     lewat regulatory sandbox (ringkasan Veritask; teks lengkap belum kami baca).
+     Jalurnya: validasi retrospektif dengan komite etik, lalu sandbox (KMK 1280/2023), lalu
+     izin edar. Sistem mutu merujuk ISO 13485, ISO 14971, IEC 62304, dan ISO 27001.
+     Kit NUSA-15 (setelah 12 bulan): validasi analitik mengikuti rekomendasi AMP/CAP
+     untuk NGS (PubMed); interpretasi varian mengikuti AMP/ASCO/CAP (PubMed). Izin
+     AKD lewat Bio Farma, seperti jalur BioColoMelt-Dx.
+     Pedoman klinis: PNPK Kanker Payudara 2026 memuat pemeriksaan patologi molekuler,
+     menyebut ESR1 di antara gen yang punya terapi target, dan menyatakan BRCA1/2
+     diperiksa dari darah (hlm. 37). Anjuran tes PIK3CA, AKT1, dan PTEN untuk stadium IV
+
+
+                                                                                                       Page 16 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+     belum bisa kami pastikan.
+     Tumor vs bawaan: hasil tumor tidak boleh disimpulkan sebagai mutasi bawaan. Rujuk
+     tes germline yang tervalidasi, disertai konseling.
+     Data: data genetik termasuk data pribadi spesifik menurut UU 27/2022 PDP.
+     Deidentifikasi, kontrol akses berbasis peran, log audit, persetujuan terpisah untuk
+     laporan dan registri, dan penyimpanan di Indonesia. Akses data publik mengikuti
+     aturan masing-masing (misalnya data terkontrol NCI GDC).
+     Basis bukti: CIViC bebas dipakai; OncoKB berlisensi untuk penggunaan komersial.
+     Versi basis bukti dicatat di setiap laporan.
+     Program pendampingan yang dibiayai farmasi: bukan promosi obat resep kepada
+     publik. Pasien didaftarkan lewat dokter, dan laporan efek samping diteruskan ke
+     pemilik izin edar.
+
+
+Rencana 12 bulan dan dana
+Rencana gabungan menempatkan studi kelayakan dan validasi analitik NUSA-15 berjalan
+sejajar dengan validasi dan pilot software OnkoTepat. Kebutuhan dana sekitar Rp1,5–2,9
+miliar: Rp1,0–1,9 miliar untuk software dan pilot, ditambah Rp0,5–1,0 miliar untuk kerja
+laboratorium yang dikejar lewat kerja sama dengan PathGen.
+
+
+
+
+Rencana 12 bulan gabungan · 4 tahap, 4 gerbang keputusan
+
+
+
+
+                                                                                       Page 17 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Setiap gerbang adalah titik berhenti: bila kriteria tidak terpenuhi, tim mengubah desain
+atau berhenti sebelum biaya berikutnya keluar.
+
+
+  Pos biaya (12 bulan)                                    Perkiraan         Sumber dana yang dikejar
+
+  Software: BRIDGE, SENTINEL,                             Rp0,3–0,5         Hadiah hackathon, hibah, dana tim
+  REFLEX, TRIASE, integrasi file lab                      miliar
+
+  Kurasi basis bukti, status akses obat,                  Rp0,15–0,3        Hibah riset, kontrak desain
+  penasihat klinis                                        miliar            PathGen
+
+  Validasi retrospektif 100–150 kasus                     Rp0,15–0,3        Hibah riset nasional, BGSi, RS mitra
+  dan komite etik                                         miliar
+
+  Pilot, regulatory sandbox, sistem                       Rp0,2–0,4         Program farmasi, kanal premium,
+  mutu                                                    miliar            hibah
+
+  Pemicu tes, ringkasan pasien,                           Rp0,1–0,2         Program farmasi
+  pendampingan terapi saat pilot                          miliar
+
+  Keamanan data dan server di                             Rp0,1–0,2         Dana tim
+  Indonesia                                               miliar
+
+  Desain primer–probe, uji FFPE, awal                     Rp0,5–1,0         Kerja sama pengembangan
+  validasi analitik NUSA-15                               miliar            PathGen (lab, reagen)
+
+  Total                                                   Rp1,5–2,9
+                                                          miliar
+
+
+Semua angka adalah perkiraan tim. Validasi klinis multisenter kit (9–24 bulan) berada di
+luar rencana 12 bulan ini.
+
+
+Risiko dan daftar klaim yang dilarang
+Risiko terbesar ada dua: benchmark NUSA-15 bisa tidak berbeda dari WEST-15, dan
+volume tes serta kemampuan bayar di Indonesia bisa terlalu kecil. Rencana gabungan
+dirancang agar tetap bernilai di kedua kemungkinan itu.
+
+
+  Risiko                                                         Mitigasi
+
+  NUSA-15 tidak lebih baik dari WEST-15                          Laporkan apa adanya dengan rentang
+                                                                 ketidakpastian; nilai produk bersandar pada
+                                                                 konteks Indonesia dan gerbang mutu
+
+
+
+
+                                                                                                          Page 18 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+  Risiko                                                  Mitigasi
+
+  Lingkup terlalu besar untuk hackathon                   Urutan prioritas: BRIDGE, SENTINEL, lalu
+                                                          REFLEX/TRIASE sebagai demo; tidak
+                                                          membangun alur NGS penuh
+
+  Definisi “target” belum jelas                           Dokumen PathGen: target = varian hotspot
+                                                          somatik; cukup konfirmasi singkat di
+                                                          Problem Owner Clinic
+
+  Platform tes (PCR vs NGS) belum                         Asumsi kerja PCR multipleks dinyatakan;
+  diputuskan                                              SENTINEL punya ukuran mutu versi PCR dan
+                                                          NGS
+
+  Data asal-usul atau etnis pasien hilang                 Negara tidak sama dengan keturunan;
+                                                          stratifikasi terbatas dan disebut terbuka
+
+  Artefak FFPE dan hasil negatif palsu dari               Gerbang mutu, tinjauan patolog, jalur
+  darah                                                   konfirmasi
+
+  Kemampuan bayar rendah (Truqap sekitar                  Program farmasi dan kanal premium; data
+  Rp87 juta per 4 minggu, tidak dijamin JKN)              registri untuk HTA
+
+  Minat farmasi belum terbukti                            Dua calon (AstraZeneca, Novartis) + kontrak
+                                                          PathGen
+
+  Regulasi software dan data pribadi                      Mulai sebagai riset, lalu sandbox; UU PDP
+                                                          sejak desain
+
+
+Klaim yang dilarang di pitch (dari NUSA-15, ditambah temuan tim):
+
+     Jangan menampilkan frekuensi dari kohort sintetis sebagai prevalensi Asia atau
+     Indonesia.
+     Jangan mengklaim NUSA-15 lebih baik dari WEST-15 sebelum ada hasil nyata dengan
+     rentang ketidakpastian.
+     Jangan mengklaim panel hotspot mencakup BRCA1/2 atau PTEN secara utuh.
+     Jangan menyebut varian tumor sebagai bawaan tanpa konfirmasi.
+     Jangan menyamakan “relevan secara terapi” dengan “bisa diresepkan”; status BPOM
+     dan JKN harus dicek dan diberi tanggal.
+     Jangan menyebut area yang tidak terbaca sebagai negatif.
+     Jangan menyimpulkan sensitivitas diagnostik dari 120 pasien sintetis.
+     Jangan menyebut assay siap klinis sebelum validasi analitik dan klinis.
+     Jangan menampilkan hasil wawancara di pitch, dan jangan menyebut RS atau institusi
+     sebagai mitra tanpa surat dukungan.
+
+
+
+
+                                                                                                  Page 19 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Strategi pitch 6 menit dan peran tim
+Ceritanya satu: sains yang jujur (NUSA-15), hasil yang aman dibaca (SENTINEL), dan
+pilihan terapi yang benar-benar bisa diakses di Indonesia (OnkoTepat).
+
+Susunan pitch 6 menit
+
+ 1. 0:00–0:40 Masalah: data Barat, tes yang terlewat, dan hanya satu obat target di pasar
+     dengan harga sekitar Rp87 juta per 4 minggu.
+ 2. 0:40–1:10 Solusi: OnkoTepat dengan panel NUSA-15; empat modul dalam satu alur.
+ 3. 1:10–2:50 Demo (cerita 90 detik dari NUSA-15, diperluas): benchmark NUSA-15 vs WEST-
+     15 di Colab dengan label hasil nyata atau “menunggu”, pemicu tes, kasus TAHAN di
+     SENTINEL dengan saran REFLEX, laporan dokter dengan akses Indonesia, lalu
+     ringkasan pasien.
+ 4. 2:50–3:30 Bukti: slide uji asumsi akses obat (BPOM, e-Fornas, MIMS) dan perubahan
+     arah yang dihasilkannya.
+ 5. 3:30–4:20 Siapa yang membayar: program AstraZeneca dengan hitungan ROI, kanal
+     premium sebagai pembiaya awal, lisensi lab.
+ 6. 4:20–5:20 Rencana 12 bulan, kompetitor, regulasi.
+ 7. 5:20–6:00 Tim dan permintaan: konfirmasi definisi target dan asumsi format tes, serta
+     data dari PathGen, kasus arsip RS untuk validasi.
+
+
+  Peran                                                   Tanggung jawab                                   Orang
+
+  Bioinformatika                                          Akses kohort, kontrol mutu genomik, optimasi     Diisi
+                                                          BRIDGE, benchmark                                tim
+
+  Klinis (patolog molekuler /                             Kriteria klinis, audit aturan TRIASE, peninjau   Diisi
+  onkologi)                                               laporan                                          tim
+
+  Assay (PCR/NGS)                                         Desain amplikon/probe, alur FFPE, ukuran         Diisi
+                                                          mutu SENTINEL                                    tim
+
+  Data dan software                                       Colab yang bisa diulang, skema data,             Diisi
+                                                          dashboard, keamanan                              tim
+
+  Desain perilaku dan produk                              Pemicu tes, desain laporan, ringkasan pasien,    Diisi
+                                                          pendampingan                                     tim
+
+  Bisnis dan regulasi                                     Model biaya, pembayar, jalur izin, etik          Diisi
+                                                                                                           tim
+
+
+
+
+                                                                                                             Page 20 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Koreksi yang diterapkan (23 Okt 2026)
+Versi ini memperbaiki proposal NUSA-15 dan dua gambar awal tim setelah dicek terhadap
+dokumen tantangan PathGen.
+
+
+  Temuan                                                  Koreksi
+
+  Definisi “target” dianggap belum jelas                  Dokumen PathGen (“Affordable Hotspot
+                                                          Panels”, “targets are primarily somatic
+                                                          variants”): target = varian hotspot somatik
+
+  Asumsi format tes tidak dinyatakan                      PCR multipleks hotspot sebagai asumsi
+                                                          kerja; alternatif NGS amplikon kecil; jumlah
+                                                          reaksi dilaporkan
+
+  Gambar 2: data latih dan uji tidak dipisah              Pemisahan per studi sebelum optimasi; SMC
+                                                          latih, TCGA Asia uji, data Barat 70/30
+
+  Gambar 2: panel hanya diuji di data Asia                Kedua panel diuji di data uji Asia dan Barat
+  (ekspektasi 3a hilang)
+
+  Kurva cakupan dan cek data Indonesia tidak              Ditambahkan sebagai keluaran wajib; data
+  menjadi keluaran                                        Indonesia PMC12052133 dibandingkan
+
+  Gambar 1: SENTINEL hanya setelah                        Dua gerbang mutu: S1–S2 sebelum tes, S3–S5
+  sekuensing                                              sesudah tes
+
+  Gambar 1: darah disebut opsional                        Darah menjadi jalur utama untuk ESR1 saat
+                                                          memburuk
+
+  Gambar 1: mesin actionability tanpa akses               TRIASE + status BPOM, JKN, dan harga
+  Indonesia
+
+  Data obat ketinggalan                                   Imlunestrant (FDA Sep 2025) dan
+                                                          camizestrant (FDA Sep 2026) dimasukkan;
+                                                          akses Indonesia dicek tim
+
+  Jadwal “Hackathon 0–4 minggu”                           MVP disesuaikan dengan hackathon 2 hari
+                                                          (23–25 Okt)
+
+  Link GATK Mutect2 tidak cocok dengan pola               Ganti dengan link resmi GATK bila dikutip
+  ID resmi
+
+  Kutipan data Indonesia di dokumen PathGen               Dikutip dengan ID PMC12052133 (artikel
+  (Indonesian Journal of Cancer 2023)                     PLOS ONE 2025)
+
+
+
+
+                                                                                                  Page 21 of 22
+OnkoTepat × NUSA-15 — Proposal Gabungan (GenoHack 2026)
+
+
+
+
+Sumber
+     Proposal “NUSA-15 Precision Oncology Proposal” (23 Okt 2026, berkas tim) dan
+     dokumen “OnkoTepat — Model Bisnis Tantangan PathGen” (Claude Doc tim).
+     Dokumen tantangan PathGen, Panduan Peserta, dan Pitch Guidelines GenoHack 2026
+     (berkas proyek).
+     Database registrasi obat BPOM (registrasiobat.pom.go.id), e-Fornas (e-
+     fornas.kemkes.go.id), dan MIMS Indonesia: dicek tim 23 Okt 2026, tangkapan layar
+     disimpan tim.
+     CNA Indonesia, Mar 2025: fulvestrant di Fornas, dibatasi 6 bulan
+     Bisnis.com, Feb 2026: PDB per kapita 2025 (BPS)
+     detik, Sep 2024: devisa hilang karena berobat ke luar negeri
+     WCRF: GLOBOCAN 2022
+     PLOS ONE 2025: PIK3CA H1047L pada kanker payudara Indonesia
+     Breast Cancer Research 2020: spektrum mutasi PIK3CA
+     HMP Global: tes PIK3CA jarang dilakukan (SABCS 2019)
+     Flatiron Health: pola tes PIK3CA/AKT1/PTEN
+     FDA: capivasertib + fulvestrant (Nov 2023)
+     OncLive: uji Basch (JAMA 2017)
+     AMP/CAP: rekomendasi validasi NGS
+     AMP/ASCO/CAP: interpretasi varian somatik
+     ESMO: rekomendasi ctDNA
+     CIViC: tingkat bukti
+     Kemenkes: PNPK Kanker Payudara 2026
+     Veritask: ringkasan Kepmenkes 951/2026
+     AIPA: KMK 1280/2023 regulatory sandbox
+     Tempo: FoundationOne CDx di Indonesia lewat KALGen Innolab
+     SOPHiA GENETICS: kerja sama dengan AstraZeneca (Sep 2025)
+
+Angka yang ditandai “perkiraan”, “asumsi”, atau “demo” belum bersumber dan tidak boleh
+disajikan sebagai fakta.
+
+
+
+
+                                                                                    Page 22 of 22
+

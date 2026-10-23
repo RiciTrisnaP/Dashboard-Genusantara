@@ -1,0 +1,882 @@
+{
+ "_note": "Dibuat otomatis dari evidence_check.csv oleh scripts/csv-to-json.mjs. Jangan edit manual.",
+ "source": "OncoKB v7.6 (data 30 Sep 2026), CIViC dan ClinVar",
+ "checkedDate": "2026-10-23",
+ "variants": [
+  {
+   "variant": "PIK3CA H1047R",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/H1047R"
+   },
+   "civic": {
+    "molecularProfile": "MP107",
+    "note": null,
+    "bestPredictiveAny": "B",
+    "bestPredictiveBreast": "C",
+    "link": "https://civicdb.org/molecular-profiles/107/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013652",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13652/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA H1047L",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/H1047L"
+   },
+   "civic": {
+    "molecularProfile": "MP1125",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/1125/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013653",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13653/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA H1047Y",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/H1047Y"
+   },
+   "civic": {
+    "molecularProfile": "MP912",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/912/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000039705",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/39705/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E545K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/E545K"
+   },
+   "civic": {
+    "molecularProfile": "MP104",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/104/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013655",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13655/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E545A",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/E545A"
+   },
+   "civic": {
+    "molecularProfile": "MP856",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/856/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013659",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier II",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13659/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E545G",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/E545G"
+   },
+   "civic": {
+    "molecularProfile": "MP857",
+    "note": null,
+    "bestPredictiveAny": "D",
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/857/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013656",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13656/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E542K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/E542K"
+   },
+   "civic": {
+    "molecularProfile": "MP103",
+    "note": null,
+    "bestPredictiveAny": "A",
+    "bestPredictiveBreast": "A",
+    "link": "https://civicdb.org/molecular-profiles/103/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000031944",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/31944/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA Q546R",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/Q546R"
+   },
+   "civic": {
+    "molecularProfile": "MP862",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/862/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000045466",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/45466/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA Q546K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1, named); inavolisib+palbo+fulv (L1); alpelisib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/Q546K"
+   },
+   "civic": {
+    "molecularProfile": "MP859",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/859/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013657",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13657/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA C420R",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "alpelisib+fulv (L1, therascreen allele); capivasertib+fulv (L1); inavolisib+palbo+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/C420R"
+   },
+   "civic": {
+    "molecularProfile": "MP905",
+    "note": null,
+    "bestPredictiveAny": "A",
+    "bestPredictiveBreast": "A",
+    "link": "https://civicdb.org/molecular-profiles/905/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000031945",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/31945/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA N345K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1, named); inavolisib+palbo+fulv (L1); alpelisib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/N345K"
+   },
+   "civic": {
+    "molecularProfile": "MP904",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/904/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000376050",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/376050/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA M1043I",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1, named); inavolisib+palbo+fulv (L1); alpelisib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/M1043I"
+   },
+   "civic": {
+    "molecularProfile": "MP911",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/911/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000217292",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/217292/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA N1044K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/N1044K"
+   },
+   "civic": {
+    "molecularProfile": "MP3306",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/3306/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000663332",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/663332/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA G1049R",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1, named); inavolisib+palbo+fulv (L1); alpelisib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/G1049R"
+   },
+   "civic": {
+    "molecularProfile": "MP914",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/914/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV004530373",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/4530373/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E726K",
+   "oncokb": {
+    "oncogenicity": "Inconclusive",
+    "highestLevelBreast": null,
+    "levelNote": "none (oncogenicity Inconclusive)",
+    "drugsBreast": null,
+    "link": "https://www.oncokb.org/gene/PIK3CA/E726K"
+   },
+   "civic": {
+    "molecularProfile": null,
+    "note": "not in CIViC",
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": null
+   },
+   "clinvar": {
+    "vcv": "VCV000376476",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/376476/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA G118D",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/G118D"
+   },
+   "civic": {
+    "molecularProfile": "MP5571",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/5571/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000156446",
+    "note": null,
+    "oncogenicity": "Likely oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/156446/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA K111E",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/K111E"
+   },
+   "civic": {
+    "molecularProfile": "MP1176",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/1176/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000376482",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/376482/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA E110del",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/E110del"
+   },
+   "civic": {
+    "molecularProfile": null,
+    "note": "not in CIViC",
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": null
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not found",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA R88Q",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1, named); inavolisib+palbo+fulv (L1); alpelisib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/R88Q"
+   },
+   "civic": {
+    "molecularProfile": "MP903",
+    "note": null,
+    "bestPredictiveAny": "A",
+    "bestPredictiveBreast": "A",
+    "link": "https://civicdb.org/molecular-profiles/903/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000376049",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/376049/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA R93W",
+   "oncokb": {
+    "oncogenicity": "Likely Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/R93W"
+   },
+   "civic": {
+    "molecularProfile": "MP1152",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/1152/summary"
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not found",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "PIK3CA G106V",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "inavolisib+palbo+fulv (L1, oncogenic mutations); alpelisib+fulv (L2); capivasertib+fulv (L2)",
+    "link": "https://www.oncokb.org/gene/PIK3CA/G106V"
+   },
+   "civic": {
+    "molecularProfile": "MP1153",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/1153/summary"
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not found",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "AKT1 E17K",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "capivasertib+fulv (L1)",
+    "link": "https://www.oncokb.org/gene/AKT1/E17K"
+   },
+   "civic": {
+    "molecularProfile": "MP4",
+    "note": null,
+    "bestPredictiveAny": "B",
+    "bestPredictiveBreast": "C",
+    "link": "https://civicdb.org/molecular-profiles/4/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000013983",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier I",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/13983/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 D538G",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon D538); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/D538G"
+   },
+   "civic": {
+    "molecularProfile": "MP47",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "C",
+    "link": "https://civicdb.org/molecular-profiles/47/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV003764845",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/3764845/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 Y537S",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon Y537); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/Y537S"
+   },
+   "civic": {
+    "molecularProfile": "MP50",
+    "note": null,
+    "bestPredictiveAny": "D",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/50/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV003257895",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/3257895/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 Y537N",
+   "oncokb": {
+    "oncogenicity": "Likely Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon Y537); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/Y537N"
+   },
+   "civic": {
+    "molecularProfile": "MP49",
+    "note": null,
+    "bestPredictiveAny": "D",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/49/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV003257894",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/3257894/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 Y537C",
+   "oncokb": {
+    "oncogenicity": "Likely Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon Y537); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/Y537C"
+   },
+   "civic": {
+    "molecularProfile": "MP48",
+    "note": null,
+    "bestPredictiveAny": "D",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/48/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV003257896",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/3257896/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 E380Q",
+   "oncokb": {
+    "oncogenicity": "Likely Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon E380); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/E380Q"
+   },
+   "civic": {
+    "molecularProfile": "MP1582",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/1582/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV004539611",
+    "note": null,
+    "oncogenicity": "Likely oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/4539611/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ESR1 L536H",
+   "oncokb": {
+    "oncogenicity": "Likely Oncogenic",
+    "highestLevelBreast": "1",
+    "levelNote": null,
+    "drugsBreast": "elacestrant (L1, LBD missense); vepdegestrant (L1, LBD missense); imlunestrant (L1, codon L536); camizestrant+CDK4/6i (L1)",
+    "link": "https://www.oncokb.org/gene/ESR1/L536H"
+   },
+   "civic": {
+    "molecularProfile": "MP5314",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/5314/summary"
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not in ClinVar",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 L755S",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/L755S"
+   },
+   "civic": {
+    "molecularProfile": "MP39",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/39/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000376035",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/376035/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 V777L",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/V777L"
+   },
+   "civic": {
+    "molecularProfile": "MP44",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "C",
+    "link": "https://civicdb.org/molecular-profiles/44/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000044991",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": "Tier II",
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/44991/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 D769H",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/D769H"
+   },
+   "civic": {
+    "molecularProfile": "MP35",
+    "note": null,
+    "bestPredictiveAny": "D",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/35/summary"
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not in ClinVar",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 D769Y",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/D769Y"
+   },
+   "civic": {
+    "molecularProfile": "MP36",
+    "note": null,
+    "bestPredictiveAny": "C",
+    "bestPredictiveBreast": "D",
+    "link": "https://civicdb.org/molecular-profiles/36/summary"
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not in ClinVar",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 S310F",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/S310F"
+   },
+   "civic": {
+    "molecularProfile": "MP4470",
+    "note": null,
+    "bestPredictiveAny": "A",
+    "bestPredictiveBreast": "C",
+    "link": "https://civicdb.org/molecular-profiles/4470/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV004539768",
+    "note": null,
+    "oncogenicity": "Oncogenic",
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/4539768/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 L869R",
+   "oncokb": {
+    "oncogenicity": "Oncogenic",
+    "highestLevelBreast": "2",
+    "levelNote": null,
+    "drugsBreast": "neratinib+trastuzumab+fulv (L2); neratinib (L3A)",
+    "link": "https://www.oncokb.org/gene/ERBB2/L869R"
+   },
+   "civic": {
+    "molecularProfile": "MP2203",
+    "note": null,
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": "https://civicdb.org/molecular-profiles/2203/summary"
+   },
+   "clinvar": {
+    "vcv": "VCV000431024",
+    "note": null,
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": "https://www.ncbi.nlm.nih.gov/clinvar/variation/431024/"
+   },
+   "checked": "2026-10-23"
+  },
+  {
+   "variant": "ERBB2 G727A",
+   "oncokb": {
+    "oncogenicity": "Inconclusive",
+    "highestLevelBreast": null,
+    "levelNote": "none (oncogenicity Inconclusive)",
+    "drugsBreast": null,
+    "link": "https://www.oncokb.org/gene/ERBB2/G727A"
+   },
+   "civic": {
+    "molecularProfile": null,
+    "note": "not in CIViC",
+    "bestPredictiveAny": null,
+    "bestPredictiveBreast": null,
+    "link": null
+   },
+   "clinvar": {
+    "vcv": null,
+    "note": "not in ClinVar",
+    "oncogenicity": null,
+    "somaticImpact": null,
+    "link": null
+   },
+   "checked": "2026-10-23"
+  }
+ ]
+}

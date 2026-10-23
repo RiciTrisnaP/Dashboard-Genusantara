@@ -1,0 +1,16 @@
+rank,target,gene,alleles_observed,tier,therascreen,evidence,amplicon,SMC %,TCGA-Asian %,TCGA-White %,METABRIC %,MBC %,IGR %
+1,PIK3CA H1047,PIK3CA,H1047R (597); H1047L (69); H1047Y (5); H1047Q (1),1A/1B,yes,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,5,14.5,22.2,15.0,19.4,8.6,9.3
+2,PIK3CA E545,PIK3CA,E545K (264); E545A (10); E545G (8); E545D (2); E545R (1),1A/1B,yes,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,4,5.9,3.7,7.4,7.9,4.3,6.5
+3,PIK3CA E542,PIK3CA,E542K (153); E542G (2); E542V (2); E542A (1),1A/1B,yes,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,4,1.6,5.6,4.6,4.2,2.0,7.4
+4,AKT1 E17,AKT1,E17K (114),1A,no,"FDA: capivasertib+fulvestrant (AKT1 alteration, FoundationOne CDx). HR+/HER2- advanced",6,2.7,3.7,2.4,3.2,1.3,3.2
+5,PIK3CA N345,PIK3CA,N345K (87); N345I (2); N345T (1); N345H (1),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,2,1.6,0.0,2.2,2.6,2.0,1.9
+6,ESR1 D538,ESR1,D538G (24); D538N (1),1B,no,"FDA: elacestrant (Guardant360 CDx), imlunestrant. ER+/HER2- advanced, ESR1-mutated after endocrine therapy",8,0.0,0.0,0.0,0.0,6.0,3.2
+7,ESR1 Y537,ESR1,Y537S (18); Y537N (5); Y537C (3),1B,no,"FDA: elacestrant (Guardant360 CDx), imlunestrant. ER+/HER2- advanced, ESR1-mutated after endocrine therapy",8,0.0,0.0,0.0,0.0,6.3,2.8
+8,PIK3CA C420,PIK3CA,C420R (28),1A,yes,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,3,1.6,0.0,0.7,0.8,0.3,0.5
+9,PIK3CA Q546,PIK3CA,Q546R (19); Q546K (13); Q546P (6); Q546H (2),1A/1B,yes,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,4,0.0,0.0,1.5,1.1,0.3,1.4
+10,PIK3CA M1043,PIK3CA,M1043I (11); M1043V (6),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,5,0.0,1.9,0.5,0.5,0.3,0.0
+11,PIK3CA N1044,PIK3CA,N1044K (12); N1044Y (4),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,5,1.1,0.0,0.3,0.4,0.7,0.5
+12,PIK3CA E103,PIK3CA,E103_ (3),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,1,0.0,1.9,0.2,0.0,0.0,0.0
+13,PIK3CA K111,PIK3CA,K111E (10); K111del (6); K111_ (3); K111N (2),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,1,0.0,0.0,0.7,0.6,0.3,0.9
+14,PIK3CA G118,PIK3CA,G118D (15),1B,no,FDA: alpelisib+fulvestrant (therascreen CDx alleles); inavolisib+palbociclib+fulvestrant; capivasertib+fulvestrant. HR+/HER2- advanced,1,0.0,0.0,0.5,0.4,0.3,0.5
+15,ESR1 E380,ESR1,E380Q (10),1B,no,"FDA: elacestrant (Guardant360 CDx), imlunestrant. ER+/HER2- advanced, ESR1-mutated after endocrine therapy",7,0.0,0.0,0.2,0.0,1.3,2.3

@@ -1,0 +1,111 @@
+{
+ "name": "Panel konsensus 15 target (placeholder, NUSA-15 final menyusul dari notebook BRIDGE)",
+ "unit": "codon (alel apa pun di codon ini dihitung)",
+ "targets": [
+  {
+   "rank": 1,
+   "id": "PIK3CA H1047",
+   "gene": "PIK3CA",
+   "codon": "H1047",
+   "amplicon": 5
+  },
+  {
+   "rank": 2,
+   "id": "PIK3CA E545",
+   "gene": "PIK3CA",
+   "codon": "E545",
+   "amplicon": 4
+  },
+  {
+   "rank": 3,
+   "id": "PIK3CA E542",
+   "gene": "PIK3CA",
+   "codon": "E542",
+   "amplicon": 4
+  },
+  {
+   "rank": 4,
+   "id": "AKT1 E17",
+   "gene": "AKT1",
+   "codon": "E17",
+   "amplicon": 6
+  },
+  {
+   "rank": 5,
+   "id": "PIK3CA N345",
+   "gene": "PIK3CA",
+   "codon": "N345",
+   "amplicon": 2
+  },
+  {
+   "rank": 6,
+   "id": "ESR1 D538",
+   "gene": "ESR1",
+   "codon": "D538",
+   "amplicon": 8
+  },
+  {
+   "rank": 7,
+   "id": "ESR1 Y537",
+   "gene": "ESR1",
+   "codon": "Y537",
+   "amplicon": 8
+  },
+  {
+   "rank": 8,
+   "id": "PIK3CA C420",
+   "gene": "PIK3CA",
+   "codon": "C420",
+   "amplicon": 3
+  },
+  {
+   "rank": 9,
+   "id": "PIK3CA Q546",
+   "gene": "PIK3CA",
+   "codon": "Q546",
+   "amplicon": 4
+  },
+  {
+   "rank": 10,
+   "id": "PIK3CA M1043",
+   "gene": "PIK3CA",
+   "codon": "M1043",
+   "amplicon": 5
+  },
+  {
+   "rank": 11,
+   "id": "PIK3CA N1044",
+   "gene": "PIK3CA",
+   "codon": "N1044",
+   "amplicon": 5
+  },
+  {
+   "rank": 12,
+   "id": "PIK3CA E103",
+   "gene": "PIK3CA",
+   "codon": "E103",
+   "amplicon": 1
+  },
+  {
+   "rank": 13,
+   "id": "PIK3CA K111",
+   "gene": "PIK3CA",
+   "codon": "K111",
+   "amplicon": 1
+  },
+  {
+   "rank": 14,
+   "id": "PIK3CA G118",
+   "gene": "PIK3CA",
+   "codon": "G118",
+   "amplicon": 1
+  },
+  {
+   "rank": 15,
+   "id": "ESR1 E380",
+   "gene": "ESR1",
+   "codon": "E380",
+   "amplicon": 7
+  }
+ ]
+}
