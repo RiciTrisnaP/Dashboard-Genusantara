@@ -3,6 +3,8 @@
 import { ChevronRight, FlaskConical } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { matchesQuery } from "@/lib/search";
+import { SearchBox } from "./SearchBox";
 import { StatusBadge } from "./ui";
 
 /** Plain, serialisable row for the doctor worklist (rule results are computed on the server). */
@@ -45,8 +47,12 @@ function Verdict({ r }: { r: DoctorRow }) {
 
 export function DoctorPatientList({ rows }: { rows: DoctorRow[] }) {
   const [filter, setFilter] = useState<Filter>("semua");
+  const [query, setQuery] = useState("");
   const active = FILTERS.find((f) => f.id === filter)!;
-  const shown = rows.filter(active.match);
+  const searched = rows.filter((r) =>
+    matchesQuery(query, [r.name, r.age, r.subtype, r.stage, r.prior, r.triggerText, r.verdict ? `sentinel ${r.verdict.replace("_", " ")}` : "belum dites", r.verdictDetail]),
+  );
+  const shown = searched.filter(active.match);
 
   return (
     <div className="space-y-5">
@@ -54,6 +60,7 @@ export function DoctorPatientList({ rows }: { rows: DoctorRow[] }) {
         <h2 className="text-3xl font-bold">Semua pasien</h2>
         <p className="mt-1 text-ink-3">{rows.length} pasien simulasi · klik kartu untuk melihat SENTINEL, REFLEX, dan laporan</p>
       </div>
+      <SearchBox value={query} onChange={setQuery} label="Cari pasien" placeholder="Cari nama, subtipe, terapi, atau status" />
       <div role="group" aria-label="Saring pasien" className="flex flex-wrap gap-2">
         {FILTERS.map((f) => {
           const on = f.id === filter;
@@ -67,11 +74,16 @@ export function DoctorPatientList({ rows }: { rows: DoctorRow[] }) {
                 on ? "border-band bg-band font-bold text-white" : "border-line bg-white font-medium text-ink-2 hover:border-band/40"
               }`}
             >
-              {f.label} <span className="opacity-70">({rows.filter(f.match).length})</span>
+              {f.label} <span className="opacity-70">({searched.filter(f.match).length})</span>
             </button>
           );
         })}
       </div>
+      {query && (
+        <p className="text-sm text-ink-3" aria-live="polite">
+          Menampilkan {shown.length} dari {rows.length} pasien untuk &ldquo;{query}&rdquo;
+        </p>
+      )}
       <ul className="space-y-3">
         {shown.map((r) => (
           <li key={r.id}>
@@ -99,7 +111,7 @@ export function DoctorPatientList({ rows }: { rows: DoctorRow[] }) {
             </Link>
           </li>
         ))}
-        {shown.length === 0 && <li className="rounded-2xl border border-dashed border-line bg-white p-6 text-ink-3">Tidak ada pasien untuk saringan ini.</li>}
+        {shown.length === 0 && <li className="rounded-2xl border border-dashed border-line bg-white p-6 text-ink-3">Tidak ada pasien yang cocok. Coba kata lain atau pilih saringan Semua.</li>}
       </ul>
     </div>
   );

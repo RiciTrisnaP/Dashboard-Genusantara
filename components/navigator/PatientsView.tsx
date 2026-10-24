@@ -8,6 +8,8 @@ import { navigator } from "@/lib/navigator/data";
 import { formatWhen } from "@/lib/navigator/format";
 import { gateView, JOURNEY_LABEL } from "@/lib/navigator/rules";
 import type { Journey } from "@/lib/navigator/types";
+import { matchesQuery } from "@/lib/search";
+import { SearchBox } from "../SearchBox";
 import { JourneyChip, monthText } from "./bits";
 import { useNavigator } from "./NavigatorProvider";
 
@@ -16,8 +18,12 @@ const FILTERS: ("semua" | Journey)[] = ["semua", "menunggu_tes", "menunggu_hasil
 export function PatientsView() {
   const { patient } = useNavigator();
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("semua");
+  const [query, setQuery] = useState("");
   const all = navigator.patients.map((p) => patient(p.id)!);
-  const rows = all.filter((p) => filter === "semua" || p.journey === filter);
+  const searched = all.filter((p) =>
+    matchesQuery(query, [p.displayName, p.age, p.subtype, p.stage, p.dpjp, JOURNEY_LABEL[p.journey], gateView(p).label, p.therapy?.regimen, p.family]),
+  );
+  const rows = searched.filter((p) => filter === "semua" || p.journey === filter);
   const active = all.filter((p) => p.journey !== "selesai").length;
 
   return (
@@ -26,10 +32,11 @@ export function PatientsView() {
         <h1 className="text-3xl font-bold">Pasien</h1>
         <p className="mt-1 text-ink-3">{active} pasien aktif · klik kartu untuk melihat detail</p>
       </div>
+      <SearchBox value={query} onChange={setQuery} label="Cari pasien" placeholder="Cari nama, tahap, terapi, atau pendamping" />
       <div role="group" aria-label="Saring menurut tahap" className="flex flex-wrap gap-2">
         {FILTERS.map((f) => {
           const on = f === filter;
-          const n = f === "semua" ? all.length : all.filter((p) => p.journey === f).length;
+          const n = f === "semua" ? searched.length : searched.filter((p) => p.journey === f).length;
           return (
             <button
               key={f}
@@ -43,6 +50,11 @@ export function PatientsView() {
           );
         })}
       </div>
+      {query && (
+        <p className="text-sm text-ink-3" aria-live="polite">
+          Menampilkan {rows.length} dari {all.length} pasien untuk &ldquo;{query}&rdquo;
+        </p>
+      )}
       <ul className="space-y-3">
         {rows.map((p) => {
           const g = gateView(p);
@@ -74,7 +86,7 @@ export function PatientsView() {
             </li>
           );
         })}
-        {rows.length === 0 && <li className="rounded-2xl border border-dashed border-line bg-white p-6 text-ink-3">Tidak ada pasien di tahap ini.</li>}
+        {rows.length === 0 && <li className="rounded-2xl border border-dashed border-line bg-white p-6 text-ink-3">Tidak ada pasien yang cocok. Coba kata lain atau pilih saringan Semua.</li>}
       </ul>
     </div>
   );
