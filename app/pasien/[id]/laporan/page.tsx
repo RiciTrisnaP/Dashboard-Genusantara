@@ -1,13 +1,17 @@
+import { ArrowRight, Database, Droplet, FlaskConical, Lock, Microscope, RefreshCw, SearchCheck, ShieldCheck, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CaseHeader } from "@/components/CaseHeader";
+import { CaseBody, CaseHeader, shortName, VerdictBadge } from "@/components/CaseHeader";
 import { NotNegativeAlert } from "@/components/NotNegativeAlert";
-import { PrintButton, ReportStatus, SignatureLine, SignOffButton } from "@/components/ReportControls";
-import { StatusBadge, statusText } from "@/components/StatusBadge";
-import { TherapyGroup } from "@/components/TherapyGroup";
+import { PrintReport } from "@/components/PrintReport";
+import { ReportEyebrow, ReportStatusBadge, ReportStatusPanel, SignatureBlock } from "@/components/ReportControls";
+import { SimActionButton } from "@/components/SimActionButton";
+import { TherapyGroups } from "@/components/TherapyGroup";
+import { ApprovalBadge, btnPrimary, btnSecondary, SectionNumber } from "@/components/ui";
 import { loadCase } from "@/lib/case";
-import { getPatient, panel } from "@/lib/data";
+import { drugAccess, getPatient, panel } from "@/lib/data";
 import { formatDate, formatNumber } from "@/lib/format";
+import type { CaseResult } from "@/lib/rules";
 import { describeSpecimen } from "@/lib/rules/sentinel";
 
 export async function generateMetadata({ params }: PageProps<"/pasien/[id]/laporan">): Promise<Metadata> {
@@ -15,225 +19,323 @@ export async function generateMetadata({ params }: PageProps<"/pasien/[id]/lapor
   return { title: `Laporan Pilih Terapi, ${getPatient(id)?.displayName ?? "pasien"}` };
 }
 
-const METHOD_LABEL: Record<string, string> = { NGS_amplikon: "NGS amplikon", PCR: "PCR" };
+function headline(result: CaseResult): string {
+  const t = result.triase;
+  if (!t.issued) return "";
+  const realA = t.groups.A.filter((o) => !o.isFallback);
+  if (realA.length > 0) return `${realA.length} pilihan terapi sesuai dan tersedia`;
+  if (t.groups.A.some((o) => o.isFallback)) return "varian ESR1, terapi khusus ESR1 belum tersedia";
+  if (t.noActionableText) return "tidak terdeteksi varian yang dapat ditindaklanjuti";
+  if (t.groups.B.length > 0) return "pilihan terapi sesuai, belum tersedia di Indonesia";
+  return "pilihan terapi tidak sesuai indikasi";
+}
+
+function Section({ n, title, children, extra }: { n: number; title: string; children: React.ReactNode; extra?: React.ReactNode }) {
+  return (
+    <section className="rounded-2xl border border-line bg-white px-4 py-6 sm:px-8 sm:py-7">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <h3 className="flex items-start gap-3 text-xl font-semibold sm:text-2xl">
+          <SectionNumber n={n} />
+          <span>{title}</span>
+        </h3>
+        {extra}
+      </div>
+      <div className="mt-4">{children}</div>
+    </section>
+  );
+}
+
+function NotIssued({ result }: { result: CaseResult }) {
+  const { patient, sentinel, trigger, reflex } = result;
+  const untested = !sentinel.tested;
+  return (
+    <div className="mx-auto max-w-[920px] overflow-hidden rounded-2xl border border-line bg-white">
+      <div className="space-y-4 p-8 sm:p-12">
+        <span className={`flex size-16 items-center justify-center rounded-2xl ${untested ? "bg-warn-bg text-warn" : "bg-bad-bg text-bad"}`}>
+          {untested ? (
+            <FlaskConical aria-hidden className="size-8" strokeWidth={1.75} />
+          ) : (
+            <Lock aria-hidden className="size-8" strokeWidth={1.75} />
+          )}
+        </span>
+        <p className="text-xs font-semibold tracking-[0.12em] text-ink-2 uppercase">Laporan Pilih Terapi</p>
+        <h2 className="text-3xl font-bold sm:text-4xl">
+          {untested ? "Belum ada hasil tes molekuler" : `Laporan tidak diterbitkan karena SENTINEL: ${sentinel.verdict.replace("_", " ")}`}
+        </h2>
+        <p className="text-lg text-ink-2">
+          {untested
+            ? `${shortName(patient.displayName)} ${trigger.status === "PERLU_TES" ? "memenuhi pemicu tes" : "belum dites"}: ${trigger.reason} Laporan Pilih Terapi baru dapat disusun setelah hasil tes lolos SENTINEL.`
+            : `${sentinel.reason} Tidak ada dasar yang cukup untuk memilih terapi.`}
+        </p>
+        {!untested && <NotNegativeAlert compact />}
+      </div>
+      <div className="space-y-4 border-t border-line bg-canvas p-8 sm:px-12">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h3 className="text-xl font-semibold">{untested ? "Spesimen yang disarankan" : "Saran REFLEX untuk mendapatkan hasil yang layak"}</h3>
+          <ApprovalBadge size="md" />
+        </div>
+        {untested ? (
+          <ul className="space-y-3">
+            <li className="flex gap-4 rounded-xl border border-line bg-white p-5">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary">
+                <Microscope aria-hidden className="size-5" strokeWidth={1.75} />
+              </span>
+              <div>
+                <p className="text-lg font-semibold">Jaringan FFPE: untuk PIK3CA dan AKT1</p>
+                <p className="text-ink-2">Blok biopsi yang ada dapat dipakai bila sel tumor cukup dan tidak didekalsifikasi.</p>
+              </div>
+            </li>
+            <li className="flex gap-4 rounded-xl border border-line bg-white p-5">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary">
+                <Droplet aria-hidden className="size-5" strokeWidth={1.75} />
+              </span>
+              <div>
+                <p className="text-lg font-semibold">Plasma ctDNA: untuk ESR1</p>
+                <p className="text-ink-2">Mutasi ESR1 biasanya muncul setelah terapi hormon; diambil dari darah.</p>
+              </div>
+            </li>
+          </ul>
+        ) : (
+          <ul className="space-y-3">
+            {reflex.items.flatMap((item) =>
+              item.advice.map((a, i) => (
+                <li key={`${item.id}-${i}`} className="flex gap-4 rounded-xl border border-line bg-white p-5">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary">
+                    {/plasma|darah/i.test(a) ? (
+                      <Droplet aria-hidden className="size-5" strokeWidth={1.75} />
+                    ) : (
+                      <RefreshCw aria-hidden className="size-5" strokeWidth={1.75} />
+                    )}
+                  </span>
+                  <div>
+                    <p className="text-lg font-semibold">{a}</p>
+                    <p className="text-ink-2">{item.title}</p>
+                  </div>
+                </li>
+              )),
+            )}
+          </ul>
+        )}
+        <div className="flex flex-wrap gap-3 pt-2">
+          {untested ? (
+            <>
+              <SimActionButton
+                actionKey={`testrequest:${patient.id}`}
+                label="Buat permintaan tes (simulasi)"
+                doneLabel="Permintaan tes tercatat (simulasi)"
+                icon="arrow"
+              />
+              <Link href="/" className={btnSecondary}>
+                <Users aria-hidden className="size-4" strokeWidth={2} />
+                Kembali ke Daftar Pasien
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href={`/pasien/${patient.id}/reflex`} className={btnPrimary}>
+                <ArrowRight aria-hidden className="size-4" strokeWidth={2} />
+                Buka REFLEX
+              </Link>
+              <Link href={`/pasien/${patient.id}/sentinel`} className={btnSecondary}>
+                <ShieldCheck aria-hidden className="size-4" strokeWidth={2} />
+                Lihat detail SENTINEL
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EvidenceNote({ checked }: { checked: string }) {
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-line bg-white p-6">
+        <p className="flex items-center gap-2 font-semibold">
+          <Database aria-hidden className="size-4 text-primary" strokeWidth={1.75} />
+          Versi bukti
+        </p>
+        <dl className="mt-3 space-y-1.5 text-sm">
+          {[
+            ["OncoKB", "v7.6 · data 30 Sep 2026"],
+            ["CIViC", `dicek ${checked}`],
+            ["ClinVar", `dicek ${checked}`],
+            ["BPOM, JKN, harga", `dicek ${checked}`],
+          ].map(([k, v]) => (
+            <div key={k} className="flex justify-between gap-4">
+              <dt className="text-ink-2">{k}</dt>
+              <dd className="font-mono">{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <p className="px-1 text-sm text-ink-3">
+        Laporan disusun otomatis berdasarkan aturan. Obat yang tercantum adalah pilihan untuk dibahas, bukan resep.
+      </p>
+    </div>
+  );
+}
 
 export default async function ReportPage({ params }: PageProps<"/pasien/[id]/laporan">) {
   const { id } = await params;
   const result = loadCase(id);
-  const { patient, sentinel, triase, reflex, trigger } = result;
-  const c = patient.clinical;
+  const { patient, sentinel, triase, reflex } = result;
   const test = patient.molecularTest;
 
   if (!triase.issued || !sentinel.tested || !test.done) {
     return (
       <>
         <CaseHeader result={result} active="laporan" />
-        <section className="space-y-4 rounded-lg border-2 border-slate-300 bg-white p-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <h2 className="text-lg font-bold text-slate-900">Laporan Pilih Terapi tidak diterbitkan</h2>
-            <StatusBadge tone={sentinel.tested ? "block" : "neutral"} size="lg">
-              {sentinel.tested ? `SENTINEL ${statusText(sentinel.verdict)}` : "BELUM DITES"}
-            </StatusBadge>
-          </div>
-          {!triase.issued && <p className="text-slate-700">{triase.reason}</p>}
-          {sentinel.tested && (
-            <>
-              <p className="text-slate-700">{sentinel.reason}</p>
-              <NotNegativeAlert />
-              {sentinel.s3.unreadable.length > 0 && (
-                <p className="text-sm text-slate-700">
-                  <strong>Tidak dinilai ({sentinel.s3.unreadable.length} target):</strong> {sentinel.s3.unreadable.join(", ")}.
-                </p>
-              )}
-            </>
-          )}
-          {trigger.status === "PERLU_TES" && (
-            <p className="text-slate-700">
-              <strong>Pemicu tes: {trigger.label}.</strong> {trigger.suggestedSpecimen}
-            </p>
-          )}
-          <Link
-            href={`/pasien/${patient.id}/${sentinel.tested ? "reflex" : "sentinel"}`}
-            className="inline-block rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
-          >
-            {sentinel.tested ? "Lihat saran REFLEX" : "Lihat pemicu tes"}
-          </Link>
-        </section>
+        <CaseBody>
+          <NotIssued result={result} />
+        </CaseBody>
       </>
     );
   }
 
-  const variantLines = triase.findings;
+  const checked = formatDate(drugAccess.checkedDate);
+  const isPlasma = test.specimen.type === "plasma_ctDNA";
 
   return (
     <>
       <CaseHeader result={result} active="laporan" />
-      <div className="mb-4 flex flex-wrap items-center gap-2 print:hidden">
-        <SignOffButton patientId={patient.id} />
-        <PrintButton />
-        <span className="text-xs text-slate-500">Laporan dicetak satu halaman A4. Banner SIMULASI ikut tercetak.</span>
-      </div>
+      <CaseBody>
+        <PrintReport result={result} />
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] print:hidden">
+          <article className="space-y-6">
+            <header className="flex flex-wrap items-start justify-between gap-3 rounded-2xl border border-line bg-white px-4 py-6 sm:px-8">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.1em] text-ink-2 uppercase">
+                  <ReportEyebrow patientId={patient.id} />
+                </p>
+                <h2 className="mt-1 text-2xl font-semibold sm:text-3xl">
+                  {shortName(patient.displayName)} · {headline(result)}
+                </h2>
+              </div>
+              <ReportStatusBadge patientId={patient.id} />
+            </header>
 
-      <article className="print-tight mx-auto max-w-[210mm] space-y-4 rounded-lg border border-slate-300 bg-white p-6 text-sm shadow-sm print:max-w-none print:space-y-2 print:rounded-none print:border-0 print:p-0 print:text-[8pt] print:shadow-none">
-        {/* Header */}
-        <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-brand-700 pb-3 print:pb-1.5">
-          <div>
-            <p className="text-xs font-semibold tracking-wider text-brand-700 uppercase print:text-[7pt]">
-              OnkoTepat · TRIASE
-            </p>
-            <h2 className="text-xl font-bold text-slate-900 print:text-[13pt]">Laporan Pilih Terapi</h2>
-            <p className="text-slate-700">
-              {patient.displayName}, {patient.age} tahun · {c.subtype} · stadium {c.stage} ({c.setting})
-            </p>
-            <p className="text-slate-600">Terapi sebelumnya: {c.priorTherapies?.join("; ")}</p>
-          </div>
-          <div className="text-right">
-            <ReportStatus patientId={patient.id} />
-            <p className="mt-1 text-xs text-slate-600 print:text-[7pt]">
-              {describeSpecimen(test.specimen)}
-              <br />
-              {METHOD_LABEL[test.method] ?? test.method}, {formatDate(test.date)}
-            </p>
-          </div>
-        </header>
+            <Section n={1} title="Status mutu dan target yang tidak dinilai">
+              <div className="flex flex-wrap items-center gap-4">
+                <VerdictBadge result={result} prefix size="md" />
+                <p className="text-lg font-semibold">
+                  {sentinel.s3.readableCount} dari {sentinel.s3.totalTargets} target terbaca. Target tidak dinilai:{" "}
+                  {triase.notAssessed.length ? triase.notAssessed.join(", ") : "tidak ada"}.
+                </p>
+              </div>
+              <p className="mt-3 text-ink-2">
+                {describeSpecimen(test.specimen)}. {sentinel.reason}
+              </p>
+              {sentinel.s1.status !== "LAYAK" && <p className="mt-2 text-warn">Catatan S1: {sentinel.s1.reason}</p>}
+              {sentinel.s2.warnings.map((w) => (
+                <p key={w} className="mt-2 text-warn">
+                  Catatan S2: {w}
+                </p>
+              ))}
+            </Section>
 
-        {/* 1. QC */}
-        <section className="avoid-break">
-          <h3 className="mb-1 font-bold text-slate-900">1. Status mutu SENTINEL</h3>
-          <div className="flex flex-wrap items-center gap-2">
-            <StatusBadge tone="ok">{statusText(sentinel.verdict)}</StatusBadge>
-            <span>
-              {sentinel.s3.readableCount} dari {sentinel.s3.totalTargets} target terbaca. {sentinel.reason}
-            </span>
-          </div>
-          <p className="mt-1">
-            <strong>Tidak dinilai:</strong>{" "}
-            {triase.notAssessed.length ? triase.notAssessed.join(", ") : "tidak ada (semua target terbaca)"}.
-          </p>
-          {sentinel.s1.status !== "LAYAK" && <p className="mt-1 text-amber-900">Catatan S1: {sentinel.s1.reason}</p>}
-          {sentinel.s2.warnings.map((w) => (
-            <p key={w} className="mt-1 text-amber-900">
-              Catatan S2: {w}
-            </p>
-          ))}
-          <p className="mt-1 text-xs text-slate-500 print:text-[7pt]">
-            Panel: {panel.targets.length} target codon ({panel.targets.map((t) => t.id).join(", ")}). Panel hotspot tidak
-            mencakup PTEN dan BRCA1/2 secara utuh.
-          </p>
-        </section>
-
-        {/* 2. Variants */}
-        <section className="avoid-break">
-          <h3 className="mb-1 font-bold text-slate-900">2. Varian terdeteksi dan tingkat bukti</h3>
-          {triase.noActionableText && (
-            <p className="rounded-md border border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-900 print:py-1">
-              {triase.noActionableText}
-            </p>
-          )}
-          {variantLines.length > 0 && (
-            <table className="mt-1 w-full text-left text-xs print:text-[7.5pt]">
-              <thead className="border-b border-slate-200 text-[11px] text-slate-500 print:text-[7pt]">
-                <tr>
-                  <th className="py-1 pr-3 font-semibold">Varian (somatik)</th>
-                  <th className="py-1 pr-3 font-semibold">VAF</th>
-                  <th className="py-1 pr-3 font-semibold">OncoKB</th>
-                  <th className="py-1 pr-3 font-semibold">Level (payudara)</th>
-                  <th className="py-1 pr-3 font-semibold">CIViC</th>
-                  <th className="py-1 font-semibold">ClinVar</th>
-                </tr>
-              </thead>
-              <tbody className="align-top">
-                {variantLines.map(({ readout, evidence }) => {
+            <Section n={2} title={triase.findings.length ? `Varian terdeteksi di ${isPlasma ? "plasma (ctDNA)" : "jaringan tumor"}` : "Hasil varian"}>
+              {triase.noActionableText && triase.findings.length === 0 && (
+                <div className="flex gap-4 rounded-xl border border-line bg-canvas p-6">
+                  <SearchCheck aria-hidden className="mt-1 size-6 shrink-0 text-ink-2" strokeWidth={1.75} />
+                  <div>
+                    <p className="text-xl font-semibold">{triase.noActionableText}</p>
+                    <p className="mt-2 text-ink-2">
+                      Pernyataan ini hanya berlaku untuk {panel.targets.length} target panel. Gen dan area di luar panel, termasuk
+                      PTEN secara utuh dan BRCA1/2, tidak diperiksa. Lihat saran REFLEX di bagian 4.
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="space-y-3">
+                {triase.findings.map(({ readout, evidence }) => {
                   const r = evidence.record;
+                  const cells: [string, React.ReactNode][] = [
+                    ["VAF", `${formatNumber(readout.variant.vaf)}%`],
+                    ["OncoKB", r?.oncokb.link ? <a href={r.oncokb.link} target="_blank" rel="noreferrer" className="hover:underline">{r.oncokb.oncogenicity}</a> : (r?.oncokb.oncogenicity ?? "tidak ada")],
+                    ["Tingkat bukti", r?.oncokb.highestLevelBreast ? `Level ${r.oncokb.highestLevelBreast}` : "tidak ada"],
+                    ["CIViC", r?.civic.link ? <a href={r.civic.link} target="_blank" rel="noreferrer" className="hover:underline">{r.civic.molecularProfile}</a> : (r?.civic.note ?? "-")],
+                    ["ClinVar", r?.clinvar.link ? <a href={r.clinvar.link} target="_blank" rel="noreferrer" className="hover:underline">{r.clinvar.vcv}</a> : (r?.clinvar.note ?? "-")],
+                  ];
                   return (
-                    <tr key={readout.key}>
-                      <td className="py-1 pr-3">
-                        <div className="font-semibold">{readout.key}</div>
-                        <div className="text-slate-500">{evidence.classLabel}</div>
-                      </td>
-                      <td className="py-1 pr-3">
-                        {formatNumber(readout.variant.vaf)}% ({readout.variant.altReads} baca)
-                      </td>
-                      <td className="py-1 pr-3">
-                        {r?.oncokb.link ? (
-                          <a href={r.oncokb.link} className="text-brand-700 underline" target="_blank" rel="noreferrer">
-                            {r.oncokb.oncogenicity}
-                          </a>
-                        ) : (
-                          (r?.oncokb.oncogenicity ?? "tidak ada di tabel bukti")
-                        )}
-                      </td>
-                      <td className="py-1 pr-3 font-semibold">
-                        {r?.oncokb.highestLevelBreast ? `Level ${r.oncokb.highestLevelBreast}` : "Tidak ada level"}
-                      </td>
-                      <td className="py-1 pr-3">
-                        {r?.civic.link ? (
-                          <a href={r.civic.link} className="text-brand-700 underline" target="_blank" rel="noreferrer">
-                            {r.civic.molecularProfile}
-                          </a>
-                        ) : (
-                          (r?.civic.note ?? "-")
-                        )}
-                        {r?.civic.bestPredictiveBreast && ` (payudara: ${r.civic.bestPredictiveBreast})`}
-                      </td>
-                      <td className="py-1">
-                        {r?.clinvar.link ? (
-                          <a href={r.clinvar.link} className="text-brand-700 underline" target="_blank" rel="noreferrer">
-                            {r.clinvar.vcv}
-                          </a>
-                        ) : (
-                          (r?.clinvar.note ?? "-")
-                        )}
-                      </td>
-                    </tr>
+                    <div key={readout.key} className="rounded-xl border border-primary/30 bg-primary-soft px-4 py-5 sm:px-6">
+                      <div className="flex flex-wrap items-end gap-x-8 gap-y-3 sm:gap-x-10">
+                        <div className="min-w-[150px]">
+                          <p className="font-mono font-semibold text-primary-strong">{readout.variant.gene}</p>
+                          <p className="font-mono text-3xl font-semibold sm:text-4xl">{readout.variant.protein}</p>
+                        </div>
+                        {cells.map(([k, v]) => (
+                          <div key={k}>
+                            <p className="text-xs font-semibold tracking-[0.1em] text-ink-3 uppercase">{k}</p>
+                            <p className="font-mono text-lg font-semibold">{v}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="mt-3 text-sm text-ink-2">{evidence.classLabel}</p>
+                    </div>
                   );
                 })}
-              </tbody>
-            </table>
-          )}
-          {triase.reviewVariants.length > 0 && (
-            <p className="mt-1 text-amber-900">
-              Perlu ditinjau, tidak dipakai untuk pilihan terapi: {triase.reviewVariants.map((v) => `${v.key} (${v.reason})`).join("; ")}
-            </p>
-          )}
-          <p className="mt-1 text-xs text-slate-500 print:text-[7pt]">
-            Varian tumor bersifat somatik; status bawaan (germline) hanya dapat dipastikan dengan tes darah terpisah.
-          </p>
-        </section>
+              </div>
+              {triase.reviewVariants.length > 0 && (
+                <p className="mt-3 text-warn">
+                  Perlu ditinjau, tidak dipakai untuk pilihan terapi: {triase.reviewVariants.map((v) => `${v.key} (${v.reason})`).join("; ")}
+                </p>
+              )}
+              {triase.findings.length > 0 && (
+                <p className="mt-3 text-sm text-ink-3">
+                  Varian di tumor bersifat somatik. Status bawaan (germline) hanya dapat dinilai dengan tes darah terpisah.
+                </p>
+              )}
+            </Section>
 
-        {/* 3. Therapy options */}
-        <section className="space-y-2 print:space-y-1">
-          <h3 className="font-bold text-slate-900">3. Pilihan terapi, diurutkan menurut akses di Indonesia</h3>
-          <p className="text-xs text-slate-600 print:text-[7pt]">
-            Cocok dengan varian belum berarti obat bisa diperoleh atau dijamin. Status BPOM, JKN, dan harga dicek tim pada{" "}
-            {triase.accessCheckedDate}.
-          </p>
-          <TherapyGroup id="A" options={triase.groups.A} />
-          <TherapyGroup id="B" options={triase.groups.B} />
-          <TherapyGroup id="C" options={triase.groups.C} />
-        </section>
+            <Section n={3} title="Pilihan terapi">
+              <TherapyGroups groups={triase.groups} readableCount={sentinel.s3.readableCount} />
+            </Section>
 
-        {/* 4. REFLEX */}
-        <section className="avoid-break">
-          <h3 className="mb-1 font-bold text-slate-900">4. Saran tes lanjutan (REFLEX, butuh persetujuan dokter)</h3>
-          {reflex.items.length === 0 ? (
-            <p className="text-slate-600">Tidak ada saran tes lanjutan dari aturan.</p>
-          ) : (
-            <ul className="list-disc space-y-0.5 pl-5">
-              {reflex.items.map((i) => (
-                <li key={i.id}>{i.advice.join(" ")}</li>
-              ))}
-            </ul>
-          )}
-        </section>
+            <Section n={4} title="Saran REFLEX" extra={<ApprovalBadge size="md" />}>
+              {reflex.items.length === 0 ? (
+                <p className="text-ink-2">Tidak ada saran tes lanjutan dari aturan.</p>
+              ) : (
+                <ol className="space-y-3">
+                  {reflex.items.map((item, i) => (
+                    <li key={item.id} className="flex gap-3">
+                      <span className="font-semibold text-primary">{i + 1}.</span>
+                      <div>
+                        <p className="text-lg font-semibold">{item.advice[0]}</p>
+                        <p className="text-ink-2">Alasan: {item.advice.slice(1).join(" ") || item.reason}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              )}
+              <Link href={`/pasien/${patient.id}/reflex`} className="mt-4 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline">
+                Buka REFLEX untuk detail dan persetujuan
+                <ArrowRight aria-hidden className="size-4" strokeWidth={2} />
+              </Link>
+            </Section>
 
-        {/* Footer */}
-        <footer className="avoid-break space-y-1 border-t border-slate-300 pt-2 text-xs print:pt-1 print:text-[7pt]">
-          <SignatureLine patientId={patient.id} />
-          <p className="text-slate-600">Basis bukti: {triase.evidenceVersion}. Ambang mutu adalah nilai demo.</p>
-          <p className="font-semibold text-slate-800">{triase.footer}</p>
-        </footer>
-      </article>
+            <footer className="space-y-3 rounded-2xl border border-line bg-white px-4 py-6 sm:px-8">
+              <SignatureBlock patientId={patient.id} reportId={`LPT-SIM-${patient.id}`} />
+              <div className="border-t border-line pt-3">
+                <p className="font-semibold">{triase.footer}</p>
+                <p className="mt-1 font-mono text-sm text-ink-3">Versi bukti: {triase.evidenceVersion}</p>
+              </div>
+            </footer>
+          </article>
+
+          <aside className="order-first space-y-4 self-start lg:sticky lg:top-12 lg:order-none">
+            <ReportStatusPanel patientId={patient.id} />
+            <div className="hidden lg:block">
+              <EvidenceNote checked={checked} />
+            </div>
+          </aside>
+          {/* On phones the evidence card follows the report instead of sitting above it. */}
+          <div className="lg:hidden">
+            <EvidenceNote checked={checked} />
+          </div>
+        </div>
+      </CaseBody>
     </>
   );
 }

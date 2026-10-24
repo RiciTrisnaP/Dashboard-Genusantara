@@ -61,6 +61,20 @@ describe("TRIASE per demo patient", () => {
     expect(group("B", "A").map((o) => o.drug)).toEqual(["fulvestrant"]);
   });
 
+  it("A and B: structured access cells match the text fields", () => {
+    const capi = option("A", "capivasertib");
+    expect(capi.bpom).toEqual({ label: "Terdaftar BPOM", detail: "29 Sep 2025 s.d. 29 Sep 2030", tone: "ok" });
+    expect(capi.jkn).toEqual({ label: "Tidak dijamin JKN", detail: "tidak ditemukan di e-Fornas", tone: "warn" });
+    expect(capi.market.label).toBe("Rp87.025.221");
+    expect(capi.market.detail).toMatch(/per boks 64 tablet/);
+    expect(option("A", "inavolisib").bpom).toEqual({ label: "Belum terdaftar di BPOM", tone: "warn" });
+    expect(option("A", "alpelisib").market).toMatchObject({ label: "Tidak ditemukan di pasar", tone: "warn" });
+    const fulv = option("B", "fulvestrant");
+    expect(fulv.jkn).toEqual({ label: "Dijamin JKN", detail: "masuk Fornas, maksimal 6 bulan", tone: "ok" });
+    expect(fulv.market.label).toBe("Harga belum dicek");
+    expect(option("B", "vepdegestrant").bpom.tone).toBe("neutral");
+  });
+
   it("B: vepdegestrant has no access record -> group B, access not assessed", () => {
     const v = option("B", "vepdegestrant");
     expect(v.group).toBe("B");

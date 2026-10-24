@@ -2,7 +2,7 @@
 import type { Clinical, DrugAccess, DrugAccessFile, EvidenceRecord } from "../types";
 import { formatDate, formatRupiah } from "../format";
 import { classifyVariant, ESR1_SPECIFIC_DRUGS, type IndicationRule, type VariantEvidence } from "./evidence";
-import { EVIDENCE_VERSION, type SentinelResult, type VariantReadout } from "./sentinel";
+import { EVIDENCE_VERSION, type SentinelResult, type Tone, type VariantReadout } from "./sentinel";
 
 export type TherapyGroupId = "A" | "B" | "C";
 
@@ -14,6 +14,13 @@ export const GROUP_TITLES: Record<TherapyGroupId, string> = {
 
 export const REPORT_FOOTER =
   "Laporan draf berbasis aturan untuk dokter. Keputusan terapi tetap pada dokter. SIMULASI.";
+
+/** One access fact (BPOM, JKN or market) split for display: short label, optional detail, tone. */
+export interface AccessCell {
+  label: string;
+  detail?: string;
+  tone: Tone;
+}
 
 export interface TherapyOption {
   drug: string;
@@ -32,6 +39,9 @@ export interface TherapyOption {
   priceText: string;
   price: number | null;
   accessCheckedDate: string;
+  bpom: AccessCell;
+  jkn: AccessCell;
+  market: AccessCell;
   indicationNote?: string;
   isFallback?: boolean;
   researchLevelOnly?: boolean;
@@ -99,6 +109,41 @@ export function priceText(a: DrugAccess | undefined): string {
   return "Harga belum dicek";
 }
 
+export function bpomCell(a: DrugAccess | undefined): AccessCell {
+  if (a?.bpom.status === "terdaftar") {
+    const { validFrom, validUntil } = a.bpom;
+    const detail =
+      validFrom && validUntil
+        ? `${formatDate(validFrom)} s.d. ${formatDate(validUntil)}`
+        : validUntil
+          ? `berlaku s.d. ${formatDate(validUntil)}`
+          : undefined;
+    return { label: "Terdaftar BPOM", detail, tone: "ok" };
+  }
+  if (a?.bpom.status === "tidak ditemukan") return { label: "Belum terdaftar di BPOM", tone: "warn" };
+  return { label: "Status BPOM belum dinilai", tone: "neutral" };
+}
+
+export function jknCell(a: DrugAccess | undefined): AccessCell {
+  if (!a) return { label: "Status JKN belum dinilai", tone: "neutral" };
+  const s = a.jkn.status;
+  if (isJknCovered(a)) return { label: "Dijamin JKN", detail: s, tone: "ok" };
+  if (s.toLowerCase().startsWith("tidak")) return { label: "Tidak dijamin JKN", detail: s, tone: "warn" };
+  if (s === "-" || s.trim() === "") return { label: "JKN: tidak ada data", tone: "neutral" };
+  return { label: `JKN: ${s}`, tone: "neutral" };
+}
+
+export function marketCell(a: DrugAccess | undefined): AccessCell {
+  if (!a) return { label: "Belum dinilai", tone: "neutral" };
+  const m = a.market;
+  if (m.price != null) {
+    return { label: formatRupiah(m.price), detail: [m.unit, m.source && `(${m.source})`].filter(Boolean).join(" "), tone: "neutral" };
+  }
+  if (m.found === false) return { label: "Tidak ditemukan di pasar", detail: m.note, tone: "warn" };
+  if (m.found === true) return { label: "Harga belum dicek", detail: "Tersedia di pasar", tone: "warn" };
+  return { label: "Harga belum dicek", tone: "neutral" };
+}
+
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -136,6 +181,9 @@ function accessFields(a: DrugAccess | undefined, checked: string) {
     priceText: priceText(a),
     price: a?.market.price ?? null,
     accessCheckedDate: checked,
+    bpom: bpomCell(a),
+    jkn: jknCell(a),
+    market: marketCell(a),
   };
 }
 

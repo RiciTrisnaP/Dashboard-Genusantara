@@ -1,13 +1,42 @@
 @import "tailwindcss";
 
+/* Design tokens from the Pencil handoff (OnkoTepat sistem desain v1). */
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --color-brand-50: #effaf8;
-  --color-brand-100: #d5f2ec;
-  --color-brand-600: #0f766e;
-  --color-brand-700: #115e59;
-  --color-brand-900: #123c39;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-primary: #0e7385;
+  --color-primary-strong: #0a5a68;
+  --color-primary-soft: #e2f2f4;
+  --color-band: #0b5f6e;
+  --color-band-deep: #083e49;
+  --color-on-band-2: #bfe2e7;
+  --color-accent: #f5a524;
+  --color-accent-hover: #e8961a;
+  --color-accent-ink: #1a1205;
+
+  --color-ink: #0b1f21;
+  --color-ink-2: #3d4f52;
+  --color-ink-3: #647679;
+  --color-canvas: #f3f5f5;
+  --color-line: #dce2e3;
+
+  --color-ok: #166534;
+  --color-ok-solid: #15803d;
+  --color-ok-bg: #e9f6ee;
+  --color-ok-line: #a7d7b8;
+  --color-warn: #7c4a03;
+  --color-warn-solid: #b7791f;
+  --color-warn-bg: #fdf5d8;
+  --color-warn-line: #ecc978;
+  --color-bad: #991b1b;
+  --color-bad-solid: #b91c1c;
+  --color-bad-bg: #fcecec;
+  --color-bad-line: #efb4b4;
+  --color-neutral-bg: #eef1f2;
+
+  --color-banner-bg: #fdecb4;
+  --color-banner-ink: #5c3a02;
 }
 
 :root {
@@ -15,11 +44,15 @@
 }
 
 body {
-  background: #f6f7f9;
-  color: #0f172a;
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
-/* Printed report: A4, one page. The report is laid out in a narrow column so it fits. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Printed report: A4, one page. Screen-only and print-only blocks are toggled with print: utilities. */
 @page {
   size: A4;
   margin: 9mm 10mm;
@@ -28,16 +61,12 @@ body {
 @media print {
   body {
     background: #fff;
-    font-size: 9pt;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   a {
     color: inherit;
     text-decoration: none;
-  }
-  .print-tight {
-    line-height: 1.25;
   }
   .avoid-break {
     break-inside: avoid;

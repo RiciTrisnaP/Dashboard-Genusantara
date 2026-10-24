@@ -2,26 +2,56 @@
 
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 
-// Doctor sign-off lives in memory only, so it resets on reload. Nothing is stored.
-interface SignOffState {
-  isSigned: (patientId: string) => boolean;
-  setSigned: (patientId: string, signed: boolean) => void;
+// Demo-only state (doctor sign-off, recorded approvals) lives in memory and resets on reload. Nothing is stored.
+interface SimState {
+  get: (key: string) => string | undefined;
+  set: (key: string, value: string | undefined) => void;
 }
 
-const SignOffContext = createContext<SignOffState | null>(null);
+const SimContext = createContext<SimState | null>(null);
 
 export function SignOffProvider({ children }: { children: React.ReactNode }) {
-  const [signed, setSignedMap] = useState<Record<string, boolean>>({});
-  const isSigned = useCallback((id: string) => signed[id] === true, [signed]);
-  const setSigned = useCallback((id: string, value: boolean) => {
-    setSignedMap((prev) => ({ ...prev, [id]: value }));
+  const [values, setValues] = useState<Record<string, string>>({});
+  const get = useCallback((key: string) => values[key], [values]);
+  const set = useCallback((key: string, value: string | undefined) => {
+    setValues((prev) => {
+      const next = { ...prev };
+      if (value === undefined) delete next[key];
+      else next[key] = value;
+      return next;
+    });
   }, []);
-  const value = useMemo(() => ({ isSigned, setSigned }), [isSigned, setSigned]);
-  return <SignOffContext.Provider value={value}>{children}</SignOffContext.Provider>;
+  const ctx = useMemo(() => ({ get, set }), [get, set]);
+  return <SimContext.Provider value={ctx}>{children}</SimContext.Provider>;
+}
+
+function useSim() {
+  const ctx = useContext(SimContext);
+  if (!ctx) throw new Error("Sim state must be used inside SignOffProvider");
+  return ctx;
+}
+
+/** "24 Okt 2026, 09.20" in the viewer's local time. */
+export function formatStamp(date: Date): string {
+  const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+  const hh = String(date.getHours()).padStart(2, "0");
+  const mm = String(date.getMinutes()).padStart(2, "0");
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}, ${hh}.${mm}`;
+}
+
+/** A simulated action that records when it happened (sign-off, approval, test request). */
+export function useSimAction(key: string) {
+  const { get, set } = useSim();
+  const at = get(key);
+  return {
+    done: at !== undefined,
+    at,
+    record: () => set(key, formatStamp(new Date())),
+    undo: () => set(key, undefined),
+  };
 }
 
 export function useSignOff(patientId: string) {
-  const ctx = useContext(SignOffContext);
-  if (!ctx) throw new Error("useSignOff must be used inside SignOffProvider");
-  return { signed: ctx.isSigned(patientId), setSigned: (v: boolean) => ctx.setSigned(patientId, v) };
+  const action = useSimAction(`signoff:${patientId}`);
+  return { signed: action.done, signedAt: action.at, sign: action.record, unsign: action.undo };
 }

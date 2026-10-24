@@ -1,18 +1,14 @@
-import { drugAccess } from "@/lib/data";
-import { formatDate } from "@/lib/format";
-import { EVIDENCE_VERSION } from "@/lib/rules/sentinel";
+import { Lock } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-200 bg-white text-xs text-slate-500 print:hidden">
-      <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:flex-row sm:justify-between">
-        <p>
-          <strong className="text-slate-700">Tidak ada data yang disimpan.</strong> Prototipe demo berbasis aturan
-          (tanpa ML). Ambang batas adalah nilai demo, bukan batas klinis. Assay belum divalidasi klinis.
+    <footer className="border-t border-line bg-white text-sm print:hidden">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-1 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-10">
+        <p className="flex items-center gap-2 font-medium text-ink">
+          <Lock aria-hidden className="size-4" strokeWidth={1.75} />
+          Tidak ada data yang disimpan
         </p>
-        <p className="sm:text-right">
-          Bukti: {EVIDENCE_VERSION}. Akses obat dicek {formatDate(drugAccess.checkedDate)}.
-        </p>
+        <p className="text-ink-3">OnkoTepat · prototipe hackathon · semua pasien adalah SIMULASI</p>
       </div>
     </footer>
   );

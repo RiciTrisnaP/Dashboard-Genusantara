@@ -4,7 +4,10 @@ import type { ReflexResult } from "./reflex";
 import type { SentinelResult } from "./sentinel";
 import type { TriaseResult } from "./triase";
 
+export type SummarySectionId = "checked" | "result" | "inherit" | "options" | "questions" | "family";
+
 export interface SummarySection {
+  id: SummarySectionId;
   title: string;
   paragraphs: string[];
   bullets?: string[];
@@ -45,7 +48,7 @@ export function buildPatientSummary(
   // 1. Apa yang diperiksa
   if (!test.done) {
     sections.push({
-      title: "Apa yang diperiksa",
+      id: "checked", title: "Apa yang diperiksa",
       paragraphs: [
         `Ibu belum menjalani tes ini. Karena kanker Ibu memburuk setelah terapi hormon, tim dokter dapat mempertimbangkan tes perubahan gen di sel tumor pada ${total} titik di gen ${genes.join(", ")}.`,
         "Tes ini memeriksa gen di sel tumor, bukan gen bawaan yang diwarisi dari orang tua.",
@@ -57,7 +60,7 @@ export function buildPatientSummary(
         ? "darah Ibu (potongan DNA tumor yang ikut beredar di darah)"
         : `jaringan tumor Ibu${test.specimen.site ? ` dari ${test.specimen.site.replace(/\s*\(.*\)$/, "")}` : ""}`;
     sections.push({
-      title: "Apa yang diperiksa",
+      id: "checked", title: "Apa yang diperiksa",
       paragraphs: [
         `Kami memeriksa ${sample}. Yang dicari adalah perubahan pada ${total} titik di gen ${genes.join(", ")}. Ini adalah gen di sel tumor, bukan gen bawaan yang diwarisi dari orang tua.`,
       ],
@@ -98,7 +101,7 @@ export function buildPatientSummary(
       );
     }
   }
-  sections.push({ title: "Apa hasilnya", paragraphs: results });
+  sections.push({ id: "result", title: "Apa hasilnya", paragraphs: results });
 
   // 3. Diturunkan ke anak?
   const inherit = [NOT_INHERITED_TEXT];
@@ -107,7 +110,7 @@ export function buildPatientSummary(
       "Karena ada petunjuk dari riwayat keluarga, usia, atau jenis kanker, dokter mungkin menyarankan tes darah terpisah untuk gen bawaan (BRCA1 dan BRCA2) dengan konseling genetik. Hanya tes itu yang bisa menjawab soal risiko bagi keluarga.",
     );
   }
-  sections.push({ title: "Apakah ini menurun ke anak?", paragraphs: inherit });
+  sections.push({ id: "inherit", title: "Apakah ini menurun ke anak?", paragraphs: inherit });
 
   // 4. Pilihan pengobatan dan biaya
   const options: string[] = [];
@@ -141,7 +144,7 @@ export function buildPatientSummary(
     after.push(`Status akses dan harga dicek tim pada ${triase.accessCheckedDate}. Keputusan obat tetap di tangan dokter.`);
   }
   sections.push({
-    title: "Pilihan pengobatan dan biaya",
+    id: "options", title: "Pilihan pengobatan dan biaya",
     paragraphs: lead,
     bullets: options.length ? options : undefined,
     after: after.length ? after : undefined,
@@ -178,7 +181,7 @@ export function buildPatientSummary(
     );
   }
   if (brcaHint) questions.push("Apakah saya perlu tes gen bawaan BRCA1/2 dan konseling genetik?");
-  sections.push({ title: "Pertanyaan untuk dokter", paragraphs: [], bullets: questions.slice(0, 5) });
+  sections.push({ id: "questions", title: "Pertanyaan untuk dokter", paragraphs: [], bullets: questions.slice(0, 5) });
 
   // 6. Peran keluarga
   const family = [
@@ -187,7 +190,7 @@ export function buildPatientSummary(
   if (brcaHint) {
     family.push("Bila tes gen bawaan dilakukan, hasilnya mungkin juga penting bagi saudara perempuan dan anak; bicarakan bersama konselor genetik.");
   }
-  sections.push({ title: "Peran keluarga", paragraphs: family });
+  sections.push({ id: "family", title: "Peran keluarga", paragraphs: family });
 
   return { sections };
 }
