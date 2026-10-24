@@ -1,6 +1,6 @@
 // REFLEX next-step suggestions, after testing. docs/rules_spec.md section 3.
 // Every rule that fires is returned, in rule order. Always a suggestion that needs doctor approval.
-import type { Patient } from "../types";
+import type { Panel, Patient } from "../types";
 import type { SentinelResult } from "./sentinel";
 
 export const REFLEX_LABEL = "Saran, butuh persetujuan dokter";
@@ -30,9 +30,11 @@ export interface ReflexResult {
   items: ReflexItem[];
 }
 
-/** Targets where a failed read changes the drug choice (rule 2). */
+/** Codon sites where a failed read changes the drug choice (rule 2). Matches allele ids at those sites too. */
+const DRUG_CRITICAL_SITES = ["PIK3CA H1047", "PIK3CA E545", "PIK3CA E542", "AKT1 E17"];
+
 export function isDrugCriticalTarget(target: string): boolean {
-  return ["PIK3CA H1047", "PIK3CA E545", "PIK3CA E542", "AKT1 E17"].includes(target) || target.startsWith("ESR1 ");
+  return DRUG_CRITICAL_SITES.some((s) => target === s || target.startsWith(s)) || target.startsWith("ESR1 ");
 }
 
 export function hasFamilyHistoryHint(familyHistory: string | undefined): boolean {
@@ -42,7 +44,7 @@ export function hasFamilyHistoryHint(familyHistory: string | undefined): boolean
   return /payudara|ovarium/.test(text);
 }
 
-export function evaluateReflex(patient: Patient, sentinel: SentinelResult): ReflexResult {
+export function evaluateReflex(patient: Patient, sentinel: SentinelResult, panel: Panel): ReflexResult {
   if (!sentinel.tested || !patient.molecularTest.done) {
     return {
       label: REFLEX_LABEL,
@@ -147,8 +149,18 @@ export function evaluateReflex(patient: Patient, sentinel: SentinelResult): Refl
     });
   }
 
-  // 6. ESR1 belum dinilai saat progresi
-  if (c.progressedOnEndocrine === true && isTissue) {
+  // 6. ESR1 belum dinilai saat progresi (not on the panel at all, or only tissue was tested)
+  const panelHasEsr1 = panel.targets.some((t) => t.gene === "ESR1");
+  if (c.progressedOnEndocrine === true && !panelHasEsr1) {
+    items.push({
+      order: 6,
+      id: "ESR1_BELUM_DINILAI",
+      title: `ESR1 tidak termasuk panel ${panel.shortName}`,
+      advice: [`Pertimbangkan tes ESR1 terpisah dari plasma ctDNA; ESR1 tidak termasuk panel ${panel.shortName}.`],
+      reason:
+        "Penyakit memburuk setelah terapi endokrin. Mutasi ESR1 biasanya muncul setelah terapi hormon, dan panel ini tidak memeriksanya.",
+    });
+  } else if (c.progressedOnEndocrine === true && isTissue) {
     items.push({
       order: 6,
       id: "ESR1_BELUM_DINILAI",

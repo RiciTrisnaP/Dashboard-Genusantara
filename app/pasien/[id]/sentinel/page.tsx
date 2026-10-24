@@ -165,7 +165,9 @@ export default async function SentinelPage({ params }: PageProps<"/pasien/[id]/s
             {/* Panel targets */}
             <section>
               <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-2xl font-semibold">{panel.targets.length} target panel NUSA-15</h2>
+                <h2 className="text-2xl font-semibold">
+                  {panel.targets.length} target panel {panel.shortName}
+                </h2>
                 {tested && (
                   <p className={`font-mono text-sm font-semibold ${ok ? "text-ok" : "text-bad"}`}>
                     {sentinel.s3.readableCount} terbaca · {sentinel.s3.unreadable.length} tidak dinilai

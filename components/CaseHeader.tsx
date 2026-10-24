@@ -53,7 +53,7 @@ export function CaseHeader({ result, active }: { result: CaseResult; active: Cas
   return (
     <div className="bg-band text-white print:hidden">
       <div className="mx-auto max-w-[1440px] px-4 pt-6 sm:px-10">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-on-band-2 hover:text-white">
+        <Link href="/pasien" className="inline-flex items-center gap-1.5 text-sm text-on-band-2 hover:text-white">
           <ArrowLeft aria-hidden className="size-4" strokeWidth={1.75} />
           Daftar Pasien
         </Link>
@@ -72,7 +72,7 @@ export function CaseHeader({ result, active }: { result: CaseResult; active: Cas
             </div>
           ))}
         </dl>
-        <nav aria-label="Modul" className="mt-5 -mb-px flex gap-1 overflow-x-auto">
+        <nav aria-label="Modul" className="mt-5 -mb-px flex gap-1 overflow-x-auto overflow-y-hidden">
           {TABS.map((t) => {
             const isActive = t.id === active;
             const Icon = t.icon;

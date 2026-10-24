@@ -157,9 +157,12 @@ export function describeSpecimen(specimen: Specimen): string {
 export type S3Status = "TERBACA" | "SEBAGIAN" | "TAHAN";
 
 export interface TargetReadout {
+  /** Panel target id, for example "PIK3CA H1047R". */
   target: string;
   gene: string;
   codon: string;
+  allele: string;
+  site: string;
   readable: boolean;
   depth?: number;
   internalControlPass?: boolean;
@@ -188,12 +191,15 @@ function readTarget(method: TestMethod, result: TargetResult | undefined): { rea
 
 export function evaluateS3(method: TestMethod, targets: TargetResult[], panel: Panel): S3Result {
   const readouts: TargetReadout[] = panel.targets.map((t) => {
-    const result = targets.find((r) => r.target === t.id);
+    // Read quality is recorded per codon site; every allele at that site shares it.
+    const result = targets.find((r) => r.target === t.site) ?? targets.find((r) => r.target === t.id);
     const { readable, reason } = readTarget(method, result);
     return {
       target: t.id,
       gene: t.gene,
       codon: t.codon,
+      allele: t.allele,
+      site: t.site,
       readable,
       depth: result?.depth,
       internalControlPass: result?.internalControlPass,
@@ -254,17 +260,19 @@ export function variantTarget(v: Pick<Variant, "gene" | "protein">): string {
   return m ? `${v.gene} ${m[1]}${m[2]}` : `${v.gene} ${v.protein}`;
 }
 
-export function evaluateS4(variants: Variant[], specimen: Specimen): S4Result {
+export function evaluateS4(variants: Variant[], specimen: Specimen, panel?: Panel): S4Result {
   const isPlasma = specimen.type === "plasma_ctDNA";
   const minVaf = isPlasma ? T.MIN_VAF_PLASMA : T.MIN_VAF_TISSUE;
+  const panelIds = panel ? new Set(panel.targets.map((t) => t.id)) : null;
   const readouts: VariantReadout[] = variants.map((v) => {
     const problems: string[] = [];
+    if (panelIds && !panelIds.has(variantKey(v))) problems.push(`alel tidak termasuk panel ${panel?.shortName}`);
     if (v.vaf < minVaf) problems.push(`VAF ${formatNumber(v.vaf)}% di bawah ${formatNumber(minVaf)}% (${isPlasma ? "plasma" : "jaringan"})`);
     if (v.altReads < T.MIN_ALT_READS) problems.push(`hanya ${v.altReads} baca pendukung (minimum ${T.MIN_ALT_READS})`);
     return {
       variant: v,
       key: variantKey(v),
-      target: variantTarget(v),
+      target: panelIds?.has(variantKey(v)) ? variantKey(v) : variantTarget(v),
       call: problems.length ? "TINJAU" : "LULUS",
       reason: problems.length
         ? `Perlu ditinjau: ${problems.join("; ")}.`
@@ -358,7 +366,7 @@ export function evaluateSentinel(patient: Patient, panel: Panel): SentinelResult
   }
   const s2 = evaluateS2(test.specimen);
   const s3 = evaluateS3(test.method, test.targets, panel);
-  const s4 = evaluateS4(test.variants, test.specimen);
+  const s4 = evaluateS4(test.variants, test.specimen, panel);
 
   let verdict: Verdict;
   let reason: string;

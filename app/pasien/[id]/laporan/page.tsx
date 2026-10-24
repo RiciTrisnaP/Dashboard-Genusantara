@@ -81,7 +81,9 @@ function NotIssued({ result }: { result: CaseResult }) {
                 <Microscope aria-hidden className="size-5" strokeWidth={1.75} />
               </span>
               <div>
-                <p className="text-lg font-semibold">Jaringan FFPE: untuk PIK3CA dan AKT1</p>
+                <p className="text-lg font-semibold">
+                  Jaringan FFPE: untuk panel {panel.shortName} ({[...new Set(panel.targets.map((t) => t.gene))].join(", ")})
+                </p>
                 <p className="text-ink-2">Blok biopsi yang ada dapat dipakai bila sel tumor cukup dan tidak didekalsifikasi.</p>
               </div>
             </li>
@@ -90,8 +92,10 @@ function NotIssued({ result }: { result: CaseResult }) {
                 <Droplet aria-hidden className="size-5" strokeWidth={1.75} />
               </span>
               <div>
-                <p className="text-lg font-semibold">Plasma ctDNA: untuk ESR1</p>
-                <p className="text-ink-2">Mutasi ESR1 biasanya muncul setelah terapi hormon; diambil dari darah.</p>
+                <p className="text-lg font-semibold">Plasma ctDNA: tes ESR1 terpisah</p>
+                <p className="text-ink-2">
+                  ESR1 tidak termasuk {panel.shortName}. Mutasi ESR1 biasanya muncul setelah terapi hormon; diambil dari darah.
+                </p>
               </div>
             </li>
           </ul>
@@ -125,7 +129,7 @@ function NotIssued({ result }: { result: CaseResult }) {
                 doneLabel="Permintaan tes tercatat (simulasi)"
                 icon="arrow"
               />
-              <Link href="/" className={btnSecondary}>
+              <Link href="/pasien" className={btnSecondary}>
                 <Users aria-hidden className="size-4" strokeWidth={2} />
                 Kembali ke Daftar Pasien
               </Link>
@@ -242,8 +246,8 @@ export default async function ReportPage({ params }: PageProps<"/pasien/[id]/lap
                   <div>
                     <p className="text-xl font-semibold">{triase.noActionableText}</p>
                     <p className="mt-2 text-ink-2">
-                      Pernyataan ini hanya berlaku untuk {panel.targets.length} target panel. Gen dan area di luar panel, termasuk
-                      PTEN secara utuh dan BRCA1/2, tidak diperiksa. Lihat saran REFLEX di bagian 4.
+                      Pernyataan ini hanya berlaku untuk {panel.targets.length} target panel {panel.shortName}. Gen dan area di
+                      luar panel, termasuk ESR1, PTEN secara utuh, dan BRCA1/2, tidak diperiksa. Lihat saran REFLEX di bagian 4.
                     </p>
                   </div>
                 </div>
@@ -319,7 +323,7 @@ export default async function ReportPage({ params }: PageProps<"/pasien/[id]/lap
               <SignatureBlock patientId={patient.id} reportId={`LPT-SIM-${patient.id}`} />
               <div className="border-t border-line pt-3">
                 <p className="font-semibold">{triase.footer}</p>
-                <p className="mt-1 font-mono text-sm text-ink-3">Versi bukti: {triase.evidenceVersion}</p>
+                <p className="mt-1 text-sm text-ink-3">Versi bukti: {triase.evidenceVersion}</p>
               </div>
             </footer>
           </article>

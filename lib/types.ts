@@ -74,14 +74,19 @@ export interface PatientsFile {
 
 export interface PanelTarget {
   rank: number;
+  /** Reported target, for example "PIK3CA H1047R" (allele-level panel). */
   id: string;
   gene: string;
   codon: string;
-  amplicon: number;
+  allele: string;
+  /** Codon-level site the read quality is measured at, matching TargetResult.target ("PIK3CA H1047"). */
+  site: string;
+  amplicon: number | null;
 }
 
 export interface Panel {
   name: string;
+  shortName: string;
   unit: string;
   targets: PanelTarget[];
 }

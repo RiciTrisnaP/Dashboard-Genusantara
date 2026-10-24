@@ -7,7 +7,7 @@ Read this file fully before writing code. Then read `docs/rules_spec.md` and the
 
 - Event: GenoHack 2026 (ITB), Team B, Track 1 "Precision Diagnostics Based on Genomics". Hackathon 23 to 25 Oct 2026. Pitch on Sunday 25 Oct, 6 minutes, with a live demo of about 90 seconds.
 - Challenge: PathGen industry challenge. Design a compact, low-cost breast cancer mutation panel (max 15 targets, somatic hotspots) for **treatment selection after a confirmed diagnosis**, optimised for Indonesian and Asian patients. Screening and primary diagnosis are out of scope.
-- Team product name: **OnkoTepat** (tagline: "tepat obatnya, tuntas terapinya"). The panel is called **NUSA-15** (Asian-designed) and is compared with **WEST-15** (Western-designed).
+- Team product name: **Genusa** (renamed from OnkoTepat on 24 Oct 2026; the source docs still say OnkoTepat) (tagline: "tepat obatnya, tuntas terapinya"). The panel is called **NUSA-15** (Asian-designed) and is compared with **WEST-15** (Western-designed).
 - Four modules:
   - **BRIDGE**: picks the 15 panel targets (done in a separate Colab notebook by the bioinformatics teammate, NOT part of this app).
   - **SENTINEL**: quality gate. Decides whether a sample and a test result are fit to read, so "not detected" is never read as "no mutation".
@@ -42,19 +42,19 @@ NOT in scope (pitch slides only): real pilot deployment, registry, therapy coach
 
 | File | What it is | Use |
 |---|---|---|
-| `data/panel_consensus_15.csv` | Current 15-target panel (codon level) from the analysis, with alleles seen and per-cohort frequency | Panel definition placeholder. The final NUSA-15 list may change; keep the panel configurable in one file (`data/panel.json`) |
+| `data/panel_consensus_15.csv` | Earlier 15-target consensus panel (codon level) from the analysis, with per-cohort frequency | Historical reference only. The app now uses NUSA11 in `data/panel.json` |
 | `data/evidence_check.csv` | OncoKB level, oncogenicity, CIViC and ClinVar IDs with links for 35 variants, checked 23 Oct 2026 | Evidence level shown per variant in the report |
 | `data/drug_access.json` | Indonesian access status per drug (BPOM, JKN/e-Fornas, price), team check 23 Oct 2026 | Grouping in TRIASE |
 | `data/patients.json` | Demo patients and their test results | Drives all screens and tests |
 
-Create `data/panel.json` from the CSV (gene, codon, alleles, amplicon). Targets are codons: any allele at that codon counts.
+**Panel update (25 Oct 2026): the team's final panel is NUSA11**, 11 allele-level hotspots: PIK3CA H1047R, H1047L, H1047Y, E545K, E545A, E542K, C420R, N345K; AKT1 E17K; ERBB2 L755S, V777L. It is defined in `data/panel.json` (`id` = allele, `site` = codon where read quality is measured). Only the listed alleles are reported. ESR1 is not on the panel, so ESR1 is advised as a separate plasma ctDNA test.
 
 ## 5. Acceptance criteria (the demo must show exactly this)
 
 - Patient A (PIK3CA H1047R, tissue, good quality): SENTINEL LANJUT; TRIASE puts capivasertib (Truqap) in "Sesuai dan tersedia" with price Rp87.025.221 per box and "tidak dijamin JKN"; alpelisib in group (b) as "terdaftar BPOM, tidak ditemukan di pasar"; inavolisib in group (b) "belum terdaftar".
-- Patient B (ESR1 Y537S, plasma ctDNA at progression): ESR1 drugs (elacestrant, imlunestrant, camizestrant) in group (b) "belum terdaftar di BPOM"; fulvestrant shown as the available option (e-Fornas, max 6 months).
-- Patient F (decalcified bone biopsy, 6 of 15 targets readable, tumour content 10%): SENTINEL TAHAN; no therapy report issued; REFLEX suggests plasma ctDNA test or another non-bone tissue block; the screen states clearly that the result must not be read as "tidak ada mutasi".
-- Patient D (all targets readable, no variant found, strong family history): SENTINEL LANJUT; report says "Tidak terdeteksi pada 15 target yang diperiksa" (never "negatif total"); REFLEX suggests broader NGS and germline BRCA1/2 testing from blood with counselling.
+- Patient B (ERBB2 L755S, plasma ctDNA at progression; changed from ESR1 Y537S on 25 Oct 2026 because ESR1 is not on NUSA11): neratinib (OncoKB Level 2) in group (b) "Status akses belum dinilai"; no option in group (a). The ESR1/fulvestrant fallback rule stays in the code and is unit-tested with a synthetic variant.
+- Patient F (decalcified bone biopsy, 8 of 11 NUSA11 targets readable, tumour content 10%): SENTINEL TAHAN; no therapy report issued; REFLEX suggests plasma ctDNA test or another non-bone tissue block; the screen states clearly that the result must not be read as "tidak ada mutasi".
+- Patient D (all targets readable, no variant found, strong family history): SENTINEL LANJUT; report says "Tidak terdeteksi varian yang dapat ditindaklanjuti pada 11 target yang diperiksa" (never "negatif total"); REFLEX suggests broader NGS and germline BRCA1/2 testing from blood with counselling.
 - Patient E (progressed on endocrine therapy, not yet tested): flagged "Perlu tes" on the worklist.
 - All unit tests pass. No em dash characters anywhere in UI text.
 
@@ -71,6 +71,8 @@ Create `data/panel.json` from the CSV (gene, codon, alleles, amplicon). Targets 
 
 ## 7. Key numbers the UI or pitch may reference (from the real analysis, public data)
 
+Note: the coverage numbers below were computed for the earlier 15-target consensus panel, not NUSA11. Do not show them as NUSA11 coverage.
+
 - Panel covers 37 to 49% of HR+/HER2- primary patients and 30 to 35% of metastatic patients.
 - 15 targets fit in about 8 amplicons (about 4 to 5 multiplex reactions, assumption).
 - Indonesian study (PMC12052133, 207 patients): PIK3CA mutated in 32.9%; H1047L was 63% of H1047 mutants there vs 8 to 26% elsewhere (unexplained; may be real or an assay artefact).
@@ -82,6 +84,10 @@ Create `data/panel.json` from the CSV (gene, codon, alleles, amplicon). Targets 
 3. Report screen (most important for the demo), then SENTINEL, REFLEX, worklist, patient summary.
 4. Print stylesheet, banner, polish, deploy.
 
-## 9. Framework notes
+## 9. Nurse navigator dashboard (added 26 Oct 2026)
+
+Spec: `/home/nekora/Downloads/NUSA11_Dashboard_Navigator_Penjelasan_Fitur.pdf` and the team's HTML mockup. Routes under `/perawat`. Rules in `lib/navigator/rules.ts` (tested). Guard rails enforced by design: the nurse never sees variants; the result summary can only be handed over after the doctor releases it; WhatsApp is locked without recorded consent; urgent check-ins can only be escalated to the doctor on call (no treatment advice); no per-doctor referral metrics. Check-in thresholds are demo assumptions to be aligned with the hospital's escalation SOP. Do not name the hospital (the mockup's "RS Mitra Premium" is replaced by "RS").
+
+## 10. Framework notes
 
 @AGENTS.md

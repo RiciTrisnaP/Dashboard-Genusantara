@@ -1,5 +1,5 @@
 {
- "_note": "Semua pasien adalah SIMULASI untuk demo. Bukan data pasien nyata.",
+ "_note": "Semua pasien adalah SIMULASI untuk demo. Bukan data pasien nyata. Target disesuaikan ke panel NUSA11 (25 Okt 2026); Ibu B diganti dari ESR1 Y537S ke ERBB2 L755S karena ESR1 tidak termasuk NUSA11.",
  "patients": [
   {
    "id": "A",
@@ -48,7 +48,7 @@
       "internalControlPass": true
      },
      {
-      "target": "AKT1 E17",
+      "target": "PIK3CA C420",
       "depth": 850,
       "internalControlPass": true
      },
@@ -58,52 +58,17 @@
       "internalControlPass": true
      },
      {
-      "target": "ESR1 D538",
+      "target": "AKT1 E17",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "ESR1 Y537",
+      "target": "ERBB2 L755",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "PIK3CA C420",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA Q546",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA M1043",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA N1044",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA E103",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA K111",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA G118",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "ESR1 E380",
+      "target": "ERBB2 V777",
       "depth": 850,
       "internalControlPass": true
      }
@@ -172,7 +137,7 @@
       "internalControlPass": true
      },
      {
-      "target": "AKT1 E17",
+      "target": "PIK3CA C420",
       "depth": 3000,
       "internalControlPass": true
      },
@@ -182,60 +147,25 @@
       "internalControlPass": true
      },
      {
-      "target": "ESR1 D538",
+      "target": "AKT1 E17",
       "depth": 3000,
       "internalControlPass": true
      },
      {
-      "target": "ESR1 Y537",
+      "target": "ERBB2 L755",
       "depth": 3000,
       "internalControlPass": true
      },
      {
-      "target": "PIK3CA C420",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA Q546",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA M1043",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA N1044",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA E103",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA K111",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA G118",
-      "depth": 3000,
-      "internalControlPass": true
-     },
-     {
-      "target": "ESR1 E380",
+      "target": "ERBB2 V777",
       "depth": 3000,
       "internalControlPass": true
      }
     ],
     "variants": [
      {
-      "gene": "ESR1",
-      "protein": "Y537S",
+      "gene": "ERBB2",
+      "protein": "L755S",
       "vaf": 1.8,
       "altReads": 42
      }
@@ -244,13 +174,9 @@
    "expected": {
     "sentinel": "LANJUT",
     "therapyGroupB": [
-     "elacestrant",
-     "imlunestrant",
-     "camizestrant"
+     "neratinib"
     ],
-    "available": [
-     "fulvestrant"
-    ]
+    "note": "ERBB2 L755S di plasma; neratinib OncoKB Level 2, status akses belum dinilai"
    }
   },
   {
@@ -300,7 +226,7 @@
       "internalControlPass": true
      },
      {
-      "target": "AKT1 E17",
+      "target": "PIK3CA C420",
       "depth": 850,
       "internalControlPass": true
      },
@@ -310,52 +236,17 @@
       "internalControlPass": true
      },
      {
-      "target": "ESR1 D538",
+      "target": "AKT1 E17",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "ESR1 Y537",
+      "target": "ERBB2 L755",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "PIK3CA C420",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA Q546",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA M1043",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA N1044",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA E103",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA K111",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA G118",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "ESR1 E380",
+      "target": "ERBB2 V777",
       "depth": 850,
       "internalControlPass": true
      }
@@ -427,7 +318,7 @@
       "internalControlPass": true
      },
      {
-      "target": "AKT1 E17",
+      "target": "PIK3CA C420",
       "depth": 850,
       "internalControlPass": true
      },
@@ -437,52 +328,17 @@
       "internalControlPass": true
      },
      {
-      "target": "ESR1 D538",
+      "target": "AKT1 E17",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "ESR1 Y537",
+      "target": "ERBB2 L755",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "PIK3CA C420",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA Q546",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA M1043",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA N1044",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA E103",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA K111",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "PIK3CA G118",
-      "depth": 850,
-      "internalControlPass": true
-     },
-     {
-      "target": "ESR1 E380",
+      "target": "ERBB2 V777",
       "depth": 850,
       "internalControlPass": true
      }
@@ -572,9 +428,9 @@
       "internalControlPass": true
      },
      {
-      "target": "AKT1 E17",
-      "depth": 850,
-      "internalControlPass": true
+      "target": "PIK3CA C420",
+      "depth": 40,
+      "internalControlPass": false
      },
      {
       "target": "PIK3CA N345",
@@ -582,52 +438,17 @@
       "internalControlPass": true
      },
      {
-      "target": "ESR1 D538",
+      "target": "AKT1 E17",
       "depth": 850,
       "internalControlPass": true
      },
      {
-      "target": "ESR1 Y537",
+      "target": "ERBB2 L755",
       "depth": 40,
       "internalControlPass": false
      },
      {
-      "target": "PIK3CA C420",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA Q546",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA M1043",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA N1044",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA E103",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA K111",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "PIK3CA G118",
-      "depth": 40,
-      "internalControlPass": false
-     },
-     {
-      "target": "ESR1 E380",
+      "target": "ERBB2 V777",
       "depth": 40,
       "internalControlPass": false
      }
@@ -636,7 +457,7 @@
    },
    "expected": {
     "sentinel": "TAHAN",
-    "readableTargets": 6,
+    "readableTargets": 8,
     "report": "tidak diterbitkan",
     "reflex": [
      "tes plasma ctDNA",

@@ -46,22 +46,21 @@ describe("TRIASE per demo patient", () => {
     expect(f.evidence.record?.clinvar.vcv).toBe("VCV000013652");
   });
 
-  it("B: ESR1 drugs in group B as not registered at BPOM; fulvestrant is the available fallback", () => {
-    for (const drug of ["elacestrant", "imlunestrant", "camizestrant"]) {
-      const o = option("B", drug);
-      expect(o.group).toBe("B");
-      expect(o.statusLabel).toBe("Belum terdaftar di BPOM");
-    }
-    const fulv = option("B", "fulvestrant");
-    expect(fulv.group).toBe("A");
-    expect(fulv.isFallback).toBe(true);
-    expect(fulv.jknCovered).toBe(true);
-    expect(fulv.jknText).toMatch(/Fornas, maksimal 6 bulan/);
-    expect(fulv.statusLabel).toMatch(/bukan terapi khusus ESR1/);
-    expect(group("B", "A").map((o) => o.drug)).toEqual(["fulvestrant"]);
+  it("B: ERBB2 L755S -> neratinib (OncoKB Level 2) in group B, access not assessed; nothing available", () => {
+    const ner = option("B", "neratinib");
+    expect(ner.group).toBe("B");
+    expect(ner.level).toBe("2");
+    expect(ner.statusLabel).toBe("Status akses belum dinilai");
+    expect(ner.researchLevelOnly).toBe(true);
+    expect(ner.supportingVariants).toEqual(["ERBB2 L755S"]);
+    expect(group("B", "A")).toEqual([]);
+    expect(group("B", "C")).toEqual([]);
+    const f = issued("B").triase.findings[0];
+    expect(f.evidence.variantClass).toBe("ERBB2_ONCOGENIC");
+    expect(f.evidence.record?.oncokb.highestLevelBreast).toBe("2");
   });
 
-  it("A and B: structured access cells match the text fields", () => {
+  it("A: structured access cells match the text fields", () => {
     const capi = option("A", "capivasertib");
     expect(capi.bpom).toEqual({ label: "Terdaftar BPOM", detail: "29 Sep 2025 s.d. 29 Sep 2030", tone: "ok" });
     expect(capi.jkn).toEqual({ label: "Tidak dijamin JKN", detail: "tidak ditemukan di e-Fornas", tone: "warn" });
@@ -69,16 +68,7 @@ describe("TRIASE per demo patient", () => {
     expect(capi.market.detail).toMatch(/per boks 64 tablet/);
     expect(option("A", "inavolisib").bpom).toEqual({ label: "Belum terdaftar di BPOM", tone: "warn" });
     expect(option("A", "alpelisib").market).toMatchObject({ label: "Tidak ditemukan di pasar", tone: "warn" });
-    const fulv = option("B", "fulvestrant");
-    expect(fulv.jkn).toEqual({ label: "Dijamin JKN", detail: "masuk Fornas, maksimal 6 bulan", tone: "ok" });
-    expect(fulv.market.label).toBe("Harga belum dicek");
-    expect(option("B", "vepdegestrant").bpom.tone).toBe("neutral");
-  });
-
-  it("B: vepdegestrant has no access record -> group B, access not assessed", () => {
-    const v = option("B", "vepdegestrant");
-    expect(v.group).toBe("B");
-    expect(v.statusLabel).toBe("Status akses belum dinilai");
+    expect(option("B", "neratinib").bpom.tone).toBe("neutral");
   });
 
   it("C: triple-negative -> all PIK3CA drugs not indicated, with reason", () => {
@@ -88,9 +78,9 @@ describe("TRIASE per demo patient", () => {
     expect(group("C", "B")).toEqual([]);
   });
 
-  it("D: no variant -> 'Tidak terdeteksi ... pada 15 target yang diperiksa', never 'negatif'", () => {
+  it("D: no variant -> 'Tidak terdeteksi ... pada 11 target yang diperiksa', never 'negatif'", () => {
     const t = issued("D").triase;
-    expect(t.noActionableText).toBe("Tidak terdeteksi varian yang dapat ditindaklanjuti pada 15 target yang diperiksa.");
+    expect(t.noActionableText).toBe("Tidak terdeteksi varian yang dapat ditindaklanjuti pada 11 target yang diperiksa.");
     expect(t.noActionableText).not.toMatch(/negatif/i);
     expect(t.groups).toEqual({ A: [], B: [], C: [] });
   });
@@ -153,6 +143,21 @@ describe("TRIASE rules beyond the demo patients", () => {
     const groups = buildTherapyOptions([mk("PIK3CA", "H1047R"), mk("AKT1", "E17K")], a.clinical, drugAccess);
     expect(groups.A).toHaveLength(1);
     expect(groups.A[0].supportingVariants).toEqual(["PIK3CA H1047R", "AKT1 E17K"]);
+  });
+
+  it("ESR1 variant (outside NUSA11): ESR1 drugs not registered, fulvestrant offered as the available fallback", () => {
+    const f = classifyVariant({ gene: "ESR1", protein: "Y537S" }, evidence.variants);
+    const readout = { variant: { gene: "ESR1", protein: "Y537S", vaf: 2, altReads: 40 }, key: f.key, target: "", call: "LULUS" as const, reason: "" };
+    const groups = buildTherapyOptions([{ readout, evidence: f }], a.clinical, drugAccess);
+    for (const drug of ["elacestrant", "imlunestrant", "camizestrant"]) {
+      expect(groups.B.find((o) => o.drug === drug)?.statusLabel).toBe("Belum terdaftar di BPOM");
+    }
+    expect(groups.B.find((o) => o.drug === "vepdegestrant")?.statusLabel).toBe("Status akses belum dinilai");
+    const fulv = groups.A.find((o) => o.drug === "fulvestrant");
+    expect(fulv?.isFallback).toBe(true);
+    expect(fulv?.jkn).toEqual({ label: "Dijamin JKN", detail: "masuk Fornas, maksimal 6 bulan", tone: "ok" });
+    expect(fulv?.market.label).toBe("Harga belum dicek");
+    expect(fulv?.statusLabel).toMatch(/bukan terapi khusus ESR1/);
   });
 
   it("not progressed on endocrine therapy -> group C with that reason", () => {

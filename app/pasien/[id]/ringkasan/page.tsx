@@ -46,12 +46,12 @@ export default async function SummaryPage({ params }: PageProps<"/pasien/[id]/ri
             <PrintButton />
           </div>
 
-          <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-band to-primary-strong px-6 py-7 text-white">
-            <p className="text-xs font-semibold tracking-[0.12em] text-on-band-2 uppercase">Ringkasan untuk pasien dan keluarga</p>
+          <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-deep px-6 py-7 text-white">
+            <p className="text-xs font-semibold tracking-[0.12em] text-white/90 uppercase">Ringkasan untuk pasien dan keluarga</p>
             <h2 className="mt-2 text-3xl font-bold">
               {patient.molecularTest.done ? `Hasil tes tumor ${name}` : `Rencana tes untuk ${name}`}
             </h2>
-            <p className="mt-1 text-lg text-on-band-2">Bacalah bersama dokter Anda.</p>
+            <p className="mt-1 text-lg text-white/90">Bacalah bersama dokter Anda.</p>
           </div>
 
           <div className="mt-4 space-y-4">

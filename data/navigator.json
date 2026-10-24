@@ -1,0 +1,536 @@
+{
+ "_note": "SIMULASI untuk dashboard navigator perawat. Pasien A sampai F terhubung ke data/patients.json (sisi dokter). Ibu G dan Ibu H hanya ada di sisi navigator: tes mereka selesai sebelum periode demo. Angka target dan batas waktu adalah asumsi yang harus diuji bersama RS.",
+ "today": "2026-10-26",
+ "nurse": "Ns. Demo (perawat navigator, simulasi)",
+ "patients": [
+  {
+   "id": "A",
+   "displayName": "Ibu A (simulasi)",
+   "age": 52,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "menunggu_konsultasi",
+   "nextStep": "Laporan menunggu tanda tangan dokter. Setelah dokter menjelaskan hasil, jadwalkan penyerahan ringkasan.",
+   "summary": "menunggu_dokter",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 0,
+    "totalMonths": 6,
+    "endsOn": null
+   },
+   "therapy": null,
+   "family": "Suami (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "belum",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 35,
+   "contacts": [
+    {
+     "at": "2026-10-20T10:15",
+     "channel": "tatap_muka",
+     "text": "Pengambilan sampel jaringan; menjelaskan alur pendampingan dan jadwal kabar hasil."
+    },
+    {
+     "at": "2026-10-23T09:00",
+     "channel": "whatsapp",
+     "text": "Kabar: hasil tes sedang diproses laboratorium. Isi hasil akan dijelaskan dokter."
+    }
+   ],
+   "handoff": "Pasien ingin ditemani suami saat konsultasi hasil."
+  },
+  {
+   "id": "B",
+   "displayName": "Ibu B (simulasi)",
+   "age": 58,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "menunggu_konsultasi",
+   "nextStep": "Hasil keluar 21 Okt. Jadwalkan konsultasi hasil dengan DPJP paling lambat 28 Okt.",
+   "summary": "menunggu_dokter",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 0,
+    "totalMonths": 6,
+    "endsOn": null
+   },
+   "therapy": null,
+   "family": "Anak perempuan (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "belum",
+    "registri": "belum",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 42,
+   "contacts": [
+    {
+     "at": "2026-10-19T13:30",
+     "channel": "tatap_muka",
+     "text": "Pengambilan darah untuk tes plasma; formulir persetujuan pendampingan ditandatangani."
+    },
+    {
+     "at": "2026-10-22T11:00",
+     "channel": "telepon",
+     "text": "Menelepon anak pasien: hasil sudah keluar, menunggu jadwal konsultasi dengan dokter."
+    }
+   ],
+   "handoff": "Persetujuan kontak WhatsApp belum ada; hubungi lewat telepon ke anak pasien."
+  },
+  {
+   "id": "C",
+   "displayName": "Ibu C (simulasi)",
+   "age": 44,
+   "subtype": "triple-negatif",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "didampingi",
+   "nextStep": "Pastikan rujukan konseling genetik dan tes germline BRCA1/2 sudah dijadwalkan.",
+   "summary": "diserahkan",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 1,
+    "totalMonths": 6,
+    "endsOn": "2027-03-31"
+   },
+   "therapy": {
+    "regimen": "Kemoterapi lanjutan",
+    "since": "2026-10-10",
+    "note": "Keputusan DPJP"
+   },
+   "family": "Kakak perempuan (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "ya",
+    "germline": "belum"
+   },
+   "referral": {
+    "type": "Konseling genetik dan tes germline BRCA1/2 dari darah",
+    "status": "dirujuk"
+   },
+   "minutesThisMonth": 68,
+   "contacts": [
+    {
+     "at": "2026-10-09T10:00",
+     "channel": "tatap_muka",
+     "text": "Ringkasan hasil diserahkan setelah konsultasi dengan dokter. Kakak pasien ikut hadir."
+    },
+    {
+     "at": "2026-10-17T16:20",
+     "channel": "whatsapp",
+     "text": "Check-in gejala mingguan dikirim."
+    },
+    {
+     "at": "2026-10-24T19:30",
+     "channel": "whatsapp",
+     "text": "Membalas check-in: lemas setelah kemoterapi dicatat, akan dipantau besok."
+    }
+   ],
+   "handoff": "Rujukan konseling genetik sudah dikirim 15 Okt, belum ada jadwal dari klinik genetik."
+  },
+  {
+   "id": "D",
+   "displayName": "Ibu D (simulasi)",
+   "age": 38,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (kambuh)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "didampingi",
+   "nextStep": "Dokter sudah merilis ringkasan. Serahkan ringkasan sebagai dokumen dan buat rujukan konseling genetik.",
+   "summary": "dirilis",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 1,
+    "totalMonths": 6,
+    "endsOn": "2027-04-30"
+   },
+   "therapy": {
+    "regimen": "Terapi endokrin lanjutan",
+    "since": "2026-10-24",
+    "note": "Keputusan DPJP"
+   },
+   "family": "Ibu kandung (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "ya",
+    "germline": "belum"
+   },
+   "referral": {
+    "type": "Konseling genetik dan tes germline BRCA1/2 dari darah",
+    "status": "belum_dirujuk"
+   },
+   "minutesThisMonth": 55,
+   "contacts": [
+    {
+     "at": "2026-10-18T09:30",
+     "channel": "tatap_muka",
+     "text": "Pengambilan sampel jaringan dari biopsi hati."
+    },
+    {
+     "at": "2026-10-24T14:00",
+     "channel": "tatap_muka",
+     "text": "Hadir saat konsultasi hasil dengan dokter. Ringkasan dirilis dokter, belum diserahkan."
+    }
+   ],
+   "handoff": "Riwayat keluarga kanker payudara kuat; dokter meminta rujukan konseling genetik."
+  },
+  {
+   "id": "E",
+   "displayName": "Ibu E (simulasi)",
+   "age": 61,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "menunggu_tes",
+   "nextStep": "Tim tumor memutuskan tes NUSA11. Ingatkan jadwal pengambilan sampel 27 Okt.",
+   "summary": "belum_ada",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 0,
+    "totalMonths": 6,
+    "endsOn": null
+   },
+   "therapy": null,
+   "family": "Suami (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "belum",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 20,
+   "contacts": [
+    {
+     "at": "2026-10-24T15:00",
+     "channel": "telepon",
+     "text": "Memperkenalkan layanan pendampingan dan jadwal pengambilan sampel."
+    }
+   ],
+   "handoff": ""
+  },
+  {
+   "id": "F",
+   "displayName": "Ibu F (simulasi)",
+   "age": 55,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "menunggu_hasil",
+   "nextStep": "Sampel ditahan. Koordinasikan tes ulang setelah dokter menyetujui saran tes lanjutan.",
+   "summary": "belum_ada",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 0,
+    "totalMonths": 6,
+    "endsOn": null
+   },
+   "therapy": null,
+   "family": "Adik laki-laki (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "belum",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 61,
+   "contacts": [
+    {
+     "at": "2026-10-22T08:45",
+     "channel": "tatap_muka",
+     "text": "Sampel biopsi tulang dikirim ke laboratorium."
+    },
+    {
+     "at": "2026-10-24T10:30",
+     "channel": "whatsapp",
+     "text": "Kabar: sampel perlu diambil ulang, dokter akan menjelaskan pilihan berikutnya. Isi hasil tidak dikirim lewat chat."
+    }
+   ],
+   "handoff": "Pasien cemas soal tes ulang; tekankan bahwa ini bukan hasil 'tidak ada mutasi'."
+  },
+  {
+   "id": "G",
+   "displayName": "Ibu G (simulasi)",
+   "age": 49,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "didampingi",
+   "nextStep": "Check-in hari ini mendesak. Eskalasikan ke dokter jaga, lalu hubungi pasien.",
+   "summary": "diserahkan",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 2,
+    "totalMonths": 6,
+    "endsOn": "2027-02-28"
+   },
+   "therapy": {
+    "regimen": "capivasertib + fulvestrant",
+    "since": "2026-09-15",
+    "note": "Keputusan DPJP; jadwal 4 hari minum, 3 hari libur"
+   },
+   "family": "Suami (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "ya",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 112,
+   "gate": {
+    "status": "lulus",
+    "readable": 11,
+    "total": 11,
+    "testedOn": "2026-08-28"
+   },
+   "contacts": [
+    {
+     "at": "2026-09-10T10:00",
+     "channel": "tatap_muka",
+     "text": "Ringkasan hasil diserahkan setelah konsultasi; jadwal minum obat dijelaskan bersama suami."
+    },
+    {
+     "at": "2026-10-18T08:30",
+     "channel": "whatsapp",
+     "text": "Check-in: diare 3 kali dan sering haus. Dicatat dan diteruskan ke DPJP saat kontrol."
+    },
+    {
+     "at": "2026-10-21T09:00",
+     "channel": "telepon",
+     "text": "Kontrol telepon: diare berkurang, minum obat sesuai jadwal."
+    }
+   ],
+   "handoff": "Pasien dan suami cepat membalas WhatsApp pagi hari."
+  },
+  {
+   "id": "H",
+   "displayName": "Ibu H (simulasi)",
+   "age": 63,
+   "subtype": "HR+/HER2-",
+   "stage": "IV (metastatik)",
+   "dpjp": "dr. Demo, Sp.PD-KHOM (simulasi)",
+   "journey": "selesai",
+   "nextStep": "Pendampingan selesai 30 Sep. Tidak ada tugas aktif.",
+   "summary": "diserahkan",
+   "package": {
+    "name": "Pendampingan premium",
+    "month": 6,
+    "totalMonths": 6,
+    "endsOn": "2026-09-30"
+   },
+   "therapy": {
+    "regimen": "Terapi endokrin",
+    "since": "2026-04-01",
+    "note": "Keputusan DPJP"
+   },
+   "family": "Anak laki-laki (simulasi)",
+   "consents": {
+    "pendampingan": "ya",
+    "whatsapp": "ya",
+    "registri": "ya",
+    "germline": "tidak_berlaku"
+   },
+   "referral": null,
+   "minutesThisMonth": 0,
+   "gate": {
+    "status": "lulus",
+    "readable": 11,
+    "total": 11,
+    "testedOn": "2026-03-20"
+   },
+   "contacts": [
+    {
+     "at": "2026-09-30T11:00",
+     "channel": "telepon",
+     "text": "Penutupan pendampingan; pasien kembali ke jadwal kontrol rutin poli."
+    }
+   ],
+   "handoff": "Pendampingan selesai. Catatan akhir sudah diserahkan ke poli."
+  }
+ ],
+ "checkins": [
+  {
+   "id": "ci-g2",
+   "patientId": "G",
+   "at": "2026-10-26T07:40",
+   "answers": {
+    "demamC": 38.6,
+    "lemas": 2,
+    "diarePerHari": 7,
+    "ruam": "ringan",
+    "sangatHaus": true
+   },
+   "keluhan": "Sejak semalam menggigil, BAB cair 7 kali. Mulut terasa kering terus."
+  },
+  {
+   "id": "ci-c1",
+   "patientId": "C",
+   "at": "2026-10-25T19:10",
+   "answers": {
+    "demamC": null,
+    "lemas": 2,
+    "diarePerHari": 0,
+    "ruam": "tidak",
+    "sangatHaus": false
+   },
+   "keluhan": "Lemas setelah kemoterapi kemarin, masih bisa makan."
+  },
+  {
+   "id": "ci-d1",
+   "patientId": "D",
+   "at": "2026-10-25T08:05",
+   "answers": {
+    "demamC": null,
+    "lemas": 0,
+    "diarePerHari": 0,
+    "ruam": "tidak",
+    "sangatHaus": false
+   },
+   "keluhan": "Tidak ada keluhan baru."
+  },
+  {
+   "id": "ci-g1",
+   "patientId": "G",
+   "at": "2026-10-18T08:20",
+   "answers": {
+    "demamC": null,
+    "lemas": 1,
+    "diarePerHari": 3,
+    "ruam": "tidak",
+    "sangatHaus": true
+   },
+   "keluhan": "BAB lebih sering dari biasa, sering haus.",
+   "reviewedAt": "2026-10-18T09:00"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "t-g-checkin",
+   "patientId": "G",
+   "urgency": "mendesak",
+   "title": "Tindak lanjuti check-in mendesak",
+   "detail": "Demam 38,6°C dan diare 7 kali hari ini. Eskalasikan ke dokter jaga.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "checkin",
+    "checkinId": "ci-g2"
+   }
+  },
+  {
+   "id": "t-b-konsul",
+   "patientId": "B",
+   "urgency": "hari_ini",
+   "title": "Jadwalkan konsultasi hasil",
+   "detail": "Hasil keluar 21 Okt; batas konsultasi 7 hari (28 Okt).",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "ringkasan"
+   }
+  },
+  {
+   "id": "t-b-consent",
+   "patientId": "B",
+   "urgency": "hari_ini",
+   "title": "Minta persetujuan kontak WhatsApp",
+   "detail": "Tanpa persetujuan, pasien hanya bisa dihubungi lewat telepon.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "persetujuan"
+   }
+  },
+  {
+   "id": "t-d-serah",
+   "patientId": "D",
+   "urgency": "hari_ini",
+   "title": "Serahkan ringkasan hasil",
+   "detail": "Dokter sudah merilis ringkasan pada 24 Okt.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "ringkasan"
+   }
+  },
+  {
+   "id": "t-f-ulang",
+   "patientId": "F",
+   "urgency": "hari_ini",
+   "title": "Koordinasikan tes ulang",
+   "detail": "Sampel ditahan. Tunggu persetujuan dokter untuk saran tes lanjutan.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "ringkasan"
+   }
+  },
+  {
+   "id": "t-c-rujuk",
+   "patientId": "C",
+   "urgency": "hari_ini",
+   "title": "Pastikan rujukan konseling genetik dijadwalkan",
+   "detail": "Rujukan dikirim 15 Okt, belum ada jadwal.",
+   "due": "2026-10-22",
+   "action": {
+    "kind": "patient",
+    "tab": "persetujuan"
+   }
+  },
+  {
+   "id": "t-a-kabar",
+   "patientId": "A",
+   "urgency": "rutin",
+   "title": "Kabari bahwa laporan sedang ditinjau dokter",
+   "detail": "Gunakan templat kabar hasil; tanpa isi hasil.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "pesan"
+   }
+  },
+  {
+   "id": "t-e-jadwal",
+   "patientId": "E",
+   "urgency": "rutin",
+   "title": "Ingatkan jadwal pengambilan sampel",
+   "detail": "Pengambilan sampel 27 Okt.",
+   "due": "2026-10-26",
+   "action": {
+    "kind": "patient",
+    "tab": "pesan"
+   }
+  },
+  {
+   "id": "t-d-checkin",
+   "patientId": "D",
+   "urgency": "rutin",
+   "title": "Kirim check-in gejala mingguan",
+   "detail": "Terapi baru dimulai 24 Okt.",
+   "due": "2026-10-28",
+   "action": {
+    "kind": "patient",
+    "tab": "pesan"
+   }
+  }
+ ],
+ "responseTimesHours": [
+  1.5,
+  2,
+  3.5,
+  0.5,
+  6,
+  2.5,
+  1,
+  4.5
+ ]
+}

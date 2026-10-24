@@ -42,7 +42,7 @@ export function PrintReport({ result }: { result: CaseResult }) {
     <article className="hidden text-[8pt] leading-snug text-ink print:block">
       <header className="flex items-start justify-between border-b-2 border-ink pb-1.5">
         <div>
-          <p className="text-[8pt] text-primary">OnkoTepat · tepat obatnya, tuntas terapinya</p>
+          <p className="text-[8pt] text-primary">Genusa · tepat obatnya, tuntas terapinya</p>
           <h1 className="text-[16pt] font-bold">Laporan Pilih Terapi</h1>
         </div>
         <div className="text-right">
@@ -147,7 +147,7 @@ export function PrintReport({ result }: { result: CaseResult }) {
 
       <footer className="mt-2 border-t border-line pt-1">
         <p className="font-semibold">{triase.footer}</p>
-        <p className="font-mono text-[6.5pt] text-ink-3">
+        <p className="text-[6.5pt] text-ink-3">
           Versi bukti: {triase.evidenceVersion} · {shortName(patient.displayName)} adalah pasien simulasi · Tidak ada data yang
           disimpan · Halaman 1 dari 1
         </p>

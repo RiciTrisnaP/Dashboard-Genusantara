@@ -1,27 +1,50 @@
 import { describe, expect, it } from "vitest";
 import { panel } from "../data";
+import type { TargetResult } from "../types";
 import { evaluateS2, evaluateS3, evaluateS4, evaluateS5, evaluateSentinel, NOT_NEGATIVE_WARNING } from "./sentinel";
 import { patient, run, tested } from "./test-helpers";
 
+describe("NUSA11 panel definition", () => {
+  it("has the 11 allele-level hotspots chosen by the team", () => {
+    expect(panel.shortName).toBe("NUSA11");
+    expect(panel.targets.map((t) => t.id)).toEqual([
+      "PIK3CA H1047R",
+      "PIK3CA H1047L",
+      "PIK3CA H1047Y",
+      "PIK3CA E545K",
+      "PIK3CA E545A",
+      "PIK3CA E542K",
+      "PIK3CA C420R",
+      "PIK3CA N345K",
+      "AKT1 E17K",
+      "ERBB2 L755S",
+      "ERBB2 V777L",
+    ]);
+    for (const t of panel.targets) expect(t.id).toBe(`${t.gene} ${t.allele}`);
+    expect(panel.targets.some((t) => t.gene === "ESR1")).toBe(false);
+  });
+});
+
 describe("SENTINEL per demo patient", () => {
-  it("A: tissue, good quality -> LANJUT, all 15 targets readable, H1047R passes", () => {
+  it("A: tissue, good quality -> LANJUT, all 11 targets readable, H1047R passes", () => {
     const { sentinel } = tested("A");
     expect(sentinel.verdict).toBe("LANJUT");
     expect(sentinel.s1.status).toBe("LAYAK");
     expect(sentinel.s2.status).toBe("LANJUT");
     expect(sentinel.s3.status).toBe("TERBACA");
-    expect(sentinel.s3.readableCount).toBe(15);
+    expect(sentinel.s3.readableCount).toBe(11);
     expect(sentinel.s4.status).toBe("LULUS");
     expect(sentinel.s4.passed.map((v) => v.key)).toEqual(["PIK3CA H1047R"]);
+    expect(sentinel.s4.passed[0].target).toBe("PIK3CA H1047R");
     expect(sentinel.warning).toBeUndefined();
   });
 
-  it("B: plasma ctDNA processed in 3 h -> LANJUT, ESR1 Y537S at 1.8% passes the plasma threshold", () => {
+  it("B: plasma ctDNA processed in 3 h -> LANJUT, ERBB2 L755S at 1.8% passes the plasma threshold", () => {
     const { sentinel } = tested("B");
     expect(sentinel.verdict).toBe("LANJUT");
     expect(sentinel.s2.status).toBe("LANJUT");
     expect(sentinel.s2.warnings).toEqual([]);
-    expect(sentinel.s4.passed.map((v) => v.key)).toEqual(["ESR1 Y537S"]);
+    expect(sentinel.s4.passed.map((v) => v.key)).toEqual(["ERBB2 L755S"]);
   });
 
   it("C: triple-negative -> S1 DI_LUAR_INDIKASI as a warning, verdict still LANJUT", () => {
@@ -46,15 +69,14 @@ describe("SENTINEL per demo patient", () => {
     expect(sentinel.s1.status).toBe("LAYAK");
   });
 
-  it("F: decalcified bone, 6 of 15 readable, 10% tumour -> TAHAN, every cause listed", () => {
+  it("F: decalcified bone, 10% tumour, damaged DNA -> TAHAN with every cause; 8 of 11 targets readable", () => {
     const { sentinel } = tested("F");
     expect(sentinel.verdict).toBe("TAHAN");
     expect(sentinel.s2.status).toBe("TAHAN");
     expect(sentinel.s2.causes.map((c) => c.code).sort()).toEqual(["DECALCIFIED", "DNA_DAMAGED", "LOW_TUMOR_CONTENT"]);
-    expect(sentinel.s3.status).toBe("TAHAN");
-    expect(sentinel.s3.readableCount).toBe(6);
-    expect(sentinel.s3.unreadable).toHaveLength(9);
-    expect(sentinel.s3.unreadable).toContain("ESR1 Y537");
+    expect(sentinel.s3.status).toBe("SEBAGIAN");
+    expect(sentinel.s3.readableCount).toBe(8);
+    expect(sentinel.s3.unreadable).toEqual(["PIK3CA C420R", "ERBB2 L755S", "ERBB2 V777L"]);
     expect(sentinel.warning).toBe(NOT_NEGATIVE_WARNING);
     expect(sentinel.warning).toContain('"tidak ada mutasi"');
   });
@@ -66,6 +88,8 @@ describe("SENTINEL layer rules", () => {
   if (!a.molecularTest.done || !b.molecularTest.done) throw new Error("fixture");
   const tissue = a.molecularTest.specimen;
   const plasma = b.molecularTest.specimen;
+  const sites = a.molecularTest.targets;
+  const lowAt = (...names: string[]): TargetResult[] => sites.map((t) => (names.includes(t.target) ? { ...t, depth: 100 } : t));
 
   it("S2: plasma processed after 24 h -> AMBIL_ULANG; after 6 h -> warning only", () => {
     expect(evaluateS2({ ...plasma, plasmaProcessingHours: 30 }).status).toBe("AMBIL_ULANG");
@@ -86,17 +110,21 @@ describe("SENTINEL layer rules", () => {
     expect(evaluateS2({ ...tissue, tumorContentPct: 20 }).status).toBe("LANJUT");
   });
 
-  it("S3: 1 to 3 unreadable -> SEBAGIAN, 4 or more -> TAHAN; missing target counts as unreadable", () => {
-    const targets = a.molecularTest.done ? a.molecularTest.targets : [];
-    const low = (n: number) => targets.map((t, i) => (i < n ? { ...t, depth: 100 } : t));
-    expect(evaluateS3("NGS_amplikon", low(3), panel).status).toBe("SEBAGIAN");
-    expect(evaluateS3("NGS_amplikon", low(4), panel).status).toBe("TAHAN");
-    expect(evaluateS3("NGS_amplikon", targets.slice(1), panel).unreadable).toEqual(["PIK3CA H1047"]);
+  it("S3: alleles share their codon site's read; 1 to 3 unreadable -> SEBAGIAN, 4 or more -> TAHAN", () => {
+    expect(evaluateS3("NGS_amplikon", lowAt("PIK3CA C420"), panel).unreadable).toEqual(["PIK3CA C420R"]);
+    const h1047 = evaluateS3("NGS_amplikon", lowAt("PIK3CA H1047"), panel);
+    expect(h1047.status).toBe("SEBAGIAN");
+    expect(h1047.unreadable).toEqual(["PIK3CA H1047R", "PIK3CA H1047L", "PIK3CA H1047Y"]);
+    expect(evaluateS3("NGS_amplikon", lowAt("PIK3CA H1047", "PIK3CA E545"), panel).status).toBe("TAHAN");
+  });
+
+  it("S3: a site missing from the results makes its alleles unreadable", () => {
+    const s3 = evaluateS3("NGS_amplikon", sites.filter((t) => t.target !== "ERBB2 V777"), panel);
+    expect(s3.unreadable).toEqual(["ERBB2 V777L"]);
   });
 
   it("S3: PCR uses internal control instead of depth", () => {
-    const targets = a.molecularTest.done ? a.molecularTest.targets : [];
-    const pcr = targets.map((t, i) => (i === 0 ? { ...t, depth: 10, internalControlPass: true } : t));
+    const pcr = sites.map((t) => (t.target === "PIK3CA C420" ? { ...t, depth: 10, internalControlPass: true } : t));
     expect(evaluateS3("PCR", pcr, panel).status).toBe("TERBACA");
     expect(evaluateS3("NGS_amplikon", pcr, panel).status).toBe("SEBAGIAN");
   });
@@ -109,10 +137,17 @@ describe("SENTINEL layer rules", () => {
         { gene: "PIK3CA", protein: "E545K", vaf: 12, altReads: 40 },
       ],
       tissue,
+      panel,
     );
     expect(s4.status).toBe("TINJAU");
     expect(s4.passed.map((p) => p.key)).toEqual(["PIK3CA E545K"]);
-    expect(evaluateS4([{ gene: "ESR1", protein: "D538G", vaf: 0.4, altReads: 20 }], plasma).status).toBe("TINJAU");
+    expect(evaluateS4([{ gene: "ERBB2", protein: "V777L", vaf: 0.4, altReads: 20 }], plasma, panel).status).toBe("TINJAU");
+  });
+
+  it("S4: an allele that is not on NUSA11 goes to review", () => {
+    const s4 = evaluateS4([{ gene: "PIK3CA", protein: "E545G", vaf: 25, altReads: 200 }], tissue, panel);
+    expect(s4.status).toBe("TINJAU");
+    expect(s4.variants[0].reason).toMatch(/tidak termasuk panel NUSA11/);
   });
 
   it("S5: DRAF until signed, TERBIT after sign-off, ULANG when quality fails", () => {

@@ -38,11 +38,12 @@ describe("Ringkasan pasien", () => {
     expect(t).toContain("23 Okt 2026");
   });
 
-  it("B: fulvestrant explained as available hormone therapy, not ESR1-specific", () => {
+  it("B: ERBB2 change explained without confusing it with HER2-positive status; no available option yet", () => {
     const t = text("B");
-    expect(t).toMatch(/fulvestrant/i);
-    expect(t).toMatch(/bukan obat khusus untuk perubahan ESR1/);
-    expect(t).toMatch(/elacestrant/);
+    expect(t).toMatch(/gen ERBB2 \(L755S\)/);
+    expect(t).toMatch(/berbeda dengan status HER2 positif/);
+    expect(t).toMatch(/belum ada pilihan obat yang sesuai dan tersedia/);
+    expect(t).toMatch(/status aksesnya belum dinilai di Indonesia: neratinib/);
   });
 
   it("D: recommends a separate blood test for inherited genes", () => {
@@ -52,7 +53,7 @@ describe("Ringkasan pasien", () => {
   it("F: explains the result cannot be read as no mutation", () => {
     const t = text("F");
     expect(t).toMatch(/tidak berarti tumor Ibu tidak punya perubahan gen/);
-    expect(t).toMatch(/6 dari 15/);
+    expect(t).toMatch(/8 dari 11/);
   });
 
   it("never claims a tumour variant is inherited", () => {

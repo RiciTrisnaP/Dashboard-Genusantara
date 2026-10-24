@@ -8,7 +8,7 @@ export function SiteFooter() {
           <Lock aria-hidden className="size-4" strokeWidth={1.75} />
           Tidak ada data yang disimpan
         </p>
-        <p className="text-ink-3">OnkoTepat · prototipe hackathon · semua pasien adalah SIMULASI</p>
+        <p className="text-ink-3">Genusa · prototipe hackathon · semua pasien adalah SIMULASI</p>
       </div>
     </footer>
   );

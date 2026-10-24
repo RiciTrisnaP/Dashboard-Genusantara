@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { panel } from "../data";
+import type { Panel } from "../types";
 import { evaluateReflex, REFLEX_LABEL } from "./reflex";
 import { evaluateSentinel } from "./sentinel";
 import { patient, run } from "./test-helpers";
@@ -20,16 +21,16 @@ describe("REFLEX per demo patient", () => {
     expect(REFLEX_LABEL).toMatch(/butuh persetujuan dokter/);
   });
 
-  it("A: tissue at progression -> suggests plasma ctDNA for ESR1 only", () => {
+  it("A: progressed on endocrine therapy -> separate ESR1 test, since NUSA11 has no ESR1", () => {
     expect(ids("A")).toEqual(["ESR1_BELUM_DINILAI"]);
-    expect(allAdvice("A")).toMatch(/Pertimbangkan tes plasma ctDNA untuk ESR1/);
+    expect(allAdvice("A")).toMatch(/tes ESR1 terpisah dari plasma ctDNA; ESR1 tidak termasuk panel NUSA11/);
   });
 
-  it("B: plasma with a passing variant -> no rule fires", () => {
-    expect(ids("B")).toEqual([]);
+  it("B: plasma with a passing ERBB2 variant -> only the ESR1 suggestion", () => {
+    expect(ids("B")).toEqual(["ESR1_BELUM_DINILAI"]);
   });
 
-  it("C: triple-negative -> BRCA germline referral", () => {
+  it("C: triple-negative, no endocrine progression -> BRCA germline referral only", () => {
     expect(ids("C")).toEqual(["PETUNJUK_BRCA_BAWAAN"]);
   });
 
@@ -50,12 +51,13 @@ describe("REFLEX per demo patient", () => {
     expect(r.items).toEqual([]);
   });
 
-  it("F: quality failure -> plasma ctDNA or non-bone block, plus macrodissection", () => {
+  it("F: quality failure -> plasma ctDNA or non-bone block, plus macrodissection; unreadable areas reported", () => {
     const r = run("F").reflex;
     expect(r.items[0].id).toBe("MUTU_GAGAL");
     const advice = r.items[0].advice.join(" ");
     expect(advice).toMatch(/Tes plasma ctDNA, atau gunakan blok jaringan lain yang bukan tulang/);
     expect(advice).toMatch(/makrodiseksi/);
+    expect(ids("F")).toEqual(["MUTU_GAGAL", "TARGET_TIDAK_TERBACA", "ESR1_BELUM_DINILAI"]);
     // A failed test must never trigger the "negative panel" rules.
     expect(ids("F")).not.toContain("PANEL_NEGATIF_KEBUTUHAN_BESAR");
     expect(ids("F")).not.toContain("PLASMA_NEGATIF");
@@ -67,21 +69,34 @@ describe("REFLEX rules not covered by the demo patients", () => {
     const a = patient("A");
     if (!a.molecularTest.done) throw new Error("fixture");
     const targets = a.molecularTest.targets.map((t) =>
-      t.target === "ESR1 D538" || t.target === "PIK3CA G118" ? { ...t, depth: 50 } : t,
+      t.target === "PIK3CA E545" || t.target === "ERBB2 V777" ? { ...t, depth: 50 } : t,
     );
     const p = { ...a, molecularTest: { ...a.molecularTest, targets } };
-    const r = evaluateReflex(p, evaluateSentinel(p, panel));
+    const r = evaluateReflex(p, evaluateSentinel(p, panel), panel);
     const item = r.items.find((i) => i.id === "TARGET_TIDAK_TERBACA");
     expect(item?.advice[0]).toMatch(/Laporkan area yang tidak dinilai/);
-    expect(item?.advice[1]).toMatch(/Ulangi, target ini penting untuk pilihan obat: ESR1 D538\./);
+    expect(item?.advice[1]).toMatch(/Ulangi, target ini penting untuk pilihan obat: PIK3CA E545K, PIK3CA E545A\./);
   });
 
   it("rule 5: readable plasma with no variant -> consider tissue", () => {
     const b = patient("B");
     if (!b.molecularTest.done) throw new Error("fixture");
     const p = { ...b, molecularTest: { ...b.molecularTest, variants: [] } };
-    const r = evaluateReflex(p, evaluateSentinel(p, panel));
-    expect(r.items.map((i) => i.id)).toEqual(["PANEL_NEGATIF_KEBUTUHAN_BESAR", "PLASMA_NEGATIF"]);
+    const r = evaluateReflex(p, evaluateSentinel(p, panel), panel);
+    expect(r.items.map((i) => i.id)).toEqual(["PANEL_NEGATIF_KEBUTUHAN_BESAR", "PLASMA_NEGATIF", "ESR1_BELUM_DINILAI"]);
+  });
+
+  it("rule 6 with an ESR1-covering panel: only fires for tissue-only testing", () => {
+    const withEsr1: Panel = {
+      ...panel,
+      targets: [...panel.targets, { ...panel.targets[0], id: "ESR1 D538G", gene: "ESR1", codon: "D538", allele: "D538G", site: "ESR1 D538" }],
+    };
+    const a = patient("A");
+    const b = patient("B");
+    const ra = evaluateReflex(a, evaluateSentinel(a, withEsr1), withEsr1);
+    expect(ra.items.find((i) => i.id === "ESR1_BELUM_DINILAI")?.advice).toEqual(["Pertimbangkan tes plasma ctDNA untuk ESR1."]);
+    const rb = evaluateReflex(b, evaluateSentinel(b, withEsr1), withEsr1);
+    expect(rb.items.map((i) => i.id)).not.toContain("ESR1_BELUM_DINILAI");
   });
 
   it("rule 4 ignores 'tidak ada' family history", () => {

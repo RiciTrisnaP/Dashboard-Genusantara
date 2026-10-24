@@ -32,7 +32,7 @@ export function ReportEyebrow({ patientId }: { patientId: string }) {
 
 export function ReportStatusPanel({ patientId }: { patientId: string }) {
   const { signed, signedAt, sign, unsign } = useSignOff(patientId);
-  const next = DEMO_NEXT[patientId] ?? { href: "/", label: "Kembali ke Daftar Pasien" };
+  const next = DEMO_NEXT[patientId] ?? { href: "/pasien", label: "Kembali ke Daftar Pasien" };
 
   if (!signed) {
     return (
@@ -89,7 +89,7 @@ export function ReportStatusPanel({ patientId }: { patientId: string }) {
           Cetak / simpan PDF
         </button>
         <Link href={next.href} className={`${btnSecondary} mt-3 w-full`}>
-          {next.href === "/" ? (
+          {next.href === "/pasien" ? (
             <Users aria-hidden className="size-4" strokeWidth={2} />
           ) : (
             <ArrowRight aria-hidden className="size-4" strokeWidth={2} />

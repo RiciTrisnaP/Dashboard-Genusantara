@@ -1,4 +1,6 @@
-# OnkoTepat x NUSA-15 (prototipe demo)
+# Genusa: panel NUSA11 (prototipe demo)
+
+Nama produk sebelumnya: OnkoTepat. Dokumen sumber tim di `docs/` masih memakai nama lama.
 
 Prototipe web untuk pitch GenoHack 2026. **SIMULASI, bukan untuk keputusan klinis.** Semua pasien simulasi, aturan berbasis spesifikasi tim (tanpa ML), tanpa backend, tanpa penyimpanan data.
 
@@ -18,7 +20,11 @@ Bila `data/evidence_check.csv` berubah: `npm run data:convert` (menulis ulang `d
 ## Struktur
 
 ```
-app/page.tsx                      Daftar Pasien + pemicu tes
+app/page.tsx                      Landing page (hero, panel NUSA11, cara kerja, alur demo)
+app/pasien/page.tsx               Daftar Pasien + pemicu tes (peran dokter)
+app/perawat/                      Dashboard navigator (peran perawat): tugas, pasien, check-in gejala, kinerja
+lib/navigator/                    Aturan navigator: penandaan check-in, kunci persetujuan, tugas, kinerja (+ test)
+data/navigator.json               Data simulasi navigator (Ibu A sampai H; G dan H hanya di sisi perawat)
 app/pasien/[id]/sentinel          SENTINEL S1 sampai S5, target terbaca/tidak
 app/pasien/[id]/reflex            REFLEX, saran berurutan (butuh persetujuan dokter)
 app/pasien/[id]/laporan           Laporan Pilih Terapi (cetak A4 satu halaman, tanda tangan simulasi)
@@ -26,7 +32,7 @@ app/pasien/[id]/ringkasan         Ringkasan Pasien (bahasa awam)
 lib/rules/                        Mesin aturan murni: thresholds, trigger, sentinel, reflex, evidence, triase, summary
 lib/rules/*.test.ts               Test per modul untuk pasien A sampai F
 tests/ui-text.test.ts             Klaim terlarang (CLAUDE.md bagian 6) dan em dash
-data/                             Data demo; panel di data/panel.json
+data/                             Data demo; panel NUSA11 (11 alel) di data/panel.json
 ```
 
 UI hanya menampilkan hasil `runCase(patient)` dari `lib/rules/index.ts`. Ambang batas DEMO ada di `lib/rules/thresholds.ts`.

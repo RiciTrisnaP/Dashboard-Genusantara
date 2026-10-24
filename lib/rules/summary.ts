@@ -25,7 +25,7 @@ const GENE_PLAIN: Record<string, string> = {
   PIK3CA: "Gen ini ikut mengatur pertumbuhan sel.",
   AKT1: "Gen ini ikut mengatur pertumbuhan sel.",
   ESR1: "Gen ini membuat reseptor hormon estrogen. Perubahannya sering muncul setelah terapi hormon dan bisa membuat terapi hormon tertentu kurang bekerja.",
-  ERBB2: "Gen ini (HER2) ikut mengatur pertumbuhan sel.",
+  ERBB2: "Gen ini (ERBB2, juga disebut HER2) ikut mengatur pertumbuhan sel. Perubahan kecil pada gen ini berbeda dengan status HER2 positif.",
 };
 
 function capitalizeFirst(s: string): string {
@@ -138,7 +138,7 @@ export function buildPatientSummary(
     const unavailable = triase.groups.B.map((o) => o.drug);
     if (unavailable.length > 0) {
       after.push(
-        `Ada juga obat yang terkait hasil ini tetapi belum terdaftar atau belum ditemukan di Indonesia: ${unavailable.join(", ")}.`,
+        `Ada juga obat yang terkait hasil ini tetapi belum tersedia atau status aksesnya belum dinilai di Indonesia: ${unavailable.join(", ")}.`,
       );
     }
     after.push(`Status akses dan harga dicek tim pada ${triase.accessCheckedDate}. Keputusan obat tetap di tangan dokter.`);

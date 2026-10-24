@@ -1,25 +1,34 @@
 @import "tailwindcss";
 
-/* Design tokens from the Pencil handoff (OnkoTepat sistem desain v1). */
+/* Design tokens from the Pencil handoff (Genusa sistem desain v1), recoloured to the NUSA11 pitch deck:
+   navy (#203060) with hot pink (#D1337A), plus the deck's blue and violet as secondary hues.
+   Status colours (ok, warn, bad) are unchanged so their meaning stays the same. */
 @theme {
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --color-primary: #0e7385;
-  --color-primary-strong: #0a5a68;
-  --color-primary-soft: #e2f2f4;
-  --color-band: #0b5f6e;
-  --color-band-deep: #083e49;
-  --color-on-band-2: #bfe2e7;
-  --color-accent: #f5a524;
-  --color-accent-hover: #e8961a;
-  --color-accent-ink: #1a1205;
+  --color-primary: #d1337a;
+  --color-primary-strong: #a3195f;
+  --color-primary-soft: #fce7f4;
+  /* End stop for pink gradients: a small step darker than primary so white text stays readable. */
+  --color-primary-deep: #c62f74;
+  --color-band: #203060;
+  --color-band-deep: #18244d;
+  --color-on-band-2: #c8d1ec;
+  --color-accent: #d1337a;
+  --color-accent-hover: #b82a69;
+  --color-accent-ink: #ffffff;
+  --color-accent-light: #f9a8d4;
+  --color-violet: #6748b6;
+  --color-violet-soft: #efe9fb;
+  --color-sky: #1b75d0;
+  --color-sky-soft: #e3f0fc;
 
-  --color-ink: #0b1f21;
-  --color-ink-2: #3d4f52;
-  --color-ink-3: #647679;
-  --color-canvas: #f3f5f5;
-  --color-line: #dce2e3;
+  --color-ink: #18223f;
+  --color-ink-2: #4a5268;
+  --color-ink-3: #697181;
+  --color-canvas: #f8f9fd;
+  --color-line: #e4e7f2;
 
   --color-ok: #166534;
   --color-ok-solid: #15803d;
@@ -33,7 +42,7 @@
   --color-bad-solid: #b91c1c;
   --color-bad-bg: #fcecec;
   --color-bad-line: #efb4b4;
-  --color-neutral-bg: #eef1f2;
+  --color-neutral-bg: #eef0f7;
 
   --color-banner-bg: #fdecb4;
   --color-banner-ink: #5c3a02;

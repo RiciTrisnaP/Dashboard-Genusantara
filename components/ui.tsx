@@ -81,7 +81,13 @@ export function SectionNumber({ n }: { n: number }) {
 export const btnPrimary =
   "inline-flex items-center justify-center gap-2 rounded bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-hover";
 export const btnSecondary =
-  "inline-flex items-center justify-center gap-2 rounded bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-strong";
+  "inline-flex items-center justify-center gap-2 rounded bg-band px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-band-deep";
+/** Solid white button for pink backgrounds. */
+export const btnOnPink =
+  "inline-flex items-center justify-center gap-2 rounded bg-white px-4 py-2.5 text-sm font-semibold text-primary-strong transition-colors hover:bg-primary-soft";
+/** Outline button for dark (navy) backgrounds. */
+export const btnOnDark =
+  "inline-flex items-center justify-center gap-2 rounded border border-white/40 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/20";
 export const btnGhost =
   "inline-flex items-center justify-center gap-2 rounded border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink-2 transition-colors hover:bg-canvas";
 

@@ -1,6 +1,7 @@
 import { CircleCheck, CircleMinus, Info, TriangleAlert, type LucideIcon } from "lucide-react";
 import type { Tone } from "@/lib/rules/sentinel";
 import { GROUP_TITLES, type AccessCell, type TherapyGroupId, type TherapyOption } from "@/lib/rules/triase";
+import { panel } from "@/lib/data";
 import { TONE_ICON, TONE_TEXT } from "./ui";
 
 const GROUP_CHIP: Record<TherapyGroupId, { cls: string; icon: LucideIcon }> = {
@@ -120,7 +121,7 @@ function OptionRows({ options, group }: { options: TherapyOption[]; group: "B" |
               {capitalize(o.regimen)}
               {o.brand && <span className="font-normal text-ink-3"> ({o.brand})</span>}
             </p>
-            <p className="font-mono text-sm text-ink-3">{basis(o)}</p>
+            <p className="text-sm text-ink-3">{basis(o)}</p>
             {group === "B" && o.indicationNote && <p className="mt-1 text-sm text-warn">Catatan: {o.indicationNote}</p>}
           </div>
           {group === "B" ? (
@@ -132,7 +133,7 @@ function OptionRows({ options, group }: { options: TherapyOption[]; group: "B" |
           ) : (
             <div>
               <p className="text-ink-2">{o.reason}</p>
-              <p className="mt-1 font-mono text-xs text-ink-3">
+              <p className="mt-1 text-xs text-ink-3">
                 {o.bpom.label} · {o.jkn.label} · {o.market.label}
               </p>
             </div>
@@ -150,7 +151,7 @@ export function TherapyGroups({ groups, readableCount }: { groups: Record<Therap
     const rows: [TherapyGroupId, string][] = [
       ["A", `Tidak ada pilihan terapi berbasis varian dari ${readableCount} target ini.`],
       ["B", "Tidak ada."],
-      ["C", "Terapi khusus PIK3CA, AKT1, dan ESR1: varian di target tersebut tidak terdeteksi."],
+      ["C", `Terapi berbasis varian ${[...new Set(panel.targets.map((t) => t.gene))].join(", ")}: varian di target tersebut tidak terdeteksi.`],
     ];
     return (
       <div className="space-y-3">

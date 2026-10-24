@@ -1,5 +1,5 @@
 // Pemicu Tes (test trigger, before testing). docs/rules_spec.md section 1.
-import type { Clinical, Patient } from "../types";
+import type { Clinical, Panel, Patient } from "../types";
 
 export type TriggerStatus = "PERLU_TES" | "SUDAH_DITES" | "TIDAK_MEMENUHI_KRITERIA";
 
@@ -11,14 +11,20 @@ export interface TriggerResult {
   suggestedSpecimen?: string;
 }
 
-export const SUGGESTED_SPECIMEN_TEXT =
-  "Jaringan FFPE untuk PIK3CA dan AKT1; plasma ctDNA untuk ESR1 (mutasi ESR1 biasanya muncul setelah terapi hormon).";
+/** Specimen advice for an untested patient, worded for the genes the panel actually covers. */
+export function suggestedSpecimenText(panel: Panel): string {
+  const genes = [...new Set(panel.targets.map((t) => t.gene))];
+  const base = `Jaringan FFPE untuk panel ${panel.shortName} (${genes.join(", ")}).`;
+  return genes.includes("ESR1")
+    ? `${base} Plasma ctDNA untuk ESR1 (mutasi ESR1 biasanya muncul setelah terapi hormon).`
+    : `${base} ESR1 tidak termasuk ${panel.shortName}; bila perlu, tes plasma ctDNA terpisah (mutasi ESR1 biasanya muncul setelah terapi hormon).`;
+}
 
 export function isAdvanced(clinical: Clinical): boolean {
   return clinical.stage === "IV" || clinical.setting === "metastatik" || clinical.setting === "kambuh";
 }
 
-export function evaluateTrigger(patient: Patient): TriggerResult {
+export function evaluateTrigger(patient: Patient, panel: Panel): TriggerResult {
   const c = patient.clinical;
   const unmet: string[] = [];
   if (c.subtype !== "HR+/HER2-") unmet.push(`subtipe ${c.subtype ?? "belum diisi"}, bukan HR+/HER2-`);
@@ -39,7 +45,7 @@ export function evaluateTrigger(patient: Patient): TriggerResult {
       label: "Perlu tes",
       reason:
         "HR+/HER2- stadium lanjut, memburuk setelah terapi endokrin, dan belum ada tes molekuler. Bahas di rapat tim tumor.",
-      suggestedSpecimen: SUGGESTED_SPECIMEN_TEXT,
+      suggestedSpecimen: suggestedSpecimenText(panel),
     };
   }
 

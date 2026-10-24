@@ -8,9 +8,9 @@ import { evaluateTriase } from "./triase";
 import { evaluateTrigger } from "./trigger";
 
 export function runCase(patient: Patient) {
-  const trigger = evaluateTrigger(patient);
+  const trigger = evaluateTrigger(patient, panel);
   const sentinel = evaluateSentinel(patient, panel);
-  const reflex = evaluateReflex(patient, sentinel);
+  const reflex = evaluateReflex(patient, sentinel, panel);
   const triase = evaluateTriase(sentinel, patient.clinical, evidence.variants, drugAccess);
   const summary = buildPatientSummary(patient, panel, sentinel, reflex, triase);
   return { patient, trigger, sentinel, reflex, triase, summary };

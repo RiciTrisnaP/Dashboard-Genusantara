@@ -25,7 +25,9 @@ export default async function ReflexPage({ params }: PageProps<"/pasien/[id]/ref
     { name: "PTEN", text: panelGenes.has("PTEN") ? "Hanya titik hotspot tertentu" : "Tidak termasuk target panel" },
     { name: "BRCA1/2", text: "Tidak termasuk target panel; dinilai lewat tes germline dari darah" },
   ];
-  if (test.done && test.specimen.type === "jaringan_FFPE") {
+  if (!panelGenes.has("ESR1")) {
+    notCovered.unshift({ name: "ESR1", text: `Tidak termasuk ${panel.shortName}; dinilai lewat tes plasma ctDNA terpisah` });
+  } else if (test.done && test.specimen.type === "jaringan_FFPE") {
     notCovered.push({ name: "ESR1 di darah", text: "Belum dinilai; tes ini memakai jaringan" });
   }
 
@@ -84,13 +86,13 @@ export default async function ReflexPage({ params }: PageProps<"/pasien/[id]/ref
                       <div className="flex gap-3 rounded-xl border border-line p-4">
                         <Microscope aria-hidden className="size-5 text-primary" strokeWidth={1.75} />
                         <p>
-                          <strong>Jaringan FFPE</strong>: untuk PIK3CA dan AKT1
+                          <strong>Jaringan FFPE</strong>: untuk panel {panel.shortName} ({[...panelGenes].join(", ")})
                         </p>
                       </div>
                       <div className="flex gap-3 rounded-xl border border-line p-4">
                         <Droplet aria-hidden className="size-5 text-primary" strokeWidth={1.75} />
                         <p>
-                          <strong>Plasma ctDNA</strong>: untuk ESR1
+                          <strong>Plasma ctDNA</strong>: tes ESR1 terpisah, di luar {panel.shortName}
                         </p>
                       </div>
                     </div>
@@ -118,7 +120,7 @@ export default async function ReflexPage({ params }: PageProps<"/pasien/[id]/ref
                         ))}
                         <p className="mt-3 text-xs font-semibold tracking-[0.1em] text-ink-3 uppercase">Alasan</p>
                         <p className="text-ink-2">{item.reason}</p>
-                        <p className="mt-2 font-mono text-xs text-ink-3">
+                        <p className="mt-2 text-xs text-ink-3">
                           Aturan {item.order} · {item.title}
                         </p>
                       </div>
