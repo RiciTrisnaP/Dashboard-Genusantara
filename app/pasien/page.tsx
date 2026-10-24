@@ -1,12 +1,11 @@
-import { ArrowRight, ChevronRight, Droplet, FlaskConical, Microscope } from "lucide-react";
+import { ArrowRight, Droplet, FlaskConical, Microscope } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { shortName, VerdictBadge } from "@/components/CaseHeader";
+import { shortName } from "@/components/CaseHeader";
+import { DoctorPatientList, type DoctorRow } from "@/components/DoctorPatientList";
 import { ApprovalBadge, btnOnPink, StatusBadge } from "@/components/ui";
 import { panel, patients } from "@/lib/data";
 import { runCase, type CaseResult } from "@/lib/rules";
-
-
 
 export const metadata: Metadata = { title: "Daftar Pasien" };
 
@@ -28,6 +27,18 @@ export default function WorklistPage() {
   const cases = patients.map(runCase);
   const needTest = cases.filter((c) => c.trigger.status === "PERLU_TES");
   const spotlight = needTest[0];
+  const rows: DoctorRow[] = cases.map((c) => ({
+    id: c.patient.id,
+    name: shortName(c.patient.displayName),
+    age: c.patient.age,
+    subtype: c.patient.clinical.subtype ?? "-",
+    stage: `${c.patient.clinical.stage} (${c.patient.clinical.setting})`,
+    prior: c.patient.clinical.priorTherapies?.join("; ") || "tidak ada terapi sebelumnya",
+    triggerText: triggerText(c),
+    needsTest: c.trigger.status === "PERLU_TES",
+    verdict: c.sentinel.tested ? c.sentinel.verdict : null,
+    verdictDetail: verdictDetail(c),
+  }));
 
   return (
     <>
@@ -90,103 +101,10 @@ export default function WorklistPage() {
         </div>
       </section>
 
-      {/* Patient table */}
+      {/* Patient list: same card style as the navigator's patient list */}
       <section className="mx-auto max-w-[1440px] px-4 py-10 sm:px-10">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-2xl font-bold">Semua pasien</h2>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-ink-3">
-            Status SENTINEL:
-            <StatusBadge tone="ok">Lanjut</StatusBadge>
-            <StatusBadge tone="block">Tahan</StatusBadge>
-            <StatusBadge tone="warn" icon={FlaskConical}>
-              Belum dites
-            </StatusBadge>
-          </div>
-        </div>
-        {/* Phone: one card per patient. */}
-        <ul className="mt-4 space-y-3 md:hidden">
-          {cases.map((c) => {
-            const p = c.patient;
-            const flagged = c.trigger.status === "PERLU_TES";
-            return (
-              <li
-                key={p.id}
-                className={`relative rounded-2xl border p-4 ${flagged ? "border-warn-line bg-warn-bg/60" : "border-line bg-white"}`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <Link href={`/pasien/${p.id}/sentinel`} className="text-lg font-semibold after:absolute after:inset-0">
-                      {shortName(p.displayName)}
-                    </Link>
-                    <p className="text-sm text-ink-3">
-                      {p.age} tahun · {p.clinical.subtype} · {p.clinical.stage} ({p.clinical.setting})
-                    </p>
-                  </div>
-                  <ChevronRight aria-hidden className="mt-1 size-5 shrink-0 text-primary" strokeWidth={2} />
-                </div>
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <VerdictBadge result={c} size="md" />
-                  <span className="text-sm text-ink-3">{verdictDetail(c)}</span>
-                </div>
-                <p className="mt-2 text-sm text-ink-2">{p.clinical.priorTherapies?.join("; ")}</p>
-                <p className="text-sm text-ink-2">{triggerText(c)}</p>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Tablet and up: table. `relative` keeps the row-link overlay inside the scroll area. */}
-        <div className="relative mt-4 hidden overflow-x-auto rounded-2xl border border-line bg-white md:block">
-          <table className="w-full min-w-[900px] text-left">
-            <thead className="border-b border-line bg-canvas text-xs tracking-[0.1em] text-ink-3 uppercase">
-              <tr>
-                <th className="px-6 py-3.5 font-semibold">Pasien</th>
-                <th className="px-4 py-3.5 font-semibold">Subtipe</th>
-                <th className="px-4 py-3.5 font-semibold">Stadium</th>
-                <th className="px-4 py-3.5 font-semibold">Terapi sebelumnya</th>
-                <th className="px-4 py-3.5 font-semibold">Pemicu tes</th>
-                <th className="px-4 py-3.5 font-semibold">Status SENTINEL</th>
-                <th className="px-6 py-3.5">
-                  <span className="sr-only">Buka</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {cases.map((c) => {
-                const p = c.patient;
-                const flagged = c.trigger.status === "PERLU_TES";
-                return (
-                  <tr key={p.id} className={`group relative ${flagged ? "bg-warn-bg/60" : ""} hover:bg-primary-soft/60`}>
-                    <td className="px-6 py-4">
-                      <Link href={`/pasien/${p.id}/sentinel`} className="text-lg font-semibold after:absolute after:inset-0">
-                        {shortName(p.displayName)}
-                      </Link>
-                      <div className="text-sm text-ink-3">{p.age} tahun</div>
-                    </td>
-                    <td className="px-4 py-4 font-semibold">{p.clinical.subtype}</td>
-                    <td className="px-4 py-4 text-ink-2">
-                      {p.clinical.stage} ({p.clinical.setting})
-                    </td>
-                    <td className="px-4 py-4 text-ink-2">{p.clinical.priorTherapies?.join("; ")}</td>
-                    <td className="px-4 py-4 text-ink-2">{triggerText(c)}</td>
-                    <td className="px-4 py-4">
-                      <VerdictBadge result={c} size="md" />
-                      <div className="mt-1 text-sm text-ink-3">{verdictDetail(c)}</div>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <span className="inline-flex items-center gap-1 font-semibold text-primary group-hover:underline">
-                        Buka
-                        <ChevronRight aria-hidden className="size-4" strokeWidth={2} />
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <DoctorPatientList rows={rows} />
       </section>
-
     </>
   );
 }
