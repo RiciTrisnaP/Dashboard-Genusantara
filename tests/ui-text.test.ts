@@ -84,11 +84,11 @@ describe("UI text", () => {
     expect(FORBIDDEN.some(([, p]) => p.test("Panel hotspot tidak mencakup PTEN dan BRCA1/2 secara utuh."))).toBe(false);
   });
 
-  it("every screen gets the SIMULASI banner from the root layout", () => {
+  it("every screen carries the simulation notice in the shared footer (team decision 26 Oct 2026)", () => {
     const layout = readFileSync(join(ROOT, "app/layout.tsx"), "utf8");
-    const banner = readFileSync(join(ROOT, "components/SimulationBanner.tsx"), "utf8");
-    expect(layout).toContain("<SimulationBanner />");
-    expect(banner).toContain("SIMULASI, bukan untuk keputusan klinis");
-    expect(readFileSync(join(ROOT, "components/SiteFooter.tsx"), "utf8")).toContain("Tidak ada data yang disimpan");
+    const footer = readFileSync(join(ROOT, "components/SiteFooter.tsx"), "utf8");
+    expect(layout).toContain("<SiteFooter />");
+    expect(footer).toContain("SIMULASI, bukan untuk keputusan klinis");
+    expect(footer).toContain("Tidak ada data yang disimpan");
   });
 });

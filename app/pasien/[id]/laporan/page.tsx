@@ -328,7 +328,7 @@ export default async function ReportPage({ params }: PageProps<"/pasien/[id]/lap
             </footer>
           </article>
 
-          <aside className="order-first space-y-4 self-start lg:sticky lg:top-12 lg:order-none">
+          <aside className="order-first space-y-4 self-start lg:sticky lg:top-6 lg:order-none">
             <ReportStatusPanel patientId={patient.id} />
             <div className="hidden lg:block">
               <EvidenceNote checked={checked} />

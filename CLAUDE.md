@@ -25,7 +25,7 @@ One web app, demo only, all data simulated or public, rule-based (no ML). Five s
 4. **Laporan Pilih Terapi** (doctor report, one printable page): QC status, unreadable targets, detected variants with evidence level, therapy options grouped into: (a) Sesuai dan tersedia, (b) Sesuai tetapi belum terdaftar / tidak tersedia, (c) Tidak sesuai (with reason). Each option shows BPOM status, JKN status, price, and the access check date. Report status "DRAF, menunggu tanda tangan dokter" with a sign-off button that flips it to "Terbit".
 5. **Ringkasan Pasien** (patient summary): plain Indonesian, what was found, that tumour mutations are NOT inherited by children, costs shown openly, list of questions to ask the doctor, family's role.
 
-Every screen shows a visible "SIMULASI, bukan untuk keputusan klinis" banner.
+Every screen shows "SIMULASI, bukan untuk keputusan klinis". Team decision 26 Oct 2026: the top banner was removed and the notice now sits in the shared footer on every screen; patient names keep the "(simulasi)" suffix and the printed report keeps "SIMULASI" in its footer.
 
 NOT in scope (pitch slides only): real pilot deployment, registry, therapy coaching app, FASTQ/NGS pipeline, authentication, real patient data, backend database.
 
