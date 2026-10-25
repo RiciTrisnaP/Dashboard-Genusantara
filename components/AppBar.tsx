@@ -1,4 +1,4 @@
-import { Dna, HeartHandshake, Stethoscope } from "lucide-react";
+import { Dna, FlaskConical, HeartHandshake, Stethoscope } from "lucide-react";
 import Link from "next/link";
 
 export function AppBar() {
@@ -16,12 +16,16 @@ export function AppBar() {
         </Link>
         <nav aria-label="Pilih peran" className="flex items-center gap-1 rounded-full bg-white/10 p-1 text-sm">
           <Link href="/pasien" className="flex min-h-9 items-center gap-2 rounded-full px-3 font-medium hover:bg-white/15">
-            <Stethoscope aria-hidden className="size-4" strokeWidth={1.75} />
+            <Stethoscope aria-hidden className="hidden size-4 sm:block" strokeWidth={1.75} />
             Dokter
           </Link>
           <Link href="/perawat" className="flex min-h-9 items-center gap-2 rounded-full px-3 font-medium hover:bg-white/15">
-            <HeartHandshake aria-hidden className="size-4" strokeWidth={1.75} />
+            <HeartHandshake aria-hidden className="hidden size-4 sm:block" strokeWidth={1.75} />
             Perawat
+          </Link>
+          <Link href="/lab" className="flex min-h-9 items-center gap-2 rounded-full px-3 font-medium hover:bg-white/15">
+            <FlaskConical aria-hidden className="hidden size-4 sm:block" strokeWidth={1.75} />
+            Lab
           </Link>
         </nav>
       </div>

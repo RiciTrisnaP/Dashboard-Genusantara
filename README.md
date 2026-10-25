@@ -25,6 +25,9 @@ app/pasien/page.tsx               Daftar Pasien + pemicu tes (peran dokter)
 app/perawat/                      Dashboard navigator (peran perawat): tugas, pasien, check-in gejala, kinerja
 lib/navigator/                    Aturan navigator: penandaan check-in, kunci persetujuan, tugas, kinerja (+ test)
 data/navigator.json               Data simulasi navigator (Ibu A sampai H; G dan H hanya di sisi perawat)
+app/lab/                          Dashboard lab (analis dan patolog): sampel masuk, antrian run, SENTINEL, tinjauan patolog, kinerja
+lib/lab/                          Aturan lab: cek spesimen S2, kontrol internal per reaksi, hasil per target, kinerja (+ test)
+data/lab.json                     Data simulasi lab (kode sampel NS-2610-0xx; NS-2610-024 = Ibu F di dashboard dokter dan perawat)
 app/pasien/[id]/sentinel          SENTINEL S1 sampai S5, target terbaca/tidak
 app/pasien/[id]/reflex            REFLEX, saran berurutan (butuh persetujuan dokter)
 app/pasien/[id]/laporan           Laporan Pilih Terapi (cetak A4 satu halaman, tanda tangan simulasi)

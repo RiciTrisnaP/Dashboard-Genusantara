@@ -1,0 +1,417 @@
+{
+ "_note": "Data simulasi untuk dashboard lab (demo GenoHack 2026). Ambang mutu, pengelompokan reaksi, nama staf, RS pengirim, dan angka adalah contoh, bukan hasil uji analitik. patientId hanya dipakai untuk tautan alur demo, tidak ditampilkan di layar lab.",
+ "today": "2026-10-26",
+ "lab": "Lab molekuler (simulasi)",
+ "analyst": "Dimas (analis lab, simulasi)",
+ "pathologist": "dr. Patolog Demo, Sp.PA (simulasi)",
+ "thresholds": {
+  "icPassMaxCt": 32,
+  "icReviewMaxCt": 35,
+  "minTumorPct": 20,
+  "maxBlockAgeMonths": 36,
+  "minDnaNgUl": 1
+ },
+ "run": {
+  "capacity": 10,
+  "minSamples": 6,
+  "current": {
+   "id": "Run 2610-A",
+   "startedAt": "2026-10-26T07:30",
+   "machine": "mesin qPCR 1",
+   "step": 2,
+   "eta": "14.00"
+  },
+  "next": {
+   "id": "Run 2610-B",
+   "scheduledAt": "2026-10-27T07:30",
+   "machine": "mesin qPCR 1"
+  }
+ },
+ "samples": [
+  {
+   "code": "NS-2610-041",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi hati",
+   "blockAgeMonths": 3,
+   "decalcified": false,
+   "tumorPct": 40,
+   "dnaNgUl": null,
+   "receivedAt": "2026-10-26T08:10",
+   "stage": "masuk"
+  },
+  {
+   "code": "NS-2610-042",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": null,
+   "blockAgeMonths": null,
+   "decalcified": false,
+   "tumorPct": null,
+   "dnaNgUl": null,
+   "receivedAt": "2026-10-26T09:30",
+   "stage": "masuk"
+  },
+  {
+   "code": "NS-2610-043",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Mastektomi",
+   "blockAgeMonths": 48,
+   "decalcified": false,
+   "tumorPct": 15,
+   "dnaNgUl": null,
+   "receivedAt": "2026-10-26T10:05",
+   "stage": "masuk"
+  },
+  {
+   "code": "NS-2610-038",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi kelenjar getah bening",
+   "blockAgeMonths": 2,
+   "decalcified": false,
+   "tumorPct": 55,
+   "dnaNgUl": 18.2,
+   "receivedAt": "2026-10-23T13:20",
+   "stage": "antri"
+  },
+  {
+   "code": "NS-2610-039",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi kulit",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 35,
+   "dnaNgUl": 9.6,
+   "receivedAt": "2026-10-23T15:40",
+   "stage": "antri"
+  },
+  {
+   "code": "NS-2610-030",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi hati",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 30,
+   "dnaNgUl": 8.0,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 26.0,
+    "R2": 26.5,
+    "R3": 27.0,
+    "R4": 27.4
+   },
+   "detected": []
+  },
+  {
+   "code": "NS-2610-031",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi kelenjar getah bening",
+   "blockAgeMonths": 2,
+   "decalcified": false,
+   "tumorPct": 35,
+   "dnaNgUl": 9.7,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 26.3,
+    "R2": 26.8,
+    "R3": 27.3,
+    "R4": 27.7
+   },
+   "detected": []
+  },
+  {
+   "code": "NS-2610-032",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi payudara",
+   "blockAgeMonths": 3,
+   "decalcified": false,
+   "tumorPct": 40,
+   "dnaNgUl": 11.4,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 26.6,
+    "R2": 27.1,
+    "R3": 27.6,
+    "R4": 28.0
+   },
+   "detected": [
+    "PIK3CA H1047R"
+   ]
+  },
+  {
+   "code": "NS-2610-033",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi hati",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 45,
+   "dnaNgUl": 13.1,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 26.9,
+    "R2": 27.4,
+    "R3": 27.9,
+    "R4": 28.3
+   },
+   "detected": []
+  },
+  {
+   "code": "NS-2610-034",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi kulit",
+   "blockAgeMonths": 2,
+   "decalcified": false,
+   "tumorPct": 50,
+   "dnaNgUl": 14.8,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 27.2,
+    "R2": 27.7,
+    "R3": 28.2,
+    "R4": 28.6
+   },
+   "detected": []
+  },
+  {
+   "code": "NS-2610-035",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi payudara",
+   "blockAgeMonths": 3,
+   "decalcified": false,
+   "tumorPct": 55,
+   "dnaNgUl": 16.5,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 27.5,
+    "R2": 28.0,
+    "R3": 28.5,
+    "R4": 28.9
+   },
+   "detected": [
+    "PIK3CA E542K"
+   ]
+  },
+  {
+   "code": "NS-2610-036",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi kelenjar getah bening",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 60,
+   "dnaNgUl": 18.2,
+   "receivedAt": "2026-10-22T10:00",
+   "stage": "run",
+   "run": "Run 2610-A",
+   "ic": {
+    "R1": 27.8,
+    "R2": 28.3,
+    "R3": 28.8,
+    "R4": 29.2
+   },
+   "detected": []
+  },
+  {
+   "code": "NS-2610-021",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi hati",
+   "blockAgeMonths": 2,
+   "decalcified": false,
+   "tumorPct": 45,
+   "dnaNgUl": 14.1,
+   "receivedAt": "2026-10-21T09:15",
+   "stage": "sentinel",
+   "run": "Run 2310-B",
+   "ic": {
+    "R1": 27.4,
+    "R2": 27.9,
+    "R3": 28.3,
+    "R4": 33.6
+   },
+   "detected": [
+    "PIK3CA H1047R"
+   ]
+  },
+  {
+   "code": "NS-2610-024",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi tulang",
+   "blockAgeMonths": 5,
+   "decalcified": true,
+   "tumorPct": 10,
+   "dnaNgUl": 0.4,
+   "receivedAt": "2026-10-22T08:40",
+   "stage": "sentinel",
+   "run": "Run 2310-B",
+   "ic": {
+    "R1": 31.2,
+    "R2": 31.6,
+    "R3": 31.9,
+    "R4": 37.4
+   },
+   "detected": [],
+   "patientId": "F"
+  },
+  {
+   "code": "NS-2610-025",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi payudara",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 60,
+   "dnaNgUl": 21.7,
+   "receivedAt": "2026-10-22T11:05",
+   "stage": "sentinel",
+   "run": "Run 2310-B",
+   "ic": {
+    "R1": 26.1,
+    "R2": 26.4,
+    "R3": 26.9,
+    "R4": 27.2
+   },
+   "detected": [
+    "PIK3CA E545K"
+   ]
+  },
+  {
+   "code": "NS-2610-018",
+   "sender": "RS Demo 1",
+   "doctor": "dr. Demo, Sp.PD-KHOM",
+   "specimen": "FFPE",
+   "block": "Biopsi paru",
+   "blockAgeMonths": 2,
+   "decalcified": false,
+   "tumorPct": 50,
+   "dnaNgUl": 16.0,
+   "receivedAt": "2026-10-20T08:30",
+   "stage": "patolog",
+   "run": "Run 2210-A",
+   "ic": {
+    "R1": 26.8,
+    "R2": 27.0,
+    "R3": 27.5,
+    "R4": 27.9
+   },
+   "detected": [
+    "AKT1 E17K"
+   ]
+  },
+  {
+   "code": "NS-2610-019",
+   "sender": "RS Demo 2",
+   "doctor": "dr. Demo 2, Sp.B(K)Onk",
+   "specimen": "FFPE",
+   "block": "Biopsi kelenjar getah bening",
+   "blockAgeMonths": 1,
+   "decalcified": false,
+   "tumorPct": 40,
+   "dnaNgUl": 12.3,
+   "receivedAt": "2026-10-20T10:45",
+   "stage": "patolog",
+   "run": "Run 2210-A",
+   "ic": {
+    "R1": 27.9,
+    "R2": 28.1,
+    "R3": 28.0,
+    "R4": 28.6
+   },
+   "detected": []
+  }
+ ],
+ "released": [
+  {
+   "code": "NS-2610-002",
+   "tatDays": 5
+  },
+  {
+   "code": "NS-2610-005",
+   "tatDays": 6
+  },
+  {
+   "code": "NS-2610-007",
+   "tatDays": 4
+  },
+  {
+   "code": "NS-2610-009",
+   "tatDays": 7,
+   "patientId": "D"
+  },
+  {
+   "code": "NS-2610-011",
+   "tatDays": 9,
+   "delay": "run diundur menunggu kuota 6 sampel",
+   "patientId": "C"
+  },
+  {
+   "code": "NS-2610-012",
+   "tatDays": 5,
+   "patientId": "A"
+  },
+  {
+   "code": "NS-2610-014",
+   "tatDays": 6,
+   "patientId": "B"
+  },
+  {
+   "code": "NS-2610-016",
+   "tatDays": 11,
+   "delay": "run diundur menunggu kuota 6 sampel"
+  },
+  {
+   "code": "NS-2610-017",
+   "tatDays": 5
+  }
+ ],
+ "month": {
+  "label": "Oktober 2026",
+  "samples": 43,
+  "retests": 4,
+  "heldBefore": 1,
+  "senders": 2
+ },
+ "pricing": {
+  "licensePerSample": 87500,
+  "retestLimitPct": 10,
+  "tatTargetDays": 7,
+  "testPrice": 1600000
+ }
+}

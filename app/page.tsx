@@ -1,4 +1,21 @@
-import { ArrowRight, Banknote, CircleDashed, ClipboardList, FileText, HeartHandshake, HeartPulse, ListChecks, PencilLine, ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  Banknote,
+  BarChart3,
+  CircleDashed,
+  ClipboardList,
+  FileText,
+  FlaskConical,
+  HeartHandshake,
+  HeartPulse,
+  Inbox,
+  ListChecks,
+  ListOrdered,
+  PencilLine,
+  ShieldCheck,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ModuleCards } from "@/components/ModuleCards";
@@ -79,6 +96,10 @@ export default function LandingPage() {
             <Link href="/perawat" className={btnOnDark}>
               <HeartHandshake aria-hidden className="size-4" strokeWidth={2} />
               Masuk sebagai perawat navigator
+            </Link>
+            <Link href="/lab" className={btnOnDark}>
+              <FlaskConical aria-hidden className="size-4" strokeWidth={2} />
+              Masuk sebagai lab
             </Link>
           </div>
           <p className="mt-6 max-w-xl text-sm text-on-band-2">
@@ -189,6 +210,40 @@ export default function LandingPage() {
               { icon: HeartPulse, tile: "bg-bad-bg text-bad", title: "Check-in gejala", text: "Demam, diare, ruam, lemas, sangat haus. Yang berbahaya ditandai otomatis." },
               { icon: ShieldCheck, tile: "bg-primary-soft text-primary-strong", title: "Aturan terjaga", text: "Hasil tidak lewat chat; WhatsApp terkunci tanpa persetujuan." },
               { icon: Users, tile: "bg-violet-soft text-violet", title: "Serah terima", text: "Riwayat kontak dan catatan untuk perawat berikutnya." },
+            ].map((f) => (
+              <li key={f.title} className="rounded-2xl bg-canvas p-4">
+                <span className={`flex size-10 items-center justify-center rounded-xl ${f.tile}`}>
+                  <f.icon aria-hidden className="size-5" strokeWidth={1.75} />
+                </span>
+                <p className="mt-3 font-semibold">{f.title}</p>
+                <p className="text-sm text-ink-2">{f.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Lab role */}
+      <section className="mx-auto max-w-[1440px] px-4 pb-12 sm:px-10">
+        <div className="grid gap-6 rounded-3xl border border-line bg-white p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.12em] text-primary uppercase">Untuk analis lab dan patolog</p>
+            <h2 className="mt-1 text-3xl font-bold">SENTINEL dijalankan di lab</h2>
+            <p className="mt-3 text-ink-2">
+              Dashboard lab mengikuti satu sampel dari diterima sampai dirilis. Analis melihat status mutu per reaksi dan per target, jadi target yang
+              tidak terbaca tertulis &ldquo;tidak terbaca&rdquo;, bukan negatif. Lab melihat kode sampel, bukan nama pasien, dan tidak memberi saran terapi.
+            </p>
+            <Link href="/lab" className={`${btnPrimary} mt-5`}>
+              <ArrowRight aria-hidden className="size-4" strokeWidth={2} />
+              Buka dashboard lab
+            </Link>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {[
+              { icon: Inbox, tile: "bg-sky-soft text-sky", title: "Sampel masuk", text: "Cek spesimen (S2) sebelum DNA diekstraksi; terima atau tolak dengan alasan baku." },
+              { icon: ListOrdered, tile: "bg-violet-soft text-violet", title: "Antrian run", text: "Run qPCR sampai 10 sampel; peringatan bila run terlalu sepi." },
+              { icon: ShieldCheck, tile: "bg-bad-bg text-bad", title: "Gerbang mutu", text: "Kontrol internal per reaksi: lulus, tinjau, atau tahan dengan saran tes lanjutan." },
+              { icon: BarChart3, tile: "bg-primary-soft text-primary-strong", title: "Kinerja lab", text: "Waktu tunggu, tes ulang, dan tagihan lisensi yang terbuka." },
             ].map((f) => (
               <li key={f.title} className="rounded-2xl bg-canvas p-4">
                 <span className={`flex size-10 items-center justify-center rounded-xl ${f.tile}`}>

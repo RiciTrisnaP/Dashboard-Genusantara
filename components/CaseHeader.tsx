@@ -62,7 +62,10 @@ export function CaseHeader({ result, active }: { result: CaseResult; active: Cas
             <h1 className="text-3xl font-bold tracking-tight sm:text-[40px]">{shortName(patient.displayName)}</h1>
             <VerdictBadge result={result} prefix size="md" />
           </div>
-          <p className="font-mono text-sm text-on-band-2">Pasien simulasi · SIM-{patient.id}</p>
+          <p className="font-mono text-sm text-on-band-2">
+            Pasien simulasi · SIM-{patient.id}
+            {test.done && test.sampleCode && <> · Sampel {test.sampleCode}</>}
+          </p>
         </div>
         <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-10">
           {facts.map(([label, value], i) => (

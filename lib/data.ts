@@ -15,3 +15,9 @@ export const patients: Patient[] = patientsData.patients;
 export function getPatient(id: string): Patient | undefined {
   return patients.find((p) => p.id === id);
 }
+
+/** Lab sample code for a tested demo patient; the same code appears on the lab dashboard. */
+export function sampleCodeOf(id: string): string | undefined {
+  const test = getPatient(id)?.molecularTest;
+  return test?.done ? test.sampleCode : undefined;
+}

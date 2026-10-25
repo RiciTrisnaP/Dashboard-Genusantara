@@ -2,7 +2,7 @@
  "name": "NUSA11: 11 hotspot alel (panel tim)",
  "shortName": "NUSA11",
  "unit": "alel (hanya alel yang tercantum yang dilaporkan; dibaca per codon/site)",
- "_note": "Panel final tim, 25 Okt 2026. Amplikon ERBB2 belum ditentukan (null).",
+ "_note": "Panel final tim, 25 Okt 2026. Amplikon ERBB2 belum ditentukan (null). Reaksi R1 sampai R4: pengelompokan multipleks qPCR contoh untuk demo dashboard lab, belum rancangan tim assay.",
  "targets": [
   {
    "rank": 1,
@@ -11,7 +11,8 @@
    "codon": "H1047",
    "allele": "H1047R",
    "site": "PIK3CA H1047",
-   "amplicon": 5
+   "amplicon": 5,
+   "reaction": "R1"
   },
   {
    "rank": 2,
@@ -20,7 +21,8 @@
    "codon": "H1047",
    "allele": "H1047L",
    "site": "PIK3CA H1047",
-   "amplicon": 5
+   "amplicon": 5,
+   "reaction": "R1"
   },
   {
    "rank": 3,
@@ -29,7 +31,8 @@
    "codon": "H1047",
    "allele": "H1047Y",
    "site": "PIK3CA H1047",
-   "amplicon": 5
+   "amplicon": 5,
+   "reaction": "R1"
   },
   {
    "rank": 4,
@@ -38,7 +41,8 @@
    "codon": "E545",
    "allele": "E545K",
    "site": "PIK3CA E545",
-   "amplicon": 4
+   "amplicon": 4,
+   "reaction": "R2"
   },
   {
    "rank": 5,
@@ -47,7 +51,8 @@
    "codon": "E545",
    "allele": "E545A",
    "site": "PIK3CA E545",
-   "amplicon": 4
+   "amplicon": 4,
+   "reaction": "R2"
   },
   {
    "rank": 6,
@@ -56,7 +61,8 @@
    "codon": "E542",
    "allele": "E542K",
    "site": "PIK3CA E542",
-   "amplicon": 4
+   "amplicon": 4,
+   "reaction": "R2"
   },
   {
    "rank": 7,
@@ -65,7 +71,8 @@
    "codon": "C420",
    "allele": "C420R",
    "site": "PIK3CA C420",
-   "amplicon": 3
+   "amplicon": 3,
+   "reaction": "R4"
   },
   {
    "rank": 8,
@@ -74,7 +81,8 @@
    "codon": "N345",
    "allele": "N345K",
    "site": "PIK3CA N345",
-   "amplicon": 2
+   "amplicon": 2,
+   "reaction": "R3"
   },
   {
    "rank": 9,
@@ -83,7 +91,8 @@
    "codon": "E17",
    "allele": "E17K",
    "site": "AKT1 E17",
-   "amplicon": 6
+   "amplicon": 6,
+   "reaction": "R3"
   },
   {
    "rank": 10,
@@ -92,7 +101,8 @@
    "codon": "L755",
    "allele": "L755S",
    "site": "ERBB2 L755",
-   "amplicon": null
+   "amplicon": null,
+   "reaction": "R4"
   },
   {
    "rank": 11,
@@ -101,7 +111,8 @@
    "codon": "V777",
    "allele": "V777L",
    "site": "ERBB2 V777",
-   "amplicon": null
+   "amplicon": null,
+   "reaction": "R4"
   }
  ]
 }

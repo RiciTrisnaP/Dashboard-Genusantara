@@ -46,6 +46,7 @@ NOT in scope (pitch slides only): real pilot deployment, registry, therapy coach
 | `data/evidence_check.csv` | OncoKB level, oncogenicity, CIViC and ClinVar IDs with links for 35 variants, checked 23 Oct 2026 | Evidence level shown per variant in the report |
 | `data/drug_access.json` | Indonesian access status per drug (BPOM, JKN/e-Fornas, price), team check 23 Oct 2026 | Grouping in TRIASE |
 | `data/patients.json` | Demo patients and their test results | Drives all screens and tests |
+| `data/lab.json` | Simulated lab samples (codes NS-2610-0xx), runs, released turnaround times, monthly lab numbers | Lab dashboard (`/lab`) |
 
 **Panel update (25 Oct 2026): the team's final panel is NUSA11**, 11 allele-level hotspots: PIK3CA H1047R, H1047L, H1047Y, E545K, E545A, E542K, C420R, N345K; AKT1 E17K; ERBB2 L755S, V777L. It is defined in `data/panel.json` (`id` = allele, `site` = codon where read quality is measured). Only the listed alleles are reported. ESR1 is not on the panel, so ESR1 is advised as a separate plasma ctDNA test.
 
@@ -88,6 +89,10 @@ Note: the coverage numbers below were computed for the earlier 15-target consens
 
 Spec: `/home/nekora/Downloads/NUSA11_Dashboard_Navigator_Penjelasan_Fitur.pdf` and the team's HTML mockup. Routes under `/perawat`. Rules in `lib/navigator/rules.ts` (tested). Guard rails enforced by design: the nurse never sees variants; the result summary can only be handed over after the doctor releases it; WhatsApp is locked without recorded consent; urgent check-ins can only be escalated to the doctor on call (no treatment advice); no per-doctor referral metrics. Check-in thresholds are demo assumptions to be aligned with the hospital's escalation SOP. Do not name the hospital (the mockup's "RS Mitra Premium" is replaced by "RS"). Do not use the word "premium" in the UI or data: the navigator serves regular patients (team decision, 26 Oct 2026).
 
-## 10. Framework notes
+## 10. Lab dashboard (added 26 Oct 2026)
+
+Spec: `/home/nekora/Downloads/Dashboard_Lab_NUSA11_Alasan_dan_Fitur.pdf` and the team's HTML mockup. Third role, routes under `/lab`: Sampel masuk, Antrian run, Gerbang mutu SENTINEL, Tinjauan patolog, Kinerja lab. Rules in `lib/lab/rules.ts` (tested); session-only state in `components/lab/LabProvider.tsx`. Guard rails: the lab sees sample codes, never patient names (`patientId` in `data/lab.json` is only for demo links); the lab never shows the Laporan Pilih Terapi or gives therapy advice; a target in a failed reaction is "Tidak terbaca", in a doubtful reaction (or with a specimen below S2) "Belum pasti", and "Tidak terdeteksi" only when the reaction control passed; REFLEX from the lab is a suggestion the doctor approves. Internal control thresholds (Ct <=32 / <=35 / >35), S2 limits, and the 4-reaction grouping (`reaction` in `data/panel.json`) are demo values until the assay team sets them. One sample code runs through all three dashboards: tested patients carry `molecularTest.sampleCode` (Ibu F = NS-2610-024, the held sample), and a test keeps the lab's unreadable targets equal to the doctor's SENTINEL. Do not name hospitals or partners: senders are "RS Demo 1/2".
+
+## 11. Framework notes
 
 @AGENTS.md

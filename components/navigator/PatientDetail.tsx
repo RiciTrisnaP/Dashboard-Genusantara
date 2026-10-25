@@ -4,6 +4,7 @@ import { ArrowLeft, EyeOff, Lock } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { StatusBadge } from "@/components/ui";
+import { sampleCodeOf } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { navigator } from "@/lib/navigator/data";
 import { formatWhen } from "@/lib/navigator/format";
@@ -79,6 +80,7 @@ export function PatientDetail({ id }: { id: string }) {
   };
   const gate = gateView(p);
   const step = stageIndex(p.journey);
+  const sampleCode = sampleCodeOf(p.id);
 
   return (
     <div className="space-y-4">
@@ -94,6 +96,7 @@ export function PatientDetail({ id }: { id: string }) {
             <p className="text-ink-3">
               {p.age} th · {p.subtype} · {p.stage} · DPJP {p.dpjp}
             </p>
+            {sampleCode && <p className="text-sm text-ink-3">Kode sampel lab: <span className="font-mono font-semibold text-ink-2">{sampleCode}</span></p>}
           </div>
           <div className="flex flex-wrap gap-2">
             <StatusBadge tone={gate.tone} size="md">

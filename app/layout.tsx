@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree, IBM_Plex_Mono } from "next/font/google";
 import { AppBar } from "@/components/AppBar";
 import { SiteFooter } from "@/components/SiteFooter";
+import { LabProvider } from "@/components/lab/LabProvider";
 import { NavigatorProvider } from "@/components/navigator/NavigatorProvider";
 import { SignOffProvider } from "@/components/SignOffProvider";
 import "./globals.css";
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AppBar />
         <SignOffProvider>
           <NavigatorProvider>
-            <main className="flex-1 print:p-0">{children}</main>
+            <LabProvider>
+              <main className="flex-1 print:p-0">{children}</main>
+            </LabProvider>
           </NavigatorProvider>
         </SignOffProvider>
         <SiteFooter />

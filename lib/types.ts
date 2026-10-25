@@ -49,6 +49,8 @@ export type MolecularTest =
   | {
       done: true;
       date: string;
+      /** Lab sample code shared by the doctor, lab, and navigator dashboards (for example "NS-2610-024"). */
+      sampleCode?: string;
       method: TestMethod;
       specimen: Specimen;
       targets: TargetResult[];
@@ -82,6 +84,8 @@ export interface PanelTarget {
   /** Codon-level site the read quality is measured at, matching TargetResult.target ("PIK3CA H1047"). */
   site: string;
   amplicon: number | null;
+  /** qPCR multiplex reaction the target is read in ("R1" to "R4"); demo grouping, see data/panel.json. */
+  reaction: string;
 }
 
 export interface Panel {

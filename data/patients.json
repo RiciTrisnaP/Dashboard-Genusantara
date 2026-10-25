@@ -23,6 +23,7 @@
    "molecularTest": {
     "done": true,
     "date": "2026-10-20",
+    "sampleCode": "NS-2610-012",
     "method": "NGS_amplikon",
     "specimen": {
      "type": "jaringan_FFPE",
@@ -112,6 +113,7 @@
    "molecularTest": {
     "done": true,
     "date": "2026-10-21",
+    "sampleCode": "NS-2610-014",
     "method": "NGS_amplikon",
     "specimen": {
      "type": "plasma_ctDNA",
@@ -201,6 +203,7 @@
    "molecularTest": {
     "done": true,
     "date": "2026-10-19",
+    "sampleCode": "NS-2610-011",
     "method": "NGS_amplikon",
     "specimen": {
      "type": "jaringan_FFPE",
@@ -293,6 +296,7 @@
    "molecularTest": {
     "done": true,
     "date": "2026-10-18",
+    "sampleCode": "NS-2610-009",
     "method": "NGS_amplikon",
     "specimen": {
      "type": "jaringan_FFPE",
@@ -403,6 +407,7 @@
    "molecularTest": {
     "done": true,
     "date": "2026-10-22",
+    "sampleCode": "NS-2610-024",
     "method": "NGS_amplikon",
     "specimen": {
      "type": "jaringan_FFPE",

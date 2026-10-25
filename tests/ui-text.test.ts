@@ -4,6 +4,18 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { drugAccess, panel, patients } from "@/lib/data";
+import { lab } from "@/lib/lab/data";
+import {
+  delayNote,
+  evaluateLabS2,
+  labGates,
+  labReflexOptions,
+  reactionResults,
+  resultSummary,
+  reviewNote,
+  runSizeWarning,
+  sentinelNote,
+} from "@/lib/lab/rules";
 import { runCase } from "@/lib/rules";
 
 const ROOT = join(__dirname, "..");
@@ -31,11 +43,27 @@ function collectStrings(value: unknown, out: string[] = []): string[] {
 
 const ruleText = patients.flatMap((p) => collectStrings(runCase(p))).join("\n");
 const dataText = collectStrings([panel, drugAccess]).join("\n");
+const T = lab.thresholds;
+const labText = collectStrings([
+  lab,
+  ...lab.samples.map((x) => [
+    evaluateLabS2(x, T),
+    reactionResults(x, panel, T),
+    labGates(x, panel, T),
+    sentinelNote(x, panel, T),
+    reviewNote(x, panel, T),
+    resultSummary(x, panel, T),
+    labReflexOptions(x),
+  ]),
+  delayNote(lab.released, lab.pricing.tatTargetDays),
+  runSizeWarning(2, lab.run.minSamples),
+]).join("\n");
 
 const corpora: [string, string][] = [
   ...sourceFiles.map((f): [string, string] => [f.replace(ROOT, ""), readFileSync(f, "utf8")]),
   ["rule output", ruleText],
   ["panel and drug access data", dataText],
+  ["lab data and lab rule output", labText],
 ];
 
 /** CLAUDE.md section 6, as patterns. Negated statements ("tidak mencakup ... secara utuh") are allowed. */
