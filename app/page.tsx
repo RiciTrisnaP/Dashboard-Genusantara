@@ -173,7 +173,7 @@ export default function LandingPage() {
         <div className="grid gap-6 rounded-3xl border border-line bg-white p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
           <div>
             <p className="text-xs font-semibold tracking-[0.12em] text-primary uppercase">Untuk perawat navigator</p>
-            <h2 className="mt-1 text-3xl font-bold">Mendampingi pasien premium sepanjang pengobatan</h2>
+            <h2 className="mt-1 text-3xl font-bold">Mendampingi pasien sepanjang pengobatan</h2>
             <p className="mt-3 text-ink-2">
               Dashboard navigator membantu perawat memegang setiap langkah: dari tes sampai pendampingan selesai. Keluhan dan efek samping obat dicatat
               terstruktur, tanda bahaya diteruskan ke dokter jaga, dan aturan keselamatan dijaga otomatis.

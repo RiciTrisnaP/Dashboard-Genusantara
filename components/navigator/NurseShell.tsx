@@ -35,7 +35,7 @@ export function NurseShell({ active, children }: { active: NurseTab; children: R
               </span>
               <div>
                 <p className="text-xl font-bold">Dashboard navigator</p>
-                <p className="text-sm text-ink-3">Untuk perawat pendamping pasien premium · {navigator.nurse}</p>
+                <p className="text-sm text-ink-3">Untuk perawat pendamping pasien · {navigator.nurse}</p>
               </div>
             </div>
             <Link href="/pasien" className="text-sm font-semibold text-primary hover:underline">

@@ -86,7 +86,7 @@ Note: the coverage numbers below were computed for the earlier 15-target consens
 
 ## 9. Nurse navigator dashboard (added 26 Oct 2026)
 
-Spec: `/home/nekora/Downloads/NUSA11_Dashboard_Navigator_Penjelasan_Fitur.pdf` and the team's HTML mockup. Routes under `/perawat`. Rules in `lib/navigator/rules.ts` (tested). Guard rails enforced by design: the nurse never sees variants; the result summary can only be handed over after the doctor releases it; WhatsApp is locked without recorded consent; urgent check-ins can only be escalated to the doctor on call (no treatment advice); no per-doctor referral metrics. Check-in thresholds are demo assumptions to be aligned with the hospital's escalation SOP. Do not name the hospital (the mockup's "RS Mitra Premium" is replaced by "RS").
+Spec: `/home/nekora/Downloads/NUSA11_Dashboard_Navigator_Penjelasan_Fitur.pdf` and the team's HTML mockup. Routes under `/perawat`. Rules in `lib/navigator/rules.ts` (tested). Guard rails enforced by design: the nurse never sees variants; the result summary can only be handed over after the doctor releases it; WhatsApp is locked without recorded consent; urgent check-ins can only be escalated to the doctor on call (no treatment advice); no per-doctor referral metrics. Check-in thresholds are demo assumptions to be aligned with the hospital's escalation SOP. Do not name the hospital (the mockup's "RS Mitra Premium" is replaced by "RS"). Do not use the word "premium" in the UI or data: the navigator serves regular patients (team decision, 26 Oct 2026).
 
 ## 10. Framework notes
 

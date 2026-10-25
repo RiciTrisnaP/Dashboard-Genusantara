@@ -14,7 +14,7 @@
    "nextStep": "Laporan menunggu tanda tangan dokter. Setelah dokter menjelaskan hasil, jadwalkan penyerahan ringkasan.",
    "summary": "menunggu_dokter",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 0,
     "totalMonths": 6,
     "endsOn": null
@@ -54,7 +54,7 @@
    "nextStep": "Hasil keluar 21 Okt. Jadwalkan konsultasi hasil dengan DPJP paling lambat 28 Okt.",
    "summary": "menunggu_dokter",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 0,
     "totalMonths": 6,
     "endsOn": null
@@ -94,7 +94,7 @@
    "nextStep": "Pastikan rujukan konseling genetik dan tes germline BRCA1/2 sudah dijadwalkan.",
    "summary": "diserahkan",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 1,
     "totalMonths": 6,
     "endsOn": "2027-03-31"
@@ -146,7 +146,7 @@
    "nextStep": "Dokter sudah merilis ringkasan. Serahkan ringkasan sebagai dokumen dan buat rujukan konseling genetik.",
    "summary": "dirilis",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 1,
     "totalMonths": 6,
     "endsOn": "2027-04-30"
@@ -193,7 +193,7 @@
    "nextStep": "Tim tumor memutuskan tes NUSA11. Ingatkan jadwal pengambilan sampel 27 Okt.",
    "summary": "belum_ada",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 0,
     "totalMonths": 6,
     "endsOn": null
@@ -228,7 +228,7 @@
    "nextStep": "Sampel ditahan. Koordinasikan tes ulang setelah dokter menyetujui saran tes lanjutan.",
    "summary": "belum_ada",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 0,
     "totalMonths": 6,
     "endsOn": null
@@ -268,7 +268,7 @@
    "nextStep": "Check-in hari ini mendesak. Eskalasikan ke dokter jaga, lalu hubungi pasien.",
    "summary": "diserahkan",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 2,
     "totalMonths": 6,
     "endsOn": "2027-02-28"
@@ -323,7 +323,7 @@
    "nextStep": "Pendampingan selesai 30 Sep. Tidak ada tugas aktif.",
    "summary": "diserahkan",
    "package": {
-    "name": "Pendampingan premium",
+    "name": "Paket pendampingan pasien",
     "month": 6,
     "totalMonths": 6,
     "endsOn": "2026-09-30"
